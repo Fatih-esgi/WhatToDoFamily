@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./event-detail.component.scss']
 })
 export class EventDetailComponent implements OnInit {
+  like:boolean = true;
 
   constructor() { }
 
@@ -17,5 +18,10 @@ export class EventDetailComponent implements OnInit {
   }
   addToFavorites(){
     console.log('clicked favorites');
+    if (this.like == true) {
+      this.like = false;
+    } else {
+      this.like = true;
+    }
   }
 }

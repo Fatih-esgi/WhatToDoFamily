@@ -3,31 +3,69 @@
   </ion-header>
 <ion-content>
     <ion-list>
-        <ion-item class="ion-no-padding" detail="true" detail-icon="caret-forward-circle" [routerLink]="'eventbooked'">
-            <ion-card>
-                <p>linkto event booked</p>
-            </ion-card>
-        </ion-item>
-        <ion-item class="ion-no-padding" detail="true" detail-icon="caret-forward-circle" [routerLink]="'oldevents'">
-            <ion-card>
-                <p>linkto olds event</p>
-            </ion-card>
-        </ion-item>
-        <ion-item class="ion-no-padding" detail="true" detail-icon="caret-forward-circle" [routerLink]="'../user/lastvisited'">
-            <ion-card>
-                <p>linkto last visited</p>
-            </ion-card>
-        </ion-item>
-        <ion-item class="ion-no-padding" detail="true" detail-icon="caret-forward-circle" [routerLink]="'../user/myrating'">
-            <ion-card>
-                <p>linkto my rating</p>
-            </ion-card>
-        </ion-item>
-        <ion-item class="ion-no-padding" detail="true" detail-icon="caret-forward-circle" [routerLink]="'../user/settings'">
-            <ion-card>
-                <p>linkto settings</p>
-            </ion-card>
-        </ion-item>
-        
+        <ion-grid fixed>
+            <ion-row>
+                <ion-col size="6">
+                    <ion-item class="ion-no-padding ion-text-center" detail="false" [routerLink]="'eventbooked'">
+                        <ion-row>
+                            <ion-col size="12">
+                                <ion-icon slot="" name="settings-outline" size="large"></ion-icon>
+                            </ion-col>
+                            <ion-col size="12">
+                                <p>évenements prévus</p>
+                            </ion-col>
+                        </ion-row>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="6">
+                    <ion-item class="ion-no-padding ion-text-center" detail="false" [routerLink]="'oldevents'">
+                        <ion-row>
+                            <ion-col size="12">
+                                <ion-icon slot="" name="settings-outline" size="large"></ion-icon>
+                            </ion-col>
+                            <ion-col size="12">
+                                <p>évenements passés</p>
+                            </ion-col>
+                        </ion-row>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="6">
+                    <ion-item class="ion-no-padding ion-text-center" detail="false" [routerLink]="'../user/lastvisited'">
+                        <ion-row>
+                            <ion-col size="12">
+                                <ion-icon slot="" name="settings-outline" size="large"></ion-icon>
+                            </ion-col>
+                            <ion-col size="12">
+                                <p>visité dernièrement</p>
+                            </ion-col>
+                        </ion-row>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="6">
+                    <ion-item class="ion-no-margin ion-text-center" detail="false" [routerLink]="'../user/myrating'">
+                        <ion-row>
+                            <ion-col size="12">
+                                <ion-icon slot="" name="settings-outline" size="large"></ion-icon>
+                            </ion-col>
+                            <ion-col size="12">
+                                <p>mes évaluations</p>
+                            </ion-col>
+                        </ion-row>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="6">
+                    <ion-item class="ion-no-padding ion-text-center" detail="false" [routerLink]="'../user/settings'">                      
+                    <ion-row>
+                            <ion-col size="12">
+                                <ion-icon slot="" name="settings-outline" size="large"></ion-icon>
+                            </ion-col>
+                            <ion-col size="12">
+                                <p>paramètres</p>
+                            </ion-col>
+                        </ion-row>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+        </ion-grid> 
     </ion-list>
 </ion-content>
