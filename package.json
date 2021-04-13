@@ -22,6 +22,7 @@
     "@capacitor/angular": "^1.0.3",
     "@capacitor/core": "latest",
     "@ionic/angular": "^5.6.4",
+    "@ionic/cli": "^6.13.1",
     "@ionic/pwa-elements": "^3.0.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
