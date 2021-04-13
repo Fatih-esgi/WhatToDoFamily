@@ -11,27 +11,33 @@ const routes: Routes = [
       {
         path: 'home',
         loadChildren: () => import('../home/home.module')
-                              .then(m => m.HomeModule)
+          .then(m => m.HomeModule),
       },
       {
         path: 'search',
         loadChildren: () => import('../search/search.module')
-                              .then(m => m.SearchModule)
+          .then(m => m.SearchModule)
       },
       {
         path: 'eventslist',
         loadChildren: () => import('../liste-event/liste-event.module')
-                              .then(m => m.ListeEventModule)
+          .then(m => m.ListeEventModule),
+        
       },
       {
         path: 'user',
         loadChildren: () => import('../user/user.module')
-                              .then(m => m.UserModule)
+          .then(m => m.UserModule)
       },
       {
         path: 'favorites',
         loadChildren: () => import('../favorites/favorites.module')
-                              .then(m => m.FavoritesModule)
+          .then(m => m.FavoritesModule)
+      },
+      {
+        path: 'event',
+        loadChildren: () => import('../event-detail/event-detail.module')
+          .then(m => m.EventDetailModule)
       },
     ]
   }

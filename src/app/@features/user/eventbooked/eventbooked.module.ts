@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ListeEventRoutingModule } from './liste-event-routing.module';
-import { ListeEventComponent } from './liste-event.component';
+import { EventbookedRoutingModule } from './eventbooked-routing.module';
+import { EventbookedComponent } from './eventbooked.component';
 import { IonicModule } from '@ionic/angular';
 
 
 @NgModule({
   declarations: [
-    ListeEventComponent
+    EventbookedComponent
   ],
   imports: [
     CommonModule,
-    ListeEventRoutingModule,
+    EventbookedRoutingModule,
     IonicModule
   ]
 })
-export class ListeEventModule { }
+export class EventbookedModule { }

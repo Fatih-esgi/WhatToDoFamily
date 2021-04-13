@@ -3,15 +3,19 @@ import { CommonModule } from '@angular/common';
 
 import { UserRoutingModule } from './user-routing.module';
 import { UserComponent } from './user.component';
+import { IonicModule } from '@ionic/angular';
+import { OldeventComponent } from './oldevent/oldevent.component';
 
 
 @NgModule({
   declarations: [
-    UserComponent
+    UserComponent,
+    OldeventComponent
   ],
   imports: [
     CommonModule,
-    UserRoutingModule
+    UserRoutingModule,
+    IonicModule
   ]
 })
 export class UserModule { }
