@@ -11,5 +11,11 @@ export class EventDetailComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  share(){
+    console.log('clicked share');
+    
+  }
+  addToFavorites(){
+    console.log('clicked favorites');
+  }
 }

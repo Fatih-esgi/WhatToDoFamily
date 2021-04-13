@@ -8,8 +8,7 @@ const routes: Routes = [  {
   children: [
     {
       path: 'eventbooked',
-      loadChildren: () => import('../user/eventbooked/eventbooked.module')
-                            .then(m => m.EventbookedModule),
+      loadChildren: () => import('./eventbooked/eventbooked.module').then( m => m.EventbookedModule) 
     },
   ]
 }];

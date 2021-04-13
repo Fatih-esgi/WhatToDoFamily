@@ -1,29 +1,33 @@
-<p>user works!</p>
-<ion-list>
-    <ion-item class="ion-no-padding" detail="true" detail-icon="caret-forward-circle" [routerLink]="'../user/eventbooked'">
-        <ion-card>
-            <p>linkto event booked</p>
-        </ion-card>
-    </ion-item>
-    <ion-item class="ion-no-padding" detail="true" detail-icon="caret-forward-circle" [routerLink]="'../oldevents'">
-        <ion-card>
-            <p>linkto olds event</p>
-        </ion-card>
-    </ion-item>
-    <ion-item class="ion-no-padding" detail="true" detail-icon="caret-forward-circle" [routerLink]="'../lastvisited'">
-        <ion-card>
-            <p>linkto last visited</p>
-        </ion-card>
-    </ion-item>
-    <ion-item class="ion-no-padding" detail="true" detail-icon="caret-forward-circle" [routerLink]="'../myrating'">
-        <ion-card>
-            <p>linkto my rating</p>
-        </ion-card>
-    </ion-item>
-    <ion-item class="ion-no-padding" detail="true" detail-icon="caret-forward-circle" [routerLink]="'../settings'">
-        <ion-card>
-            <p>linkto settings</p>
-        </ion-card>
-    </ion-item>
-    
-</ion-list>
+<ion-header>
+    <app-header title="Mon compte"></app-header>
+  </ion-header>
+<ion-content>
+    <ion-list>
+        <ion-item class="ion-no-padding" detail="true" detail-icon="caret-forward-circle" [routerLink]="'eventbooked'">
+            <ion-card>
+                <p>linkto event booked</p>
+            </ion-card>
+        </ion-item>
+        <ion-item class="ion-no-padding" detail="true" detail-icon="caret-forward-circle" [routerLink]="'oldevents'">
+            <ion-card>
+                <p>linkto olds event</p>
+            </ion-card>
+        </ion-item>
+        <ion-item class="ion-no-padding" detail="true" detail-icon="caret-forward-circle" [routerLink]="'../user/lastvisited'">
+            <ion-card>
+                <p>linkto last visited</p>
+            </ion-card>
+        </ion-item>
+        <ion-item class="ion-no-padding" detail="true" detail-icon="caret-forward-circle" [routerLink]="'../user/myrating'">
+            <ion-card>
+                <p>linkto my rating</p>
+            </ion-card>
+        </ion-item>
+        <ion-item class="ion-no-padding" detail="true" detail-icon="caret-forward-circle" [routerLink]="'../user/settings'">
+            <ion-card>
+                <p>linkto settings</p>
+            </ion-card>
+        </ion-item>
+        
+    </ion-list>
+</ion-content>

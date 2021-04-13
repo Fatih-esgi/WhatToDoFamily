@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { EventDetailRoutingModule } from './event-detail-routing.module';
 import { IonicModule } from '@ionic/angular';
+import { SharedModule } from 'src/app/@shared/shared.module';
 
 
 @NgModule({
@@ -10,7 +11,7 @@ import { IonicModule } from '@ionic/angular';
   imports: [
     CommonModule,
     EventDetailRoutingModule,
-    IonicModule
+    IonicModule,
   ]
 })
 export class EventDetailModule { }

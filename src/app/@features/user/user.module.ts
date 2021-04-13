@@ -5,6 +5,7 @@ import { UserRoutingModule } from './user-routing.module';
 import { UserComponent } from './user.component';
 import { IonicModule } from '@ionic/angular';
 import { OldeventComponent } from './oldevent/oldevent.component';
+import { SharedModule } from 'src/app/@shared/shared.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { OldeventComponent } from './oldevent/oldevent.component';
   imports: [
     CommonModule,
     UserRoutingModule,
-    IonicModule
+    IonicModule,
+    SharedModule
   ]
 })
 export class UserModule { }

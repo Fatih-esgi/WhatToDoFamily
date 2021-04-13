@@ -1,1 +1,16 @@
-<p>event-detail works!</p>
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>titre de l'evenement en variable</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="share()">
+                <ion-icon name="share-social-outline"></ion-icon>
+            </ion-button>
+            <ion-button (click)="addToFavorites()">
+                <ion-icon name="heart-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+      </ion-toolbar>
+  </ion-header>

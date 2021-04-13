@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FavoritesRoutingModule } from './favorites-routing.module';
 import { FavoritesComponent } from './favorites.component';
 import { IonicModule } from '@ionic/angular';
+import { SharedModule } from 'src/app/@shared/shared.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { IonicModule } from '@ionic/angular';
   imports: [
     CommonModule,
     FavoritesRoutingModule,
-    IonicModule
+    IonicModule,
+    SharedModule
   ]
 })
 export class FavoritesModule { }
