@@ -39,6 +39,31 @@ const routes: Routes = [
         loadChildren: () => import('../event-detail/event-detail.module')
           .then(m => m.EventDetailModule)
       },
+      {
+        path: 'user/eventbooked',
+        loadChildren: () => import('../eventbooked/eventbooked.module')
+          .then(m => m.EventbookedModule)
+      },
+      {
+        path: 'user/oldevents',
+        loadChildren: () => import('../oldevent/oldevent.module')
+          .then(m => m.OldeventModule)
+      },
+      {
+        path: 'user/lastvisited',
+        loadChildren: () => import('../lastvisited/lastvisited.module')
+          .then(m => m.LastvisitedModule)
+      },
+      {
+        path: 'user/myrating',
+        loadChildren: () => import('../myrating/myrating.module')
+          .then(m => m.MyratingModule)
+      },
+      {
+        path: 'user/settings',
+        loadChildren: () => import('../settings/settings.module')
+          .then(m => m.SettingsModule)
+      },
     ]
   }
 ];
