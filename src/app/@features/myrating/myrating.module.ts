@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { MyratingRoutingModule } from './myrating-routing.module';
 import { MyratingComponent } from './myrating.component';
+import { IonicModule } from '@ionic/angular';
+import { SharedModule } from 'src/app/@shared/shared.module';
 
 
 @NgModule({
@@ -11,7 +13,9 @@ import { MyratingComponent } from './myrating.component';
   ],
   imports: [
     CommonModule,
-    MyratingRoutingModule
+    MyratingRoutingModule,
+    IonicModule,
+    SharedModule
   ]
 })
 export class MyratingModule { }

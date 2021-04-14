@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { LastvisitedRoutingModule } from './lastvisited-routing.module';
 import { LastvisitedComponent } from './lastvisited.component';
+import { IonicModule } from '@ionic/angular';
+import { SharedModule } from 'src/app/@shared/shared.module';
 
 
 @NgModule({
@@ -11,7 +13,9 @@ import { LastvisitedComponent } from './lastvisited.component';
   ],
   imports: [
     CommonModule,
-    LastvisitedRoutingModule
+    LastvisitedRoutingModule,
+    IonicModule,
+    SharedModule
   ]
 })
 export class LastvisitedModule { }

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { EventbookedRoutingModule } from './eventbooked-routing.module';
 import { EventbookedComponent } from './eventbooked.component';
 import { IonicModule } from '@ionic/angular';
+import { SharedModule } from 'src/app/@shared/shared.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { IonicModule } from '@ionic/angular';
   imports: [
     CommonModule,
     EventbookedRoutingModule,
-    IonicModule
+    IonicModule,
+    SharedModule
   ]
 })
 export class EventbookedModule { }
