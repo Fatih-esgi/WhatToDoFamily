@@ -1,8 +1,72 @@
 <ion-header>
-    <app-header title="WhatToDo Family"></app-header>
-  </ion-header>
-<ion-list>
-    <ion-item class="ion-no-padding" detail="true" detail-icon="caret-forward-circle" [routerLink]="'../event'">
-       <p>linkto page detail event</p>
-    </ion-item>
-</ion-list>
+  <app-header title="WhatToDo Family"></app-header>
+</ion-header>
+<ion-content>
+  <ion-item class="homeBg">
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="6">23°</ion-col>
+        <ion-col size="6">14:22</ion-col>
+        <ion-col size="6">Fribourg</ion-col>
+        <ion-col size="6">22 juillet 2021</ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+  <ion-grid fixed class="ion-text-center">
+    <ion-row>
+      <ion-col size="12">
+        <ion-icon slot="" name="settings-outline" size="large"></ion-icon>
+      </ion-col>
+      <ion-col size="12">
+        <ion-text color="primary">
+          <h5>Notre séléction par temps nuageux</h5>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-list>
+    <ion-grid>
+        <ion-card class="ion-no-padding" detail="false" [routerLink]="'../event'">
+        <ion-row>
+          <ion-col size="4" class="">
+            <ion-item [color]="'primary'" class="ion-no-margin ion-no-padding"></ion-item>
+          </ion-col>
+          <ion-col size="8">
+              <ion-text color="primary">
+                <p>18 au 22 décembre</p>
+              </ion-text>
+              <ion-text color="primary">
+                <h6>Marché de noël à montreux avec titre rallongé parce que... </h6>
+              </ion-text>
+              <ion-row>
+                <ion-col size="1">
+                  <ion-icon slot="" name="settings-outline" size="xsmall"></ion-icon>
+                </ion-col>
+                <ion-col size="2">
+                  <ion-icon slot="" name="settings-outline" size="xsmall"></ion-icon>
+                  <ion-label slot="">10km</ion-label>
+                </ion-col>
+                <ion-col size="1">
+                  <ion-icon slot="" name="settings-outline" size="xsmall"></ion-icon>
+                </ion-col>
+                <ion-col size="1">
+                  <ion-icon slot="" name="settings-outline" size="xsmall"></ion-icon>
+                </ion-col>
+                <ion-col size="7">
+                  <ionic-rating-component
+        activeIcon = "star"
+        defaultIcon = "star"
+        activeColor = "#488aff" 
+        defaultColor = "#f4f4f4"
+        readonly="true"
+        rating="3"
+        fontSize = "13px">
+    </ionic-rating-component>
+                </ion-col>
+              </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+      </ion-grid>
+  </ion-list>
+</ion-content>
