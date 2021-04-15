@@ -13,4 +13,4 @@ jobs:
       with:
         server: what-to-do.ch
         username: wk3ni_fate
-        password: ${{ secrets.ftp_password }}
+        password: ${{ secrets.FTP_PASSWORD }}
