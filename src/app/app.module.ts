@@ -11,8 +11,7 @@ import { environment } from '../environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
-    EventDetailComponent,
-  ],
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
