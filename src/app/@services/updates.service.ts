@@ -14,9 +14,7 @@ export class UpdatesService {
 
   checkUpdates(){
     this._updates.available.subscribe(event => { 
-      console.log('current version is', event.current);
-      console.log('available version is', event.available);
-      if (event.current != event.available) {
+      if (event) {
         this.displayPopUpUpdate();
       }
     });
