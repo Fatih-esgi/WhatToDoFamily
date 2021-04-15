@@ -1,16 +1,31 @@
-on: push
-name: 🚀 Deploy website on push
+name: Node.js CI
+
+on:
+  push:
+    branches: [ dev ]
+  pull_request:
+    branches: [ dev ]
+
 jobs:
-  web-deploy:
-    name: 🎉 Deploy
+  build:
+
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
     steps:
-    - name: 🚚 Get latest code
-      uses: actions/checkout@v2.3.2
-    
-    - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
       with:
-        server: what-to-do.ch
-        username: wk3ni_fate
-        password: ${{ secrets.ftp_password }}
+        node-version: ${{ matrix.node-version }}
+    - run: npm ci
+   # - run: npm test
+    - run: npm run deploy:ci --if-present
+
+      env:
+        CI: true
+        # Deploy env
+        GITHUB_TOKEN: ${{ secrets.G_TOKEN }}
