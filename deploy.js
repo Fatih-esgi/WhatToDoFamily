@@ -7,7 +7,7 @@ var config = {
     password: "Babylonspunk1984",
     host: "what-to-do.ch",
     port: 21,
-    localRoot: "/dist/WhatToDoFamily",
+    localRoot: __dirname + "/dist/WhatToDoFamily",
     remoteRoot: "/",
     // include: ["*", "**/*"],      // this would upload everything except dot files
     include: ["*", "**/*", ".*"],
