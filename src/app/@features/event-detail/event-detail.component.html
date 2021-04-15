@@ -1,7 +1,7 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start">
-          <ion-back-button defaultHref="eventslist">b</ion-back-button>
+          <ion-back-button defaultHref="eventslist"></ion-back-button>
         </ion-buttons>
         <ion-title>titre de l'evenement en variable</ion-title>
         <ion-buttons slot="end">  
@@ -12,7 +12,9 @@
                 <ion-icon *ngIf="like;else dislike" name="heart-outline"></ion-icon>
                 <ng-template #dislike><ion-icon name="heart-dislike-outline"></ion-icon></ng-template>
             </ion-button>
-          
           </ion-buttons>
       </ion-toolbar>
   </ion-header>
+  <ion-content>
+      test
+  </ion-content>
