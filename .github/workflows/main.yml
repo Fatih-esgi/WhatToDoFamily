@@ -16,48 +16,16 @@ jobs:
         node-version: [12.x]
 
     steps:
-        - name: Get latest code
-          uses: actions/checkout@v2.3.2
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm ci
+   # - run: npm test
+    - run: npm run deploy:ftp --if-present
 
-        - name: Use Node.js 14 LTS
-          uses: actions/setup-node@v2
-          with:
-            node-version: '14'
-          
-        - name: Install NPM Modules
-          run: npm install
-
-        - name: Build Project
-          run: npm run build
-        
-        - name: Sync Files
-          uses: SamKirkland/FTP-Deploy-Action@4.0.0
-          with:
-            server: what-to-do.ch
-            username: ${{ secrets.USERKEY }}
-            password: ${{ secrets.FTPPASS }}
-            local-dir: ./dist/
-            server-dir: ./
-            dangerous-clean-slate: true
-
-
-
-
-
-
-
-
-  #   steps:
-  #   - uses: actions/checkout@v2
-  #   - name: Use Node.js ${{ matrix.node-version }}
-  #     uses: actions/setup-node@v1
-  #     with:
-  #       node-version: ${{ matrix.node-version }}
-  #   - run: npm ci
-  #  # - run: npm test
-  #   - run: npm run deploy:ftp --if-present
-
-  #     env:
-  #       CI: true
-  #       # Deploy env
-  #       GITHUB_TOKEN: ${{ secrets.G_TOKEN }}
+      env:
+        CI: true
+        # Deploy env
+        GITHUB_TOKEN: ${{ secrets.G_TOKEN }} 
