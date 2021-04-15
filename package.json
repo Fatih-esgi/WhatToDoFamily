@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "deploy:ftp": "node deploy"
   },
   "private": true,
   "dependencies": {
@@ -19,11 +20,13 @@
     "@angular/platform-browser": "~11.2.4",
     "@angular/platform-browser-dynamic": "~11.2.4",
     "@angular/router": "~11.2.4",
+    "@angular/service-worker": "~11.2.4",
     "@capacitor/angular": "^1.0.3",
     "@capacitor/core": "latest",
     "@ionic/angular": "^5.6.4",
     "@ionic/cli": "^6.13.1",
     "@ionic/pwa-elements": "^3.0.2",
+    "ftp-deploy": "^2.4.1",
     "ionic-rating-component": "^1.1.6",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
