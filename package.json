@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "deploy:ftp": "node deploy",
-    "deploy:ci": "ng deploy --name='Fatih-esgi' --email='75906474+Fatih-esgi@users.noreply.github.com' --no-silent"
+    "deploy:ci": "ng deploy ./ --name='Fatih-esgi' --email='75906474+Fatih-esgi@users.noreply.github.com' --no-silent"
 
   },
   "private": true,
