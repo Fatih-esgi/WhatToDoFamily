@@ -2,9 +2,9 @@ var FtpDeploy = require("ftp-deploy");
 var ftpDeploy = new FtpDeploy();
 
 var config = {
-    user: $secrets.USERKEY,
+    user: secrets.USERKEY,
     // Password optional, prompted if none given
-    password: $secrets.FTPPASS,
+    password: secrets.FTPPASS,
     host: "what-to-do.ch",
     port: 21,
     localRoot: __dirname + "/dist/WhatToDoFamily",
