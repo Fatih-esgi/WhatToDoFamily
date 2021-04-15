@@ -8,6 +8,11 @@ import { Component, OnInit } from '@angular/core';
 export class EventDetailComponent implements OnInit {
   like:boolean = true;
 
+  slideOpts = {
+    initialSlide: 1,
+    speed: 400
+  };
+  
   constructor() { }
 
   ngOnInit(): void {
