@@ -37,7 +37,7 @@ jobs:
             username: ${{ secrets.USERKEY }}
             password: ${{ secrets.FTPPASS }}
             local-dir: ./dist/
-            server-dir: ./site/wwwroot/
+            server-dir: ./
             dangerous-clean-slate: true
 
 
