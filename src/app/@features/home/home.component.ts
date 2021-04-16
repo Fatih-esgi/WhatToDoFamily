@@ -23,11 +23,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   date: any ;
   time:any = new Date();
   timer;
-
+  activeCategory:string = "all";
   constructor(
     private _meteo: MeteoService,
     ) { 
-
+      
     }
 
   async ngOnInit() {
@@ -41,5 +41,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnDestroy(){
     clearInterval(this.timer);
   }
-  
+
+
+  catChanged($event:any):void{
+    console.log($event.detail.value);
+    this.activeCategory = $event.detail.value;
+  }
 }

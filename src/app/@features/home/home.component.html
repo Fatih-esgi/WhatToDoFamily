@@ -32,30 +32,30 @@
         </ion-text>
       </ion-col>
      <ion-col size="12">
-      <ion-segment scrollable value="home">
-        <ion-segment-button value="home">
+      <ion-segment scrollable value="all" mode="md" (ionChange)="catChanged($event)">
+        <ion-segment-button value="all">
           <ion-icon name="home"></ion-icon>
         </ion-segment-button>
-        <ion-segment-button value="heart">
+        <ion-segment-button value="actus">
           <ion-icon name="heart"></ion-icon>
         </ion-segment-button>
-        <ion-segment-button value="pin">
+        <ion-segment-button value="sortir">
           <ion-icon name="pin"></ion-icon>
         </ion-segment-button>
-        <ion-segment-button value="star">
+        <ion-segment-button value="decouvrir">
           <ion-icon name="star"></ion-icon>
         </ion-segment-button>
-        <ion-segment-button value="call">
+        <ion-segment-button value="samuser">
           <ion-icon name="call"></ion-icon>
         </ion-segment-button>
-        <ion-segment-button value="call1">
+        <ion-segment-button value="manger">
           <ion-icon name="call"></ion-icon>
         </ion-segment-button>
       </ion-segment>
      </ion-col>
      <ion-col>
        <ion-text color="primary">
-         <p>découvrire</p>
+         <p>{{activeCategory}}</p>
        </ion-text>
      </ion-col>
     </ion-row>
