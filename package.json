@@ -4,10 +4,12 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "deploy:ftp": "node deploy",
+    "deploy:ci": "ng deploy  --name='Fatih-esgi' --email='75906474+Fatih-esgi@users.noreply.github.com' --no-silent"
   },
   "private": true,
   "dependencies": {
@@ -19,6 +21,14 @@
     "@angular/platform-browser": "~11.2.4",
     "@angular/platform-browser-dynamic": "~11.2.4",
     "@angular/router": "~11.2.4",
+    "@angular/service-worker": "~11.2.4",
+    "@capacitor/angular": "^1.0.3",
+    "@capacitor/core": "latest",
+    "@ionic/angular": "^5.6.4",
+    "@ionic/cli": "^6.13.1",
+    "@ionic/pwa-elements": "^3.0.2",
+    "ftp-deploy": "^2.4.1",
+    "ionic-rating-component": "^1.1.6",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
@@ -27,8 +37,11 @@
     "@angular-devkit/build-angular": "~0.1102.3",
     "@angular/cli": "~11.2.3",
     "@angular/compiler-cli": "~11.2.4",
+    "@capacitor/cli": "latest",
+    "@ionic/angular-toolkit": "latest",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
+    "angular-cli-ghpages": "^1.0.0-rc.1",
     "codelyzer": "^6.0.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
