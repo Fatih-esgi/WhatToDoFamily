@@ -35,7 +35,7 @@ const routes: Routes = [
           .then(m => m.FavoritesModule)
       },
       {
-        path: 'event',
+        path: 'event/:id',
         loadChildren: () => import('../event-detail/event-detail.module')
           .then(m => m.EventDetailModule)
       },

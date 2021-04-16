@@ -7,10 +7,9 @@ import { IonicModule } from '@ionic/angular';
 import { SharedModule } from 'src/app/@shared/shared.module';
 import { IonicRatingComponentModule } from 'ionic-rating-component';
 
-
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     CommonModule,

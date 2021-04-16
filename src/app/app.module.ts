@@ -4,14 +4,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IonicModule } from '@ionic/angular';
-import { EventDetailComponent } from './@features/event-detail/event-detail.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import { SearchFiltersComponent } from './@features/search-filters/search-filters.component';
+import { EventCardComponent } from './@shared/component/event-card/event-card.component';
 @NgModule({
   declarations: [
     AppComponent,
+
     ],
   imports: [
     BrowserModule,

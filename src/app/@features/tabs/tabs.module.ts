@@ -8,7 +8,7 @@ import { IonicModule } from '@ionic/angular';
 
 @NgModule({
   declarations: [
-    TabsComponent
+    TabsComponent,
   ],
   imports: [
     CommonModule,

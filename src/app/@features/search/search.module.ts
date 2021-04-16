@@ -4,16 +4,18 @@ import { CommonModule } from '@angular/common';
 import { SearchRoutingModule } from './search-routing.module';
 import { SearchComponent } from './search.component';
 import { IonicModule } from '@ionic/angular';
+import { SearchFiltersComponent } from '../search-filters/search-filters.component';
 
 
 @NgModule({
   declarations: [
     SearchComponent,
+    SearchFiltersComponent
   ],
   imports: [
     CommonModule,
     SearchRoutingModule,
-    IonicModule
+    IonicModule,
   ]
 })
 export class SearchModule { }
