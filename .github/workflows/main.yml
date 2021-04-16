@@ -35,6 +35,6 @@ jobs:
         server: what-to-do.ch
         username:  ${{ secrets.USERKEY }}
         password:  ${{ secrets.FTPPASS }}
-        local-dir: ./dist/WhatToDoFamily
+        local-dir: ./dist/WhatToDoFamily/
         server-dir: ./
         dangerous-clean-slate: true
