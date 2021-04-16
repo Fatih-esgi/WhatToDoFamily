@@ -8,7 +8,7 @@ import { IonicModule } from '@ionic/angular';
 
 @NgModule({
   declarations: [
-    SearchComponent
+    SearchComponent,
   ],
   imports: [
     CommonModule,

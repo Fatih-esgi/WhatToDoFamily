@@ -8,6 +8,7 @@ import { EventDetailComponent } from './@features/event-detail/event-detail.comp
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { SearchFiltersComponent } from './@features/search-filters/search-filters.component';
 @NgModule({
   declarations: [
     AppComponent,

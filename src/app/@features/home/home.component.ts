@@ -9,7 +9,11 @@ import { MeteoService } from 'src/app/@services/meteo.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  
+  categorySlideOpts = {
+    initialSlide: 1,
+    speed: 400
+  };
+
   meteoData: {
     temp?: number;
     name?: string;
