@@ -5,6 +5,7 @@ import { SearchRoutingModule } from './search-routing.module';
 import { SearchComponent } from './search.component';
 import { IonicModule } from '@ionic/angular';
 import { SearchFiltersComponent } from '../search-filters/search-filters.component';
+import { FormsModule } from "@angular/forms";
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { SearchFiltersComponent } from '../search-filters/search-filters.compone
     CommonModule,
     SearchRoutingModule,
     IonicModule,
+    FormsModule
   ]
 })
 export class SearchModule { }
