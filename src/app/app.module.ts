@@ -8,10 +8,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { MyEventsComponent } from './@features/my-events/my-events.component';
+import { SearchModalComponent } from './@features/search-modal/search-modal.component';
 @NgModule({
   declarations: [
-    AppComponent,
-
+    AppComponent
     ],
   imports: [
     BrowserModule,

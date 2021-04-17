@@ -5,6 +5,7 @@ import { ListeEventRoutingModule } from './liste-event-routing.module';
 import { ListeEventComponent } from './liste-event.component';
 import { IonicModule } from '@ionic/angular';
 import { SharedModule } from 'src/app/@shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { SharedModule } from 'src/app/@shared/shared.module';
     CommonModule,
     ListeEventRoutingModule,
     IonicModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ]
 })
 export class ListeEventModule { }

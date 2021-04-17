@@ -1,8 +1,21 @@
 <ion-header>
     <app-header title="Favoris"></app-header>
   </ion-header>
-<ion-list>
-    <ion-item class="ion-no-padding" detail="true" detail-icon="caret-forward-circle" [routerLink]="'../event'">
-       <p>linkto page detail event</p>
-    </ion-item>
-</ion-list>
+  <ion-content>
+    <ion-list>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12" class="ion-text-center">
+            <ion-icon name="heart-outline" size="large"></ion-icon>
+          </ion-col>
+          <ion-col size="12" class="ion-text-center">
+            <ion-text>
+              <p>Mes favoris</p>
+            </ion-text>
+          </ion-col>
+          <app-event-card id="1" imgUrl="2" statut=3 ></app-event-card>
+          <app-event-card id="2" imgUrl="3" statut=2 ></app-event-card>
+        </ion-row>
+      </ion-grid>
+    </ion-list>
+  </ion-content>

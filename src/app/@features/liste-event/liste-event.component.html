@@ -1,8 +1,25 @@
 <ion-header>
-    <app-header title="Liste des Events"></app-header>
+  <ion-toolbar>
+    <ion-searchbar [(ngModel)]="searchInput" (keyup)="fetchEvents($event)" placeholder="Rechercher par nom"></ion-searchbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="onClickFilter()">
+        <ion-icon name="filter-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
   </ion-header>
-<ion-list>
-    <ion-item class="ion-no-padding" detail="true" detail-icon="caret-forward-circle" [routerLink]="'../event'">
-       <p>linkto page detail event</p>
+<ion-content>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+  <ion-list *ngFor="let evenement of searchResult">
+    <ion-item>
+      <h6> {{ evenement.name }}</h6>
+      <p> {{ evenement.username }}</p>
     </ion-item>
-</ion-list>
+  </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
