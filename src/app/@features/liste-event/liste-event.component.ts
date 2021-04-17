@@ -241,11 +241,11 @@ export class ListeEventComponent implements OnInit {
   ];
   public searchResult: Array<any> = this.listeEvent;
   constructor(
-  ) { 
+  ) {
   }
-  
+
   ngOnInit(): void {
-    console.log(this.searchInput);  
+    console.log(this.searchInput);
   }
   fetchEvents(event: any) {
     if (event.target.value === '') {
@@ -254,8 +254,14 @@ export class ListeEventComponent implements OnInit {
     this.searchResult = this.listeEvent.filter((evenement) => {
       return evenement.name.toLowerCase().startsWith(event.target.value.toLowerCase());
     })
-
   }
 
-  onClickFilter(){}
+
+  cancelSearch() {
+    return this.searchResult = this.listeEvent;
+    alert('test')
+  }
+
+
+  onClickFilter() { }
 }

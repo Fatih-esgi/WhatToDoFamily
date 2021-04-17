@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-searchbar [(ngModel)]="searchInput" (keyup)="fetchEvents($event)" placeholder="Rechercher par nom"></ion-searchbar>
+    <ion-searchbar [(ngModel)]="searchInput" (keyup)="fetchEvents($event)" placeholder="Rechercher par nom" (ionClear)="cancelSearch()"></ion-searchbar>
     <ion-buttons slot="end">
       <ion-button (click)="onClickFilter()">
         <ion-icon name="filter-outline"></ion-icon>
