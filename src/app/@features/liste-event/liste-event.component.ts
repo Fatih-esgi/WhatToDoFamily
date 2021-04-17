@@ -259,9 +259,10 @@ export class ListeEventComponent implements OnInit {
 
   cancelSearch() {
     return this.searchResult = this.listeEvent;
-    alert('test')
   }
 
 
-  onClickFilter() { }
+  onClickFilter() {
+    alert('filter click')
+   }
 }

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Plugins } from '@capacitor/core';
 import { CheckdeviceService } from './@services/checkdevice.service';
 import { UpdatesService } from './@services/updates.service';
 
