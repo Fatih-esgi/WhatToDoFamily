@@ -1,59 +1,41 @@
 <ion-header>
     <app-header title="Mes évenements"></app-header>
-  </ion-header>
+</ion-header>
 <ion-content>
-    <ion-list>
         <ion-grid fixed>
             <ion-row>
                 <ion-col size="12">
-                    <ion-item class="ion-no-padding ion-text-center" detail="false" routerLink='eventbooked'>
-                        <ion-row>
-                            <ion-col size="12">
-                                <ion-icon slot="" name="settings-outline" size="large"></ion-icon>
-                            </ion-col>
-                            <ion-col size="12">
-                                <p>évenements prévus</p>
-                            </ion-col>
-                        </ion-row>
-                    </ion-item>
+                    <ion-button class="ion-text-center" routerLink='eventbooked' expand="full">
+                        <div>
+                            <ion-icon slot="" name="settings-outline" size="large"></ion-icon><br>
+                            <p>évenements prévus</p>
+                        </div>
+                    </ion-button>
                 </ion-col>
                 <ion-col size="12">
-                    <ion-item class="ion-no-padding ion-text-center" detail="false" routerLink='oldevents'>
-                        <ion-row>
-                            <ion-col size="12">
-                                <ion-icon slot="" name="settings-outline" size="large"></ion-icon>
-                            </ion-col>
-                            <ion-col size="12">
-                                <p>évenements passés</p>
-                            </ion-col>
-                        </ion-row>
-                    </ion-item>
+                    <ion-button class="ion-text-center" routerLink='oldevents' expand="full">
+                        <div>
+                            <ion-icon slot="" name="settings-outline" size="large"></ion-icon><br>
+                            <p>évenements passés</p>
+                        </div>
+                    </ion-button>
                 </ion-col>
                 <ion-col size="12">
-                    <ion-item class="ion-no-padding ion-text-center" detail="false" routerLink='lastvisited'>
-                        <ion-row>
-                            <ion-col size="12">
-                                <ion-icon slot="" name="settings-outline" size="large"></ion-icon>
-                            </ion-col>
-                            <ion-col size="12">
-                                <p>visité dernièrement</p>
-                            </ion-col>
-                        </ion-row>
-                    </ion-item>
+                    <ion-button class="ion-text-center" routerLink='lastvisited' expand="full">
+                        <div>
+                            <ion-icon slot="" name="settings-outline" size="large"></ion-icon><br>
+                            <p>visité dernièrement</p>
+                        </div>
+                    </ion-button>
                 </ion-col>
                 <ion-col size="12">
-                    <ion-item class="ion-no-margin ion-text-center" detail="false" routerLink='myrating'>
-                        <ion-row>
-                            <ion-col size="12">
-                                <ion-icon slot="" name="settings-outline" size="large"></ion-icon>
-                            </ion-col>
-                            <ion-col size="12">
-                                <p>mes évaluations</p>
-                            </ion-col>
-                        </ion-row>
-                    </ion-item>
+                    <ion-button class="ion-text-center" routerLink='myrating' expand="full">
+                        <div>
+                            <ion-icon slot="" name="settings-outline" size="large"></ion-icon><br>
+                            <p>mes évaluations</p>
+                        </div>
+                    </ion-button>
                 </ion-col>
             </ion-row>
-        </ion-grid> 
-    </ion-list>
+        </ion-grid>
 </ion-content>
