@@ -14,9 +14,9 @@ const routes: Routes = [
           .then(m => m.HomeModule),
       },
       {
-        path: 'search',
-        loadChildren: () => import('../search/search.module')
-          .then(m => m.SearchModule)
+        path: 'myevents',
+        loadChildren: () => import('../my-events/my-events.module')
+          .then(m => m.MyEventsModule)
       },
       {
         path: 'eventslist',
@@ -40,30 +40,25 @@ const routes: Routes = [
           .then(m => m.EventDetailModule)
       },
       {
-        path: 'user/eventbooked',
+        path: 'myevents/eventbooked',
         loadChildren: () => import('../eventbooked/eventbooked.module')
           .then(m => m.EventbookedModule)
       },
       {
-        path: 'user/oldevents',
+        path: 'myevents/oldevents',
         loadChildren: () => import('../oldevent/oldevent.module')
           .then(m => m.OldeventModule)
       },
       {
-        path: 'user/lastvisited',
+        path: 'myevents/lastvisited',
         loadChildren: () => import('../lastvisited/lastvisited.module')
           .then(m => m.LastvisitedModule)
       },
       {
-        path: 'user/myrating',
+        path: 'myevents/myrating',
         loadChildren: () => import('../myrating/myrating.module')
           .then(m => m.MyratingModule)
-      },
-      {
-        path: 'user/settings',
-        loadChildren: () => import('../settings/settings.module')
-          .then(m => m.SettingsModule)
-      },
+      }
     ]
   }
 ];

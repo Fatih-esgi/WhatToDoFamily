@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import { EventCardComponent } from './@shared/component/event-card/event-card.component';
+import { MyEventsComponent } from './@features/my-events/my-events.component';
 @NgModule({
   declarations: [
     AppComponent,
