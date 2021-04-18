@@ -12,11 +12,35 @@
   <ion-grid fixed>
     <ion-row>
       <ion-col size="12">
+        <ion-segment scrollable value="all" mode="md" (ionChange)="catChanged($event)">
+          <ion-segment-button value="all">
+            <ion-icon name="home"></ion-icon>
+          </ion-segment-button>
+          <ion-segment-button value="actus">
+            <ion-icon name="heart"></ion-icon>
+          </ion-segment-button>
+          <ion-segment-button value="sortir">
+            <ion-icon name="pin"></ion-icon>
+          </ion-segment-button>
+          <ion-segment-button value="decouvrir">
+            <ion-icon name="star"></ion-icon>
+          </ion-segment-button>
+          <ion-segment-button value="samuser">
+            <ion-icon name="call"></ion-icon>
+          </ion-segment-button>
+          <ion-segment-button value="manger">
+            <ion-icon name="call"></ion-icon>
+          </ion-segment-button>
+        </ion-segment>
+       </ion-col>
+       <ion-col>
+         <ion-text color="primary" class="ion-text-center">
+           <h1>{{activeCategory}}</h1>
+         </ion-text>
+       </ion-col>
+      <ion-col size="12">
   <ion-list *ngFor="let evenement of searchResult">
-    <ion-item>
-      <h6> {{ evenement.name }}</h6>
-      <p> {{ evenement.username }}</p>
-    </ion-item>
+    <app-event-card [id]="evenement.id" imgUrl="2" statut=3 removeFav=true ></app-event-card>
   </ion-list>
       </ion-col>
     </ion-row>

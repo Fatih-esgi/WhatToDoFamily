@@ -6,15 +6,19 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./event-card.component.scss']
 })
 export class EventCardComponent implements OnInit {
-
+  rmvfav:boolean;
   @Input() 
   id: string;
   imgUrl: string;
   statut: number;
+  removeFav :boolean;
   
-  constructor() { }
+  constructor() { 
+    
+  }
 
   ngOnInit(): void {
+    this.rmvfav = this.removeFav;
   }
 
 }

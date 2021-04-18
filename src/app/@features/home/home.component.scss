@@ -1,5 +1,10 @@
 
 ion-item.homeBg{
-    --background: rebeccapurple;
-    --min-height:20vh;
+    --background: url('https://picsum.photos/seed/picsum/800/1200') 100%;
+    --min-height:24vh;
+   
+
+}
+ion-img.md.hydrated {
+    width: 19px;
 }

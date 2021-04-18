@@ -6,6 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./liste-event.component.scss']
 })
 export class ListeEventComponent implements OnInit {
+  categorySlideOpts = {
+    initialSlide: 1,
+    speed: 400
+  };
+
   public searchInput: String = '';
   public listeEvent: Array<any> = [
     {
@@ -239,6 +244,7 @@ export class ListeEventComponent implements OnInit {
       }
     }
   ];
+  activeCategory:string = "all";
   public searchResult: Array<any> = this.listeEvent;
   constructor(
   ) {
@@ -261,6 +267,10 @@ export class ListeEventComponent implements OnInit {
     return this.searchResult = this.listeEvent;
   }
 
+  catChanged($event:any):void{
+    console.log($event.detail.value);
+    this.activeCategory = $event.detail.value;
+  }
 
   onClickFilter() {
     alert('filter click')

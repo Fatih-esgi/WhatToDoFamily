@@ -31,33 +31,6 @@
           <h5>Notre séléction par temps {{meteoData?.descr}}</h5>
         </ion-text>
       </ion-col>
-     <ion-col size="12">
-      <ion-segment scrollable value="all" mode="md" (ionChange)="catChanged($event)">
-        <ion-segment-button value="all">
-          <ion-icon name="home"></ion-icon>
-        </ion-segment-button>
-        <ion-segment-button value="actus">
-          <ion-icon name="heart"></ion-icon>
-        </ion-segment-button>
-        <ion-segment-button value="sortir">
-          <ion-icon name="pin"></ion-icon>
-        </ion-segment-button>
-        <ion-segment-button value="decouvrir">
-          <ion-icon name="star"></ion-icon>
-        </ion-segment-button>
-        <ion-segment-button value="samuser">
-          <ion-icon name="call"></ion-icon>
-        </ion-segment-button>
-        <ion-segment-button value="manger">
-          <ion-icon name="call"></ion-icon>
-        </ion-segment-button>
-      </ion-segment>
-     </ion-col>
-     <ion-col>
-       <ion-text color="primary">
-         <p>{{activeCategory}}</p>
-       </ion-text>
-     </ion-col>
     </ion-row>
   </ion-grid>
   <ion-list>
