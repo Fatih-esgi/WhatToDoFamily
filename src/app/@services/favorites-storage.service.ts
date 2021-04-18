@@ -1,28 +1,35 @@
 import { Injectable } from '@angular/core';
-import {Storage} from '@capacitor/core'
+import { Storage } from '@capacitor/core'
 @Injectable({
   providedIn: 'root'
 })
 export class FavoritesStorageService {
 
- getFavData:any;
+  getFavData: any;
+  listeFav:any[];
 
-  constructor() { }
+  constructor() { 
+    this.listeFav=[]
+    
+  }
 
-async setFavorite(id) {
-  await Storage.set({
-    key: 'favEvents',
-    value: JSON.stringify({
-      ids: {
-        id:id
-      },
-    }) 
-  });
-}
 
-async getObject() {
-  const ret = await Storage.get({ key: 'id' });
-  const favEventList = JSON.parse(ret.value);
-  return {favEventList}
-}
+  async setFavorite(id) {
+    await this.listeFav.push(id)
+    
+    await Storage.set({
+      key: 'favEvents',
+      value: JSON.stringify({
+        ids: this.listeFav
+      })
+    });
+    await console.log(this.listeFav);
+
+  }
+
+  async getListEvent() {
+    const ret = await Storage.get({ key: 'favEvents' });
+    const favEventList = JSON.parse(ret.value);
+    return { favEventList }
+  }
 }

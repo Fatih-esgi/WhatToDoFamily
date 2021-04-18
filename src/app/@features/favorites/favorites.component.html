@@ -13,8 +13,9 @@
               <p>Mes favoris</p>
             </ion-text>
           </ion-col>
-          <app-event-card id="1" imgUrl="2" statut=3 ></app-event-card>
-          <app-event-card id="2" imgUrl="3" statut=2 ></app-event-card>
+          <ion-list *ngFor="let fav of this.FavoriteListe|json">
+          </ion-list>
+          {{this.FavoriteListe|json}}
         </ion-row>
       </ion-grid>
     </ion-list>
