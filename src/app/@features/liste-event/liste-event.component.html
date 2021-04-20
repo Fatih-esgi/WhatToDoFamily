@@ -39,9 +39,10 @@
          </ion-text>
        </ion-col>
       <ion-col size="12">
-  <ion-list *ngFor="let evenement of searchResult">
-    <app-event-card [id]="evenement.id" imgUrl="2" statut=3 removeFav=true ></app-event-card>
-  </ion-list>
+  <!-- <ion-list *ngFor="let evenement of this.listeEvent|json"> -->
+    {{this.listeEvent|async|json}}
+    <!-- <app-event-card [id]="evenement.id" imgUrl="2" statut=3 removeFav=true ></app-event-card> -->
+  <!-- </ion-list> -->
       </ion-col>
     </ion-row>
   </ion-grid>
