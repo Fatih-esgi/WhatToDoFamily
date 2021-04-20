@@ -17,7 +17,8 @@ export class FirestoreService {
     private _afs: AngularFirestore // import du service Firebase
   ) {
     this._itemsCollection = this._afs.collection<any>('events');
-    this.items$ =  this._itemsCollection.valueChanges();
+    this.items$ = this._itemsCollection.valueChanges(
+      { idField: 'key' }
+    );  
   }
-  
 }

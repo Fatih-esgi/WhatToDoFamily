@@ -9,11 +9,12 @@ export class EventCardComponent implements OnInit {
   rmvfav:boolean;
   @Input() 
   id: string;
-  imgUrl: string;
+  imgUrl;
   statut: number;
   removeFav :boolean;
   
   constructor() { 
+    console.log(this.imgUrl);
     
   }
 

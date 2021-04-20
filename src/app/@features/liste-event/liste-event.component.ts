@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from 'src/app/@services/firestore.service';
+import { InjectJsonToFirestoreService } from 'src/app/@services/inject-json-to-firestore.service';
 
 @Component({
   selector: 'app-liste-event',
@@ -17,7 +18,8 @@ export class ListeEventComponent implements OnInit {
   activeCategory:string = "all";
   public searchResult: Array<any>;
   constructor(
-    private _afs : FirestoreService
+    private _afs : FirestoreService,
+    private _jsonToFirestore: InjectJsonToFirestoreService
     ) {
     }
     
@@ -26,10 +28,12 @@ export class ListeEventComponent implements OnInit {
       this.listeEvent = await this._afs.items$;
       console.log(await this._afs.items$)
   }
+
   fetchEvents(event: any) {
     if (event.target.value === '') {
       return this.searchResult = this.listeEvent;
     }
+    
     this.searchResult = this.listeEvent.filter((evenement) => {
       return evenement.name.toLowerCase().startsWith(event.target.value.toLowerCase());
     })
