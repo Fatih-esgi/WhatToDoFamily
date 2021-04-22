@@ -13,9 +13,12 @@
               <p>Mes favoris</p>
             </ion-text>
           </ion-col>
-          <ion-list *ngFor="let fav of this.FavoriteListe|json">
+          <ion-list *ngFor="let fav of this.FavoriteListe.ids|json">
+            <ion-item>
+              <ion-label>{{fav|json}}</ion-label>
+            </ion-item>
           </ion-list>
-          {{this.FavoriteListe|json}}
+{{this.FavoriteListe.ids|json}}
         </ion-row>
       </ion-grid>
     </ion-list>

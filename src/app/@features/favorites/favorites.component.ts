@@ -6,29 +6,27 @@ import { FavoritesStorageService } from 'src/app/@services/favorites-storage.ser
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.scss']
 })
+
+
 export class FavoritesComponent implements OnInit {
 
-   FavoriteListe:any;
-  constructor(
-    private _getFavorite :FavoritesStorageService
-  ) {
-    this.getFavListe();  
-    this.test();
-  }
+  FavoriteListe: any;
 
-  async ngOnInit() {}
+  constructor(private _getFavorite: FavoritesStorageService) { }
+
+  ngOnInit() {
+    this.getFavListe();
+
+  }
 
   async getFavListe() {
     this.FavoriteListe = await this._getFavorite.getListEvent()
+    .then(res =>  res.favEventList );
     
-      return this.FavoriteListe
-    
-    
-   
+    return this.FavoriteListe
+
+
+
   }
- 
-  test(){
-    console.log(this.FavoriteListe);
-    
-  }
+
 }

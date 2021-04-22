@@ -8,7 +8,7 @@
             <ion-button (click)="share()">
                 <ion-icon name="share-social-outline"></ion-icon>
             </ion-button>
-            <ion-button (click)="addToFavorites()">
+            <ion-button (click)="toggleFavorites()">
                 <ion-icon *ngIf="like;else dislike" name="heart-outline"></ion-icon>
                 <ng-template #dislike>
                     <ion-icon name="heart-dislike-outline"></ion-icon>

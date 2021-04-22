@@ -38,13 +38,14 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     console.log('clicked share');
   }
 
-  async addToFavorites() {
+  async toggleFavorites() {
     console.log('clicked favorites');
     if (this.like == true) {
       this.like = false;
       this.favEventList = await this._favData.setFavorite(this.id);
     } else {
       this.like = true;
+      this.favEventList = await this._favData.removeFavorite(this.id);
     }
   }
 }
