@@ -6,17 +6,22 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./event-card.component.scss']
 })
 export class EventCardComponent implements OnInit {
-  rmvfav:boolean;
-  @Input() 
-  id: string;
-  imgUrl;
-  statut: number;
-  removeFav :boolean;
+  @Input() id: string;
+  @Input() dateB: Date;
+  @Input() dateE: Date;
+  @Input() title:string;
+  @Input() avgRating:string;
+  @Input() eventLat:number;
+  @Input() eventLong:number;
+  @Input() eventDog: boolean;
+  @Input() eventhandicap: boolean;
+  @Input() meteoReq: string;
+  @Input() media1: string;
   
-  constructor() { 
-    console.log(this.imgUrl);
-    
-  }
+  rmvfav:boolean;
+  removeFav;
+  
+  constructor() {}
 
   ngOnInit(): void {
     this.rmvfav = this.removeFav;

@@ -14,19 +14,18 @@ export class ListeEventComponent implements OnInit {
   };
 
   public searchInput: String = '';
+  max = 10;
+  min = 0;
   listeEvent;
   activeCategory:string = "all";
   public searchResult: Array<any>;
   constructor(
     private _afs : FirestoreService,
-    private _jsonToFirestore: InjectJsonToFirestoreService
     ) {
     }
     
     async ngOnInit() {
-      console.log(this.searchInput);
-      this.listeEvent = await this._afs.items$;
-      console.log(await this._afs.items$)
+      this.listeEvent = await this._afs.getliste$();
   }
 
   fetchEvents(event: any) {
@@ -52,4 +51,9 @@ export class ListeEventComponent implements OnInit {
   onClickFilter() {
     alert('filter click')
    }
+
+   async loadData(event) {
+    this.max = this.max + 10;
+    event.target.complete();
+  }
 }

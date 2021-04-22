@@ -1,13 +1,14 @@
 <ion-header>
   <ion-toolbar>
-    <ion-searchbar [(ngModel)]="searchInput" (keyup)="fetchEvents($event)" placeholder="Rechercher par nom" (ionClear)="cancelSearch()"></ion-searchbar>
+    <ion-searchbar [(ngModel)]="searchInput" (keyup)="fetchEvents($event)" placeholder="Rechercher par nom"
+      (ionClear)="cancelSearch()"></ion-searchbar>
     <ion-buttons slot="end">
       <ion-button (click)="onClickFilter()">
         <ion-icon name="filter-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-  </ion-header>
+</ion-header>
 <ion-content>
   <ion-grid fixed>
     <ion-row>
@@ -32,16 +33,23 @@
             <ion-icon name="call"></ion-icon>
           </ion-segment-button>
         </ion-segment>
-       </ion-col>
-       <ion-col>
-         <ion-text color="primary" class="ion-text-center">
-           <h1>{{activeCategory}}</h1>
-         </ion-text>
-       </ion-col>
+      </ion-col>
+      <ion-col>
+        <ion-text color="primary" class="ion-text-center">
+          <h1>{{activeCategory}}</h1>
+        </ion-text>
+      </ion-col>
       <ion-col size="12">
-  <ion-list *ngFor="let evenement of this.listeEvent|async">
-    <app-event-card [id]="evenement.key" [imgUrl]="evenement.media1" statut=3 removeFav=true ></app-event-card>
-  </ion-list>
+        <ion-list *ngFor="let evenement of (this.listeEvent|async)?.slice(min, max)">
+          <app-event-card [id]="evenement.key" [dateB]="evenement.dateBegin" [dateE]="evenement.dateEnd" [title]="evenement.eventTitle"
+            [avgRating]="evenement.rating" [eventLat]="evenement.eventLat" [eventLong]="evenement.eventLong"
+            [eventDog]="evenement.infoDog" [eventhandicap]="evenement.infoHandicap" [meteoReq]="evenement.reqWeather" [media1]="evenement.media1" removeFav=true >
+          </app-event-card>
+        </ion-list>
+        <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+          <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="chargement...">
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
       </ion-col>
     </ion-row>
   </ion-grid>
