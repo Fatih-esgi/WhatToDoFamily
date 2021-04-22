@@ -15,7 +15,16 @@ export class GeoService {
   }
 // fonction de calcul complexe --> calcule la distance entre deux points gps
 
-  async distance(lat1, lon1, lat2, lon2, unit) {
+  async getdistance(lat2, lon2, unit) {
+let lat1;
+let lon1;
+   await this.getPosition().then(r =>{
+      lat1 =r.lat ;
+    lon1 = r.long;   
+   })
+   
+ console.log('------latlonuserdistance',this.getPosition(),lat2,lon2);
+ 
     if ((lat1 == lat2) && (lon1 == lon2)) {
       return 0;
     }

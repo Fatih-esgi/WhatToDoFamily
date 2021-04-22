@@ -18,7 +18,7 @@
             </ion-col>
             <ion-col size="3">
               <ion-icon name="navigate-circle-outline"></ion-icon>
-              <ion-label slot="">{{eventLat}},{{eventLong}}</ion-label>
+              <ion-label slot="">{{this.distBetween|async|json}}</ion-label>
             </ion-col>
             <ion-col size="1">
               <ion-icon [name]="eventhandicap|iconHandicap"></ion-icon>
