@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AuthServiceService } from 'src/app/@services/auth-service.service';
 
 @Component({
   selector: 'app-user',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
 
-  constructor() { }
+  constructor(public auth : AuthServiceService,public authcheck :AngularFireAuth) { 
 
-  ngOnInit(): void {
   }
 
+  ngOnInit(): void {
+
+  }
+
+  logout(){
+    this.auth.logout()
+  }
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthServiceService } from 'src/app/@services/auth-service.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-login-page',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(public auth: AuthServiceService, public authcheck : AngularFireAuth) {
 
-  ngOnInit(): void {
   }
 
+  ngOnInit(): void {
+    console.log(this.authcheck);
+    
+  }
+
+  logingoogle() {
+    this.auth.loginGoogle()
+  }
+
+  logout() {
+    this.auth.logout()
+  }
 }

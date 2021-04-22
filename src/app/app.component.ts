@@ -13,9 +13,12 @@ export class AppComponent {
 constructor(
   private _checkDevice : CheckdeviceService,
   private _checkUpdates : UpdatesService,
+
 ){
  this._checkDevice.checkDevice();
  this._checkUpdates.checkUpdates();
+
+ 
 }
 
 

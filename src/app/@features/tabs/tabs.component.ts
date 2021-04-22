@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthServiceService } from 'src/app/@services/auth-service.service';
 
 @Component({
   selector: 'app-tabs',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TabsComponent implements OnInit {
 
-  constructor() { }
+  constructor(  private _checkLogin: AuthServiceService) { 
+    this._checkLogin.auth.user;
+ console.log(this._checkLogin.auth.user); 
+ }
 
   ngOnInit(): void {
   }

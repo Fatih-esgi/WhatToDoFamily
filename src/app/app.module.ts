@@ -9,13 +9,9 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { LoginPageComponent } from './@features/login-page/login-page.component';
-import { SigninPageComponent } from './@features/signin-page/signin-page.component';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginPageComponent,
-    SigninPageComponent
     ],
   imports: [
     BrowserModule,
