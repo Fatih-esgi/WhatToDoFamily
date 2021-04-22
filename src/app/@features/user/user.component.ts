@@ -9,7 +9,7 @@ import { AuthServiceService } from 'src/app/@services/auth-service.service';
 })
 export class UserComponent implements OnInit {
 
-  constructor(public auth : AuthServiceService,public authcheck :AngularFireAuth) { 
+  constructor(private auth : AuthServiceService){ 
 
   }
 
