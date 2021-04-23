@@ -8,13 +8,14 @@ import { AuthServiceService } from 'src/app/@services/auth-service.service';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-
+userid;
   constructor(private auth : AuthServiceService){ 
-
+ 
   }
 
-  ngOnInit(): void {
-
+ async ngOnInit(){
+this.userid = await this.auth.auth.user
+return this.userid;
   }
 
   logout(){

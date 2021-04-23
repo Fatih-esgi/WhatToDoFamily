@@ -4,6 +4,7 @@
 <ion-content>
 <ion-text color="primary">
     <h1>gestion du compte</h1>
+    {{this.userid|async}}
 </ion-text>
 <ion-button (click)="logout()">se déconnecter</ion-button>
 </ion-content>

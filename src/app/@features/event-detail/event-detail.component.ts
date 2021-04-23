@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FavoritesStorageService } from 'src/app/@services/favorites-storage.service'
 import { ActivatedRoute } from '@angular/router';
+import { FirestoreService } from 'src/app/@services/firestore.service';
 @Component({
   selector: 'app-event-detail',
   templateUrl: './event-detail.component.html',
@@ -19,14 +20,15 @@ export class EventDetailComponent implements OnInit, OnDestroy {
 
   constructor(
     private _favData: FavoritesStorageService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private _afs: FirestoreService
   ) {
   }
 
   ngOnInit() {
     //active route --> get id
     this.sub = this.route.params.subscribe(params => {
-      this.id = +params['id'];
+      this.id = params['id'];
     });
   }
 
@@ -47,5 +49,10 @@ export class EventDetailComponent implements OnInit, OnDestroy {
       this.like = true;
       this.favEventList = await this._favData.removeFavorite(this.id);
     }
+  }
+
+  planificateEvent(){
+    console.log(this.id);
+    this._afs.sendToUserEvent(this.id);
   }
 }
