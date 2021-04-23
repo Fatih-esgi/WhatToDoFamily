@@ -15,18 +15,18 @@ export class FavoritesComponent implements OnInit {
   constructor(private _getFavorite: FavoritesStorageService) { }
 
   ngOnInit() {
-    this.getFavListe();
+    // this.getFavListe();
 
   }
 
-  async getFavListe() {
-    this.FavoriteListe = await this._getFavorite.getListEvent()
-    .then(res =>  res.favEventList );
+  // async getFavListe() {
+  //   this.FavoriteListe = await this._getFavorite.getListEvent()
+  //   .then(res =>  res.favEventList );
     
-    return this.FavoriteListe
+  //   return this.FavoriteListe
 
 
 
-  }
+  // }
 
 }
