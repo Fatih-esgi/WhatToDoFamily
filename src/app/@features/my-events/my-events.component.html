@@ -1,41 +1,51 @@
 <ion-header>
-    <app-header title="Mes évenements"></app-header>
-</ion-header>
-<ion-content>
-        <ion-grid fixed>
-            <ion-row>
-                <ion-col size="12">
-                    <ion-button class="ion-text-center" routerLink='eventbooked' expand="full">
-                        <div>
-                            <ion-icon slot="" name="settings-outline" size="large"></ion-icon><br>
-                            <p>évenements prévus</p>
-                        </div>
-                    </ion-button>
-                </ion-col>
-                <ion-col size="12">
-                    <ion-button class="ion-text-center" routerLink='oldevents' expand="full">
-                        <div>
-                            <ion-icon slot="" name="settings-outline" size="large"></ion-icon><br>
-                            <p>évenements passés</p>
-                        </div>
-                    </ion-button>
-                </ion-col>
-                <ion-col size="12">
-                    <ion-button class="ion-text-center" routerLink='lastvisited' expand="full">
-                        <div>
-                            <ion-icon slot="" name="settings-outline" size="large"></ion-icon><br>
-                            <p>visité dernièrement</p>
-                        </div>
-                    </ion-button>
-                </ion-col>
-                <ion-col size="12">
-                    <ion-button class="ion-text-center" routerLink='myrating' expand="full">
-                        <div>
-                            <ion-icon slot="" name="settings-outline" size="large"></ion-icon><br>
-                            <p>mes évaluations</p>
-                        </div>
-                    </ion-button>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-</ion-content>
+    <ion-toolbar color="primary">
+      <ion-title>
+        Evenements planifiés
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+   
+  <ion-content> 
+
+   
+    <ion-row>
+
+      <ion-col size="2">
+        <ion-button fill="clear" (click)="back()">
+          <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-col>
+   
+      <ion-col size="8" class="ion-text-center">
+        <h2>{{ viewTitle }}</h2>
+      </ion-col>
+   
+      <ion-col size="2">
+        <ion-button fill="clear" (click)="next()">
+          <ion-icon name="arrow-forward" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+   
+    <calendar
+      [eventSource]="eventSource"
+      [calendarMode]="'month'"
+      [currentDate]="calendar.currentDate"
+      (onEventSelected)="onEventSelected($event)"
+      (onTitleChanged)="onViewTitleChanged($event)"
+    >
+    </calendar>
+    <ion-row>
+      <ion-col size="6">
+        <ion-button (click)="createRandomEvents()" expand="block" fill="outline">
+          Add random events
+        </ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button (click)="removeEvents()" expand="block" fill="outline">
+          Remove all events
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-content>
