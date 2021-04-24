@@ -1,6 +1,7 @@
 import { formatDate } from '@angular/common';
 import { stringify } from '@angular/compiler/src/util';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { InjectJsonToFirestoreService } from 'src/app/@services/Firestore-dataPusher/inject-json-to-firestore.service';
 import { MeteoService } from 'src/app/@services/meteo/meteo.service';
 import { FirestoreService } from 'src/app/@services/storage/firestore.service';
 
@@ -34,6 +35,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(
     private _meteo: MeteoService,
     private _afs : FirestoreService,
+    // private _jsonToFirestore : InjectJsonToFirestoreService
   ) {
 
   }
@@ -46,6 +48,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }, 1000);
 
     this.listeEvent = await this._afs.getliste$();
+    // this._jsonToFirestore.saveobjFirestore()
   }
 
   ngOnDestroy() {
