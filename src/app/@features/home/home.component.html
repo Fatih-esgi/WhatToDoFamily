@@ -60,7 +60,7 @@
   <ion-list *ngFor="let evenement of (this.listeEvent|async)?.slice(min, max)">
     <app-event-card [id]="evenement.key" [dateB]="evenement.dateBegin" [dateE]="evenement.dateEnd" [title]="evenement.eventTitle"
       [avgRating]="evenement.rating" [eventLat]="evenement.eventLat" [eventLong]="evenement.eventLong"
-      [eventDog]="evenement.infoDog" [eventhandicap]="evenement.infoHandicap" [meteoReq]="evenement.reqWeather" [media1]="evenement.media1" [removeOpt]=false>
+      [eventDog]="evenement.infoDog" [eventhandicap]="evenement.infoHandicap" [meteoReq]="evenement.reqWeather" [media1]="evenement.media1" [category] ="evenement.category" [removeOpt]=false>
     </app-event-card>
   </ion-list>
 
@@ -68,5 +68,5 @@
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="chargement...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
-  
+
 </ion-content>

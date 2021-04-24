@@ -19,6 +19,7 @@ export class EventCardComponent implements OnInit {
   @Input() meteoReq: string;
   @Input() media1: string;
   @Input() removeOpt: boolean;
+  @Input() category: any;
   
   distBetween;
 
@@ -32,7 +33,6 @@ export class EventCardComponent implements OnInit {
   
   ngOnInit(): void {
     this.distBetween = this._userPosition$.getdistance(this.eventLat,this.eventLong,"k")
-    console.log(this.distBetween);
   }
 
 }
