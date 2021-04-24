@@ -8,3 +8,10 @@ ion-item.homeBg{
 ion-img.md.hydrated {
     width: 19px;
 }
+ion-card{
+    display: flex;
+    flex-direction: column;
+    margin: 0 !important;
+    background: rgb(231, 231, 231);
+    width: 100%;
+  }

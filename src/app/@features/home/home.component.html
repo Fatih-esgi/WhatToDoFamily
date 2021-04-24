@@ -24,6 +24,25 @@
   <ion-grid fixed class="ion-text-center">
     <ion-row>
       <ion-col size="4" push="4">
+        <ion-icon name="flame-outline" size="large"></ion-icon>
+      </ion-col>
+      <ion-col size="12">
+        <ion-text color="primary">
+          <h5>Actualitées</h5>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-slides pager="false" [options]="slideOpts" >
+    <ion-slide *ngFor="let actus of (this.listeEvent|async)?.slice(min, max)">
+      <ion-card>
+        <h1>Slide 1</h1>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+  <ion-grid fixed class="ion-text-center">
+    <ion-row>
+      <ion-col size="4" push="4">
         <ion-img [src]="meteoData?.imageUrl"></ion-img>
       </ion-col>
       <ion-col size="12">
@@ -33,10 +52,15 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-list>
-    <ion-grid>
-      <app-event-card id="1" imgUrl="2" statut=3 ></app-event-card>
-      <app-event-card id="2" imgUrl="3" statut=2 ></app-event-card>
-    </ion-grid>
+    
+  <ion-list *ngFor="let evenement of (this.listeEvent|async)?.slice(min, max)">
+    <app-event-card [id]="evenement.key" [dateB]="evenement.dateBegin" [dateE]="evenement.dateEnd" [title]="evenement.eventTitle"
+      [avgRating]="evenement.rating" [eventLat]="evenement.eventLat" [eventLong]="evenement.eventLong"
+      [eventDog]="evenement.infoDog" [eventhandicap]="evenement.infoHandicap" [meteoReq]="evenement.reqWeather" [media1]="evenement.media1" [removeOpt]=false>
+    </app-event-card>
   </ion-list>
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="chargement...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

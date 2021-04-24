@@ -18,23 +18,21 @@ export class EventCardComponent implements OnInit {
   @Input() eventhandicap: boolean;
   @Input() meteoReq: string;
   @Input() media1: string;
-
+  @Input() removeOpt: boolean;
+  
   distBetween;
 
-  rmvfav:boolean;
-  removeFav;
+  rmvoption:boolean;
+
 
   constructor(
     public _userPosition$ : GeoService
   ) {
-    
   }
   
   ngOnInit(): void {
     this.distBetween = this._userPosition$.getdistance(this.eventLat,this.eventLong,"k")
     console.log(this.distBetween);
-    
-    this.rmvfav = this.removeFav;
   }
 
 }

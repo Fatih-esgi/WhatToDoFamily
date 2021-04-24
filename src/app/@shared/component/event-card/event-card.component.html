@@ -36,7 +36,9 @@
       </ion-row>
     </ion-card>
   </ion-item>
-    <ion-item-options side="end">
+  <div *ngIf="removeOpt == true">
+    <ion-item-options side="end" >
       <ion-item-option color="primary">retirer</ion-item-option>
     </ion-item-options>
+  </div>
 </ion-item-sliding>
