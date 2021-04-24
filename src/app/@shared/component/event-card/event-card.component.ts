@@ -19,7 +19,8 @@ export class EventCardComponent implements OnInit {
   @Input() meteoReq: string;
   @Input() media1: string;
   @Input() removeOpt: boolean;
-  @Input() category: any;
+  @Input() category: number;
+  @Input() city: string;
   
   distBetween;
 

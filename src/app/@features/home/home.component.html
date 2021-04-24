@@ -23,12 +23,12 @@
     </ion-grid>
   </ion-item>
 
-  <ion-grid fixed class="ion-text-center">
+  <ion-grid fixed>
     <ion-row>
-      <ion-col size="4" push="4">
+      <ion-col size="2">
         <ion-icon name="flame-outline" size="large"></ion-icon>
       </ion-col>
-      <ion-col size="12">
+      <ion-col size="10">
         <ion-text color="primary">
           <h5>Actualitées</h5>
         </ion-text>
@@ -36,20 +36,24 @@
     </ion-row>
   </ion-grid>
 
-  <ion-slides pager="false" [options]="slideOpts" >
+  <ion-slides [options]="slideOpts" >
     <ion-slide *ngFor="let actus of (this.listeEvent|async)?.slice(min, max)">
-      <ion-card>
-        <h1>Slide 1</h1>
+      <ion-card class="ion-no-padding ion-no-margin" detail="false" [routerLink]="'../event/' + actus.key.toString()">
+        <ion-card-content>
+          <p>{{actus.dateBegin|date:'d.MM.yy'}} - {{actus.dateEnd|date:'d.MM.yy'}}</p>
+          <ion-img class="actusEvents" [src]="actus.media1" ></ion-img>
+          <div >{{actus.eventTitle|slice:0:40 }}</div>
+        </ion-card-content>
       </ion-card>
     </ion-slide>
   </ion-slides>
 
-  <ion-grid fixed class="ion-text-center">
+  <ion-grid fixed>
     <ion-row>
-      <ion-col size="4" push="4">
+      <ion-col size="2">
         <ion-img [src]="meteoData?.imageUrl"></ion-img>
       </ion-col>
-      <ion-col size="12">
+      <ion-col size="10">
         <ion-text color="primary">
           <h5>Notre séléction par temps {{meteoData?.descr}}</h5>
         </ion-text>
@@ -59,7 +63,7 @@
     
   <ion-list *ngFor="let evenement of (this.listeEvent|async)?.slice(min, max)">
     <app-event-card [id]="evenement.key" [dateB]="evenement.dateBegin" [dateE]="evenement.dateEnd" [title]="evenement.eventTitle"
-      [avgRating]="evenement.rating" [eventLat]="evenement.eventLat" [eventLong]="evenement.eventLong"
+      [avgRating]="evenement.rating" [eventLat]="evenement.eventLat" [eventLong]="evenement.eventLong" [city]="evenement.eventCity"
       [eventDog]="evenement.infoDog" [eventhandicap]="evenement.infoHandicap" [meteoReq]="evenement.reqWeather" [media1]="evenement.media1" [category] ="evenement.category" [removeOpt]=false>
     </app-event-card>
   </ion-list>

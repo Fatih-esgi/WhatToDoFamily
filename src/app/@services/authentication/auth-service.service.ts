@@ -33,7 +33,7 @@ export class AuthServiceService {
   logout() {
     this.auth.signOut()
     .then(()=>this.route.navigate(['/home'])
-    .then(()=> this.presentToast('Déconnecté','success'))
+    .then(()=> this.presentToast('Déconnecté','warning'))
     );
   }
 
