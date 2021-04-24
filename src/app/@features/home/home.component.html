@@ -2,6 +2,7 @@
   <app-header title="WhatToDo Family"></app-header>
 </ion-header>
 <ion-content>
+
   <ion-item class="homeBg">
     <ion-grid fixed>
       <ion-row>
@@ -21,6 +22,7 @@
       </ion-row>
     </ion-grid>
   </ion-item>
+
   <ion-grid fixed class="ion-text-center">
     <ion-row>
       <ion-col size="4" push="4">
@@ -33,6 +35,7 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+
   <ion-slides pager="false" [options]="slideOpts" >
     <ion-slide *ngFor="let actus of (this.listeEvent|async)?.slice(min, max)">
       <ion-card>
@@ -40,6 +43,7 @@
       </ion-card>
     </ion-slide>
   </ion-slides>
+
   <ion-grid fixed class="ion-text-center">
     <ion-row>
       <ion-col size="4" push="4">
@@ -59,8 +63,10 @@
       [eventDog]="evenement.infoDog" [eventhandicap]="evenement.infoHandicap" [meteoReq]="evenement.reqWeather" [media1]="evenement.media1" [removeOpt]=false>
     </app-event-card>
   </ion-list>
+
   <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="chargement...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
+  
 </ion-content>
