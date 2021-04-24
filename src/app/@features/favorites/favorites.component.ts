@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FavoritesStorageService } from 'src/app/@services/favorites-storage.service';
+import { FavoritesStorageService } from 'src/app/@services/storage/favorites-storage.service';
 
 @Component({
   selector: 'app-favorites',

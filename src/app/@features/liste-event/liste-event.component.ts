@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FirestoreService } from 'src/app/@services/firestore.service';
-import { InjectJsonToFirestoreService } from 'src/app/@services/inject-json-to-firestore.service';
+import { FirestoreService } from 'src/app/@services/storage/firestore.service';
 
 @Component({
   selector: 'app-liste-event',

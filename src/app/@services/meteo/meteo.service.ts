@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { GeoService } from "./geo.service";
+import { GeoService } from "../gelocation/geo.service";
 import { OWMService } from "./owm.service";
 
 @Injectable({

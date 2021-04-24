@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AuthServiceService } from 'src/app/@services/auth-service.service';
+import { AuthServiceService } from 'src/app/@services/authentication/auth-service.service';
 
 @Component({
   selector: 'app-user',

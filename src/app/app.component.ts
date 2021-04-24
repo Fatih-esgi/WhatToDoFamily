@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { CheckdeviceService } from './@services/checkdevice.service';
-import { UpdatesService } from './@services/updates.service';
+import { CheckdeviceService } from './@services/update&devices/checkdevice.service';
+import { UpdatesService } from './@services/update&devices/updates.service';
 
 @Component({
   selector: 'app-root',

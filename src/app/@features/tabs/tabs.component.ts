@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthServiceService } from 'src/app/@services/auth-service.service';
+import { AuthServiceService } from 'src/app/@services/authentication/auth-service.service';
 
 @Component({
   selector: 'app-tabs',

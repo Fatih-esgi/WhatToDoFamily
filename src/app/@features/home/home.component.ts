@@ -1,7 +1,7 @@
 import { formatDate } from '@angular/common';
 import { stringify } from '@angular/compiler/src/util';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MeteoService } from 'src/app/@services/meteo.service';
+import { MeteoService } from 'src/app/@services/meteo/meteo.service';
 
 @Component({
   selector: 'app-home',

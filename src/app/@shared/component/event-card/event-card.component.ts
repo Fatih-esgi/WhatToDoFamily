@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { GeoService } from 'src/app/@services/geo.service';
+import { GeoService } from 'src/app/@services/gelocation/geo.service';
 
 @Component({
   selector: 'app-event-card',

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FavoritesStorageService } from 'src/app/@services/favorites-storage.service'
+import { FavoritesStorageService } from 'src/app/@services/storage/favorites-storage.service'
 import { ActivatedRoute } from '@angular/router';
-import { FirestoreService } from 'src/app/@services/firestore.service';
+import { FirestoreService } from 'src/app/@services/storage/firestore.service';
 @Component({
   selector: 'app-event-detail',
   templateUrl: './event-detail.component.html',

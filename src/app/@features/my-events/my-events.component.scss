@@ -1,3 +1,10 @@
-ion-button{
-    height: 130px;
+
+:host ::ng-deep {
+    .monthview-container {
+        height: auto !important;
+    }
+ 
+    // .event-detail-container {
+    //     // display: none;
+    // }
 }

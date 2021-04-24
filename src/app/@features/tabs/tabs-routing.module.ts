@@ -53,18 +53,6 @@ const routes: Routes = [
           .then(m => m.EventDetailModule)
       },
       {
-        path: 'myevents/eventbooked',
-        loadChildren: () => import('../eventbooked/eventbooked.module')
-          .then(m => m.EventbookedModule),
-          ...canActivate (redirectUnauthorizedToLogin)
-      },
-      {
-        path: 'myevents/oldevents',
-        loadChildren: () => import('../oldevent/oldevent.module')
-          .then(m => m.OldeventModule),
-          ...canActivate (redirectUnauthorizedToLogin)
-      },
-      {
         path: 'myevents/lastvisited',
         loadChildren: () => import('../lastvisited/lastvisited.module')
           .then(m => m.LastvisitedModule),

@@ -1,10 +1,14 @@
 <ion-header>
-    <app-header title="Mon compte"></app-header>
+  <ion-toolbar>
+  <ion-title slot="start">Mon compte</ion-title>
+  <ion-buttons slot="end">
+    <ion-button (click)="logout()">se déconnecter</ion-button>
+  </ion-buttons>
+</ion-toolbar>  
   </ion-header>
 <ion-content>
 <ion-text color="primary">
     <h1>gestion du compte</h1>
     {{this.userid|async}}
 </ion-text>
-<ion-button (click)="logout()">se déconnecter</ion-button>
 </ion-content>
