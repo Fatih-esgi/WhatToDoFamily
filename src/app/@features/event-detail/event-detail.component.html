@@ -3,16 +3,16 @@
         <ion-buttons slot="start">
             <ion-back-button defaultHref="eventslist"></ion-back-button>
         </ion-buttons>
-        <ion-title>titre de l'evenement en variable</ion-title>
+        <ion-title>{{this.eventTitle}}</ion-title>
         <ion-buttons slot="end">
             <ion-button (click)="share()">
                 <ion-icon name="share-social-outline"></ion-icon>
             </ion-button>
             <!-- <ion-button (click)="toggleFavorites()"> -->
-                <ion-icon *ngIf="like;else dislike" name="heart-outline"></ion-icon>
-                <ng-template #dislike>
-                    <ion-icon name="heart-dislike-outline"></ion-icon>
-                </ng-template>
+            <ion-icon *ngIf="like;else dislike" name="heart-outline"></ion-icon>
+            <ng-template #dislike>
+                <ion-icon name="heart-dislike-outline"></ion-icon>
+            </ng-template>
             <!-- </ion-button> -->
         </ion-buttons>
     </ion-toolbar>
@@ -20,49 +20,40 @@
 <ion-content>
     <ion-slides pager="true" [options]="slideOpts">
         <ion-slide>
-            <ion-img src="https://picsum.photos/640/380?random=1"></ion-img>
+            <ion-img [src]="this.media1"></ion-img>
         </ion-slide>
         <ion-slide>
-            <ion-img src="https://picsum.photos/640/380?random=2"></ion-img>
+            <ion-img [src]="this.media2"></ion-img>
         </ion-slide>
         <ion-slide>
-            <ion-img src="https://picsum.photos/640/380?random=3"></ion-img>
+            <ion-img [src]="this.media3"></ion-img>
         </ion-slide>
         <ion-slide>
-            <ion-img src="https://picsum.photos/640/380?random=4"></ion-img>
+            <ion-img [src]="this.media4"></ion-img>
         </ion-slide>
         <ion-slide>
-            <ion-img src="https://picsum.photos/640/380?random=5"></ion-img>
+            <ion-img [src]="this.media5"></ion-img>
+        </ion-slide>
+        <ion-slide>
+            <ion-img [src]="this.media6"></ion-img>
         </ion-slide>
     </ion-slides>
     <ion-grid fixed>
         <ion-row>
             <ion-col size="10">
-                <p>catégorie</p>
+                <p>{{this.eventCategory}}</p>
             </ion-col>
             <ion-col size="1">
-                <ion-icon name="partly-sunny-outline"></ion-icon>
-            </ion-col>
-            <ion-col size="1">
-                <ion-icon name="sunny-outline"></ion-icon>
+                <ion-icon name="{{this.reqWeather}}"></ion-icon>
             </ion-col>
             <ion-col size="12">
                 <ion-text color="primary">
-                    <h1>Marché de noel à montreux avec titre rallongé parce que sinon c'est pas réaliste.</h1>
+                    <h1>{{this.eventTitle}}</h1>
                 </ion-text>
             </ion-col>
             <ion-col size="12">
                 <ion-text color="secondary">
-                    <p>
-                        Marché de noel à montreux avec titre rallongé parce que sinon
-                        c'est pas réaliste.Marché de noel à montreux avec titre rallongé
-                        parce que sinon c'est pas réaliste.Marché de noel à montreux avec
-                        titre rallongé parce que sinon c'est pas réaliste.Marché de noel à
-                        montreux avec titre rallongé parce que sinon c'est pas réaliste.Marc
-                        hé de noel à montreux avec titre rallongé parce que sinon c'est pas r
-                        éaliste.Marché de noel à montreux avec titre rallongé parce que sinon c'
-                        est pas réaliste. [...]
-                    </p>
+                    <p>{{this.eventDescr}}</p>
                 </ion-text>
             </ion-col>
             <ion-col size="12">
@@ -78,7 +69,9 @@
                         </ion-col>
                         <ion-col size="7">
                             <ion-text>
-                                <p>du 29juin au 12 juillet 2021<br>ouvert de 10h à 22h30</p>
+                                <p>du {{this.eventStartDate}} au {{this.eventEndDate}}
+                                    <br>ouvert de 10h à 22h30
+                                </p>
                             </ion-text>
                         </ion-col>
                         <ion-col size="4">
@@ -94,8 +87,7 @@
                         </ion-col>
                         <ion-col size="7">
                             <ion-text>
-                                <p>Chemin de la croutinière 5<br>
-                                    1727 GhostTown</p>
+                                <p>{{this.eventAddress}}<br>{{this.eventCity}}<br>{{this.eventStates}}</p>
                             </ion-text>
                         </ion-col>
                         <ion-col size="4">
@@ -112,10 +104,10 @@
                         <ion-col size="7">
                             <ion-text>
                                 <p>
-                                    Commune de montreux<br>
-                                    rue de la ville 3
-                                    1111 Montreux<br>
-                                    026 /322.22.22
+                                    {{this.orgName}}<br>
+                                    {{this.orgCity}}<br>
+                                    {{this.orgState}}<br>
+                                    {{this.orgPhone}}
                                 </p>
                             </ion-text>
                         </ion-col>
@@ -142,12 +134,7 @@
                 </ion-col>
                 <ion-col size="11">
                     <ion-text>
-                        <p>
-                            Commune de montreux
-                            rue de la ville 3
-                            1111 Montreux
-                            026 /322.22.22
-                        </p>
+                        <p>{{this.infoGen}}</p>
                     </ion-text>
                 </ion-col>
             </ion-item>
@@ -157,12 +144,7 @@
                 </ion-col>
                 <ion-col size="11">
                     <ion-text>
-                        <p>
-                            Commune de montreux
-                            rue de la ville 3
-                            1111 Montreux
-                            026 /322.22.22
-                        </p>
+                        <p>{{this.infoTransp}}</p>
                     </ion-text>
                 </ion-col>
             </ion-item>
@@ -172,48 +154,53 @@
                 </ion-col>
                 <ion-col size="11">
                     <ion-text>
-                        <p>
-                            Commune de montreux
-                            rue de la ville 3
-                            1111 Montreux
-                            026 /322.22.22
-                        </p>
+                        <p>{{this.infoDog}}</p>
                     </ion-text>
                 </ion-col>
             </ion-item>
-                <ion-col size="12" class="ion-text-center">
-                    <ion-icon name="people-outline" size="large"></ion-icon>
+            <ion-item class="ion-no-margin ion-no-padding">
+                <ion-col size="1">
+                    <ion-icon name="call-outline"></ion-icon>
                 </ion-col>
-                <ion-col size="12" class="ion-text-center">
+                <ion-col size="11">
                     <ion-text>
-                        <p>Commentaires</p>
+                        <p>{{this.infoHandicap}}</p>
                     </ion-text>
                 </ion-col>
-                <ion-col size="12">
-                    <ion-list class="ion-no-margin ion-no-padding">
-                        <ion-card>
-                            <ion-row>
-                                <ion-col size="6">
-                                    <ion-text>
-                                        <h6>Christelle T.</h6>
-                                    </ion-text> 
-                                </ion-col>
-                                <ion-col size="6">
-                                    <ionic-rating-component activeIcon="star" defaultIcon="star" activeColor="#488aff"
-                                    defaultColor="#f4f4f4" readonly="true" 
-                                     fontSize="13px">
-                                  </ionic-rating-component>
-                                </ion-col>
-                                <ion-col size="12">
-                                    <ion-text>
-                                        <p>Accès en transport public depuis la gare de fribourg, prendre ligne 3 jusqu'à l'arrêt st-michel,
-                                            l'evenement est franchement moyen, toujours la meme chose blablabla</p>
-                                    </ion-text>
-                                </ion-col>
-                            </ion-row>
-                        </ion-card>
-                    </ion-list>
-                </ion-col>
+            </ion-item>
+            <ion-col size="12" class="ion-text-center">
+                <ion-icon name="people-outline" size="large"></ion-icon>
+            </ion-col>
+            <ion-col size="12" class="ion-text-center">
+                <ion-text>
+                    <p>Commentaires</p>
+                </ion-text>
+            </ion-col>
+            <ion-col size="12">
+                <ion-list class="ion-no-margin ion-no-padding">
+                    <ion-card>
+                        <ion-row>
+                            <ion-col size="6">
+                                <ion-text>
+                                    <h6>Christelle T.</h6>
+                                </ion-text>
+                            </ion-col>
+                            <ion-col size="6">
+                                <ionic-rating-component activeIcon="star" defaultIcon="star" activeColor="#488aff"
+                                    defaultColor="#f4f4f4" readonly="true" fontSize="13px">
+                                </ionic-rating-component>
+                            </ion-col>
+                            <ion-col size="12">
+                                <ion-text>
+                                    <p>Accès en transport public depuis la gare de fribourg, prendre ligne 3 jusqu'à
+                                        l'arrêt st-michel,
+                                        l'evenement est franchement moyen, toujours la meme chose blablabla</p>
+                                </ion-text>
+                            </ion-col>
+                        </ion-row>
+                    </ion-card>
+                </ion-list>
+            </ion-col>
         </ion-row>
     </ion-grid>
 </ion-content>

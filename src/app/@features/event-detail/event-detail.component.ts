@@ -10,13 +10,20 @@ import { FirestoreService } from 'src/app/@services/storage/firestore.service';
 export class EventDetailComponent implements OnInit, OnDestroy {
   like: boolean = true;
   favEventList: any;
-  id: any;
   private sub: any;
 
   slideOpts = {
     initialSlide: 1,
     speed: 400
   };
+  ///eventDatas
+  id: any; eventData: any; eventTitle: string; eventCategory: number;
+  eventStartDate: Date; eventEndDate: Date; eventAddress: string; eventCity: string;
+  eventDescr: string; eventLat: number; eventLong: number; eventStates: string;
+  infocost: number; infoDog: boolean; infoGen: string; infoHandicap: boolean; infoTransp: string; media1: string;
+  media2: string | null; media3: string | null; media4: string | null; media5: string | null;
+  media6: string | null; orgAdress: string; orgCity: string; orgName: string;
+  orgPhone: string; orgState: string; reqWeather: string;
 
   constructor(
     private _favData: FavoritesStorageService,
@@ -25,12 +32,41 @@ export class EventDetailComponent implements OnInit, OnDestroy {
   ) {
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     //active route --> get id
-    this.sub = this.route.params.subscribe(params => {
+    this.sub = await this.route.params.subscribe(params => {
       this.id = params['id'];
     });
-    this._afs.getByID(this.id)
+    this.eventData = await this._afs.getByID(this.id)
+    console.log('testdata', this.eventData);
+
+    this.eventTitle = this.eventData.eventTitle;
+    this.eventCategory = this.eventData.category;
+    this.eventStartDate = this.eventData.dateBegin;
+    this.eventEndDate = this.eventData.dateEnd;
+    this.eventAddress = this.eventData.eventAddress;
+    this.eventCity = this.eventData.eventCity;
+    this.eventDescr = this.eventData.eventDescr;
+    this.eventLat = this.eventData.eventLat;
+    this.eventLong = this.eventData.eventLong;
+    this.eventStates = this.eventData.eventStates;
+    this.infocost = this.eventData.infoCost;
+    this.infoDog = this.eventData.infoDog;
+    this.infoGen = this.eventData.infoGen;
+    this.infoHandicap = this.eventData.infoHandicap;
+    this.infoTransp = this.eventData.infoTransp;
+    this.media1 = this.eventData.media1;
+    this.media2 = this.eventData.media2;
+    this.media3 = this.eventData.media3;
+    this.media4 = this.eventData.media4;
+    this.media5 = this.eventData.media5;
+    this.media6 = this.eventData.media6;
+    this.orgAdress = this.eventData.orgAddress;
+    this.orgCity = this.eventData.orgCity;
+    this.orgName = this.eventData.orgName;
+    this.orgPhone = this.eventData.orgPhone;
+    this.orgState = this.eventData.orgState;
+    this.reqWeather = this.eventData.reqWeather;
   }
 
   ngOnDestroy() {
@@ -52,7 +88,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
   //   }
   // }
 
-  planificateEvent(){
+  planificateEvent() {
     console.log(this.id);
     // this._afs.sendToUserEvent(this.id);
   }
