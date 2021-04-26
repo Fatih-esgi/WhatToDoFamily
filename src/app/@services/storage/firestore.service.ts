@@ -14,23 +14,6 @@ export class FirestoreService {
   private _EventList$ = new BehaviorSubject([]);
   public EventList$ = this._EventList$.asObservable();
 
-  ///filtres
-  filteredEvents: any
-  category: number;
-  name: string;
-  date: Date;
-  city: string;
-  range: number;
-  weather: string;
-  cost: number;
-  dog: boolean;
-  handicap: boolean;
-  child: boolean;
-  grandParents: boolean;
-
-  ///liste des filtres actifs
-  filters = {}
-
   constructor(private _fireStore: AngularFirestore) {
     this._eventsCollection = this._fireStore.collection<any>('events');
 
@@ -63,28 +46,21 @@ export class FirestoreService {
     ]).pipe(
       map(([eventList]) => {
         console.log('collection--->', eventList);
-        this.applyFilters();
         return eventList
       })
     );
   }
 
-  private applyFilters() {
-    // this.filteredEvents = .filter(this.EventList$, .conforms(this.filters))
-  }
-
-  filterExact(property: string, rule: any) {
-    this.filters[property] = val => val === rule;
-  }
-
-  filterBoolean(property: string, rule: any) {
-    if (!rule) { this.removeFilter(property) }
-    else { this.filters[property] = val => val === rule; }
-  }
-
-  removeFilter(property: string) {
-    delete this.filters[property];
-    this[property] = null;
-    this.applyFilters();
+  getByID(id: string) {
+    this._eventsCollection.doc(id).get().toPromise().then((doc) => {
+      if (doc.exists) {
+        console.log("Document data:", doc.data());
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
+    }).catch((error) => {
+      console.log("Error getting document:", error);
+    });
   }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
-import { ToastController } from '@ionic/angular';
+import { UpdateToastService } from 'src/app/@shared/toast/update-toast.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,34 +8,17 @@ import { ToastController } from '@ionic/angular';
 export class UpdatesService {
 
   constructor(
-    private _toast: ToastController,
-    private _updates : SwUpdate
+    private _updates : SwUpdate,
+    private _popup : UpdateToastService
   ) { }
 
   checkUpdates(){
     this._updates.available.subscribe(event => { 
       if (event) {
-        this.displayPopUpUpdate();
+        this._popup.displayPopUpUpdate();
       }
     });
    }
      
-   async displayPopUpUpdate() {
-    const toast = await this._toast.create({
-      message: `Nouvelle version disponible mettre à jour`,
-      position: 'bottom',
-      keyboardClose: true,
-      color: 'dark',
-      buttons: [
-        {
-          text: 'mettre à jour',
-          role: 'cancel',
-          handler: () => {
-            window.location.reload();
-          }
-        }
-      ]
-    });
-    await toast.present();
-  }
+  
 }

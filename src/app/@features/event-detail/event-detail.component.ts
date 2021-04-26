@@ -30,6 +30,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
     });
+    this._afs.getByID(this.id)
   }
 
   ngOnDestroy() {

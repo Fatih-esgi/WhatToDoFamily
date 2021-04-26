@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import firebase from 'firebase/app';
-import { InfoToastService } from 'src/app/@cores/toast/info-toast.service';
+import { InfoToastService } from 'src/app/@shared/toast/info-toast.service';
 
 @Injectable({
   providedIn: 'root'

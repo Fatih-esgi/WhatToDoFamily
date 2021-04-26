@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ToastController } from '@ionic/angular';
+import { IosInstallToastService } from 'src/app/@shared/toast/ios-install-toast.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ import { ToastController } from '@ionic/angular';
 export class CheckdeviceService {
 
   constructor(
-    private _toast: ToastController,
+    private _toast: IosInstallToastService,
   ) { 
   }
   checkDevice() {
@@ -20,25 +21,10 @@ export class CheckdeviceService {
     const isInStandaloneMode = () => ('standalone' in (window as any).navigator) && ((window as any).navigator.standalone);
     // Checks if should display install popup notification:
     if (isIos() && !isInStandaloneMode()) {
-      this.displayPopUpInstall();
+      this._toast.displayPopUpInstall();
     }
   }
 
-  async displayPopUpInstall() {
-    const toast = await this._toast.create({
-      message: `Pour installer l'application...`,
-      position: 'bottom',
-      keyboardClose: true,
-      color: 'dark',
-      buttons: [
-        {
-          text: 'ok',
-          role: 'cancel',
-          handler: () => {}
-        }
-      ]
-    });
-    await toast.present();
-  }
+  
 
 }

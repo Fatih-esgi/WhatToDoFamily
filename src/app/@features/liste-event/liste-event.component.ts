@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from 'src/app/@services/storage/firestore.service';
 import { ModalController } from '@ionic/angular';
-import { SearchModalComponent } from '../search-modal/search-modal.component';
+import { SearchModalComponent } from './search-modal/search-modal.component';
 
 @Component({
   selector: 'app-liste-event',
@@ -25,12 +25,14 @@ export class ListeEventComponent implements OnInit {
 
   constructor(
     private _afs: FirestoreService,
-    public modalController: ModalController
+    public modalController: ModalController,
   ) {
   }
 
   async ngOnInit() {
     this.listeEvent = await this._afs.getliste$();
+    console.log('listeeventnew',this.listeEvent);
+    
   }
 
   fetchEvents(event: any) {
@@ -42,7 +44,6 @@ export class ListeEventComponent implements OnInit {
       return evenement.name.toLowerCase().startsWith(event.target.value.toLowerCase());
     })
   }
-
 
   cancelSearch() {
     return this.searchResult = this.listeEvent;
@@ -56,7 +57,6 @@ export class ListeEventComponent implements OnInit {
   async onClickFilter() {
     const modal = await this.modalController.create({
       component: SearchModalComponent,
-      cssClass: 'my-custom-class'
     });
     return await modal.present();
   }
