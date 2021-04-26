@@ -53,6 +53,6 @@ export class EventDetailComponent implements OnInit, OnDestroy {
 
   planificateEvent(){
     console.log(this.id);
-    this._afs.sendToUserEvent(this.id);
+    // this._afs.sendToUserEvent(this.id);
   }
 }

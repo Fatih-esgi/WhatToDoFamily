@@ -8,12 +8,15 @@ import { ModalController } from '@ionic/angular';
 })
 export class SearchModalComponent implements OnInit {
 
-  constructor(
-    public modalCtrl: ModalController) { }
+  constructor(public modalController: ModalController) { }
 
   ngOnInit(): void {
   }
-  dismiss() {  
-    this.modalCtrl.dismiss();  
-  }  
+
+/// fermeture du modal
+  dismiss() {
+    this.modalController.dismiss({
+      'dismissed': true
+    });
+  }
 }
