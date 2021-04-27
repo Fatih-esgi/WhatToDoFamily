@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TabsComponent } from './tabs.component';
 import { AngularFireAuthGuard, canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 
-const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['tabs/login']);
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['tabs/home']);
 const routes: Routes = [
   {
     path: '',

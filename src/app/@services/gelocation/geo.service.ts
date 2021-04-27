@@ -23,7 +23,7 @@ let lon1;
     lon1 = r.long;   
    })
    
- console.log('------latlonuserdistance',this.getPosition(),lat2,lon2);
+//  console.log('------latlonuserdistance',this.getPosition(),lat2,lon2);
  
     if ((lat1 == lat2) && (lon1 == lon2)) {
       return 0;

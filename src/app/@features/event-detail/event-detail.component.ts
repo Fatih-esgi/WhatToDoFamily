@@ -3,6 +3,7 @@ import { FavoritesStorageService } from 'src/app/@services/storage/favorites-sto
 import { ActivatedRoute } from '@angular/router';
 import { FirestoreService } from 'src/app/@services/storage/firestore.service';
 import { GeoService } from 'src/app/@services/gelocation/geo.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 @Component({
   selector: 'app-event-detail',
   templateUrl: './event-detail.component.html',
@@ -11,7 +12,7 @@ import { GeoService } from 'src/app/@services/gelocation/geo.service';
 export class EventDetailComponent implements OnInit, OnDestroy {
   like: boolean = true;
   favEventList: any;
-  private sub: any;
+  sub: any;
 
   slideOpts = {
     initialSlide: 1,
@@ -27,12 +28,13 @@ export class EventDetailComponent implements OnInit, OnDestroy {
   orgPhone: string; orgState: string; reqWeather: string;
 
   distBetween:any;
-  
+  user;
   constructor(
-    private _favData: FavoritesStorageService,
+    // private _favData: FavoritesStorageService,
     private route: ActivatedRoute,
     private _afs: FirestoreService,
-    public _userPosition$ : GeoService
+    public _userPosition$ : GeoService,
+    public auth: AngularFireAuth,
   ) { 
   }
 
@@ -73,6 +75,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     this.reqWeather = this.eventData.reqWeather;
     this.distBetween = this._userPosition$.getdistance(this.eventLat,this.eventLong,"k")
 
+    this.user = this.auth
    
   }
 
@@ -97,6 +100,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
 
   planificateEvent() {
     console.log(this.id);
+    console.log(this.user)
     // this._afs.sendToUserEvent(this.id);
   }
 }

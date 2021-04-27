@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthServiceService } from 'src/app/@services/authentication/auth-service.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 
@@ -12,22 +11,12 @@ export class LoginPageComponent implements OnInit {
 
   constructor
     (
-      public auth: AuthServiceService,
-      public authcheck: AngularFireAuth,
+      public auth: AngularFireAuth,
       private route: Router
     ) { }
 
   ngOnInit(): void {
-    console.log(this.authcheck);
+    console.log(this.auth);
 
-  }
-
-  logingoogle() {
-    this.auth.loginGoogle()
-  }
-
-  logout() {
-    this.auth.logout();
-    this.route.navigate(['/home']);
   }
 }

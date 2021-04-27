@@ -1,5 +1,4 @@
 import { formatDate } from '@angular/common';
-import { stringify } from '@angular/compiler/src/util';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { InjectJsonToFirestoreService } from 'src/app/@services/Firestore-dataPusher/inject-json-to-firestore.service';
 import { MeteoService } from 'src/app/@services/meteo/meteo.service';
@@ -11,6 +10,7 @@ import { FirestoreService } from 'src/app/@services/storage/firestore.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
+  
   slideOpts = {
     initialSlide: 1,
     slidesPerView: 1.2,
@@ -32,6 +32,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   max = 10;
   min = 0;
   listeEvent;
+
+
   constructor(
     private _meteo: MeteoService,
     private _afs : FirestoreService,

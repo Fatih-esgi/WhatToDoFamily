@@ -1,21 +1,5 @@
 <ion-header>
-    <ion-toolbar>
-        <ion-buttons slot="start">
-            <ion-back-button defaultHref="eventslist"></ion-back-button>
-        </ion-buttons>
-        <ion-title>{{this.eventTitle}}</ion-title>
-        <ion-buttons slot="end">
-            <ion-button (click)="share()">
-                <ion-icon name="share-social-outline"></ion-icon>
-            </ion-button>
-            <!-- <ion-button (click)="toggleFavorites()"> -->
-            <ion-icon *ngIf="like;else dislike" name="heart-outline"></ion-icon>
-            <ng-template #dislike>
-                <ion-icon name="heart-dislike-outline"></ion-icon>
-            </ng-template>
-            <!-- </ion-button> -->
-        </ion-buttons>
-    </ion-toolbar>
+    <app-header [pageTitle]="this.eventTitle"></app-header>
 </ion-header>
 <ion-content>
     <ion-slides pager="true" [options]="slideOpts">
@@ -75,7 +59,7 @@
                             </ion-text>
                         </ion-col>
                         <ion-col size="4">
-                            <ion-button (click)="planificateEvent()">
+                            <ion-button (click)="planificateEvent()" [disabled]="!(this.auth?.user|async)?.uid">
                                 planifier
                                 <ion-icon name="calendar-clear-outline"></ion-icon>
                             </ion-button>

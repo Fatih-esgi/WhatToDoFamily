@@ -1,6 +1,21 @@
-<ion-toolbar>
+<ion-toolbar [ngSwitch]="true">
     <ion-buttons slot="start">
       <ion-back-button [defaultHref]="backTo"></ion-back-button>
     </ion-buttons>
-    <ion-title *ngIf="title">{{title}}</ion-title>
+    <ion-title *ngIf="pageTitle">{{pageTitle}}</ion-title>
+      <ion-buttons slot="end" *ngSwitchCase="!(this.auth?.user|async)?.uid">
+        <ion-button (click)="login()">
+        <ion-icon color="success" name="person-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end" *ngSwitchCase="!!(this.auth?.user|async)?.uid">
+          <ion-button (click)="logout()">
+          <ion-item>
+            <ion-label>{{(this.auth?.user|async)?.displayName}}</ion-label>
+            <ion-avatar>
+              <img [src]="(this.auth?.user|async)?.photoURL">
+            </ion-avatar>
+          </ion-item>
+        </ion-button>
+      </ion-buttons>
   </ion-toolbar>

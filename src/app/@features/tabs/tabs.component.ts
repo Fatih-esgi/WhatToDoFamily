@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthServiceService } from 'src/app/@services/authentication/auth-service.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-tabs',
@@ -8,9 +8,8 @@ import { AuthServiceService } from 'src/app/@services/authentication/auth-servic
 })
 export class TabsComponent implements OnInit {
 
-  constructor(  private _checkLogin: AuthServiceService) { 
-    this._checkLogin.auth.user;
- console.log(this._checkLogin.auth.user); 
+  constructor(public auth:AngularFireAuth) { 
+
  }
 
   ngOnInit(): void {

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AuthServiceService } from 'src/app/@services/authentication/auth-service.service';
 
 @Component({
   selector: 'app-user',
@@ -9,17 +8,11 @@ import { AuthServiceService } from 'src/app/@services/authentication/auth-servic
 })
 export class UserComponent implements OnInit {
 userid;
-  constructor(private auth : AuthServiceService){ 
+  constructor(public auth : AngularFireAuth){ 
  
   }
 
- async ngOnInit(){
-this.userid = await this.auth.auth.user
-return this.userid;
-  }
+ngOnInit(){}
 
-  logout(){
-    this.auth.logout()
-  }
 }
 

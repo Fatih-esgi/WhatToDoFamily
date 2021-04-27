@@ -64,6 +64,10 @@ export class FirestoreService {
     }).catch((error) => {
       console.log("Error getting document:", error);
     });
- 
+  }
+
+
+  addToRegistredEvent(){
+    
   }
 }
