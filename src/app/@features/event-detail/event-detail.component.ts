@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FavoritesStorageService } from 'src/app/@services/storage/favorites-storage.service'
 import { ActivatedRoute } from '@angular/router';
 import { FirestoreService } from 'src/app/@services/storage/firestore.service';
+import { GeoService } from 'src/app/@services/gelocation/geo.service';
 @Component({
   selector: 'app-event-detail',
   templateUrl: './event-detail.component.html',
@@ -25,11 +26,14 @@ export class EventDetailComponent implements OnInit, OnDestroy {
   media6: string | null; orgAdress: string; orgCity: string; orgName: string;
   orgPhone: string; orgState: string; reqWeather: string;
 
+  distBetween:any;
+  
   constructor(
     private _favData: FavoritesStorageService,
     private route: ActivatedRoute,
-    private _afs: FirestoreService
-  ) {
+    private _afs: FirestoreService,
+    public _userPosition$ : GeoService
+  ) { 
   }
 
   async ngOnInit() {
@@ -47,8 +51,8 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     this.eventAddress = this.eventData.eventAddress;
     this.eventCity = this.eventData.eventCity;
     this.eventDescr = this.eventData.eventDescr;
-    this.eventLat = this.eventData.eventLat;
-    this.eventLong = this.eventData.eventLong;
+    this.eventLat = await this.eventData.eventLat;
+    this.eventLong = await this.eventData.eventLong;
     this.eventStates = this.eventData.eventStates;
     this.infocost = this.eventData.infoCost;
     this.infoDog = this.eventData.infoDog;
@@ -67,6 +71,9 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     this.orgPhone = this.eventData.orgPhone;
     this.orgState = this.eventData.orgState;
     this.reqWeather = this.eventData.reqWeather;
+    this.distBetween = this._userPosition$.getdistance(this.eventLat,this.eventLong,"k")
+
+   
   }
 
   ngOnDestroy() {

@@ -2,7 +2,7 @@ export const environment = {
   production: true,
   firebaseConfig : {
     apiKey: "AIzaSyA_cFxUB7TE7MZephBg9aEXb2Ikdh3mx2U",
-    authDomain: "whattododev.firebaseapp.com",
+    authDomain: "what-to-do.ch",
     projectId: "whattododev",
     storageBucket: "whattododev.appspot.com",
     messagingSenderId: "362527946196",
