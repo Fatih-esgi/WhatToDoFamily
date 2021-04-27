@@ -3,7 +3,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { InjectJsonToFirestoreService } from 'src/app/@services/Firestore-dataPusher/inject-json-to-firestore.service';
 import { MeteoService } from 'src/app/@services/meteo/meteo.service';
 import { FirestoreService } from 'src/app/@services/storage/firestore.service';
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -24,6 +23,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     name?: string;
     imageUrl?: string;
     descr?: string;
+    id?: number;
   };
   date: any;
   time: any = new Date();

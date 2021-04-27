@@ -20,7 +20,7 @@ export class ListeEventComponent implements OnInit {
   listeEvent;
   activeCategory: string = "all";
   searchResult: Array<any>;
-
+term;
 
 
   constructor(
@@ -35,23 +35,18 @@ export class ListeEventComponent implements OnInit {
     
   }
 
-  fetchEvents(event: any) {
-    if (event.target.value === '') {
-      return this.searchResult = this.listeEvent;
-    }
-
-    this.searchResult = this.listeEvent.filter((evenement) => {
-      return evenement.name.toLowerCase().startsWith(event.target.value.toLowerCase());
-    })
-  }
-
   cancelSearch() {
-    return this.searchResult = this.listeEvent;
   }
 
-  catChanged($event: any): void {
-    console.log($event.detail.value);
-    this.activeCategory = $event.detail.value;
+  async catChanged($event: any) {
+    const activeCategory = $event.detail.value;
+    if (activeCategory == 0) {      
+      this.listeEvent = await this._afs.getliste$();
+    } else {
+      this.listeEvent = await this._afs.getCategory$($event.detail.value);
+      
+    }
+    return this.listeEvent;
   }
 
   async onClickFilter() {

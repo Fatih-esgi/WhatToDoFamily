@@ -13,6 +13,8 @@ export class FirestoreService {
   private _eventsCollection: AngularFirestoreCollection<any>;
   private _EventList$ = new BehaviorSubject([]);
   public EventList$ = this._EventList$.asObservable();
+  public filteredList;
+
 
   constructor(private _fireStore: AngularFirestore) {
     this._eventsCollection = this._fireStore.collection<any>('events');
@@ -51,8 +53,8 @@ export class FirestoreService {
     );
   }
 
- async getByID(id: string) {
-   return await this._eventsCollection.doc(id).get().toPromise().then((doc) => {
+  async getByID(id: string) {
+    return await this._eventsCollection.doc(id).get().toPromise().then((doc) => {
       if (doc.exists) {
         console.log("Document data:", doc.data());
         return doc.data()
@@ -66,8 +68,15 @@ export class FirestoreService {
     });
   }
 
+   getCategory$(catid) {
+      
+     return this.EventList$.toPromise().then((fltredEvent)=>{
+      fltredEvent.filter(event => event.category === catid);
+     })
+     
+    }
 
-  addToRegistredEvent(){
-    
+  addToRegistredEvent() {
+
   }
 }

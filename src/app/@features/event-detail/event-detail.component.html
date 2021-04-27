@@ -1,5 +1,5 @@
 <ion-header>
-    <app-header [pageTitle]="this.eventTitle"></app-header>
+    <app-header [pageTitle]="this.eventTitle" backTo="/home" ></app-header>
 </ion-header>
 <ion-content>
     <ion-slides pager="true" [options]="slideOpts">
@@ -47,7 +47,7 @@
             </ion-col>
             <ion-col size="12">
                 <ion-list class="ion-no-margin ion-no-padding">
-                    <ion-item class="ion-no-margin ion-no-padding">
+                    <ion-item class="ion-no-margin ion-no-padding"> 
                         <ion-col size="1">
                             <ion-icon name="calendar-clear-outline"></ion-icon>
                         </ion-col>

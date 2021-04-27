@@ -8,6 +8,10 @@ import { IconDogPipe } from './pipes/icon-dog.pipe';
 import { IconmeteoReqPipe } from './pipes/iconmeteo-req.pipe';
 import { IconHandicapPipe } from './pipes/icon-handicap.pipe';
 import { CatColorsPipe } from './pipes/cat-colors.pipe';
+import { WeatherImagePipe } from './pipes/weather-image.pipe';
+import { WeatherDescriptionPipe } from './pipes/weather-description.pipe';
+import { CatTitlePipe } from './pipes/cat-title.pipe';
+import { WeatherIconsPipe } from './pipes/weather-icons.pipe';
 
 
 
@@ -17,16 +21,28 @@ import { CatColorsPipe } from './pipes/cat-colors.pipe';
     IconDogPipe,
     IconmeteoReqPipe,
     IconHandicapPipe,
-    CatColorsPipe
+    CatColorsPipe,
+    WeatherImagePipe,
+    WeatherDescriptionPipe,
+    CatTitlePipe,
+    WeatherIconsPipe
   ],
   imports: [
     CommonModule,
     IonicModule,
     IonicRatingComponentModule,
-    RouterModule
+    RouterModule,
   ],
   exports: [
-    ...COMPONENTS
+    ...COMPONENTS,
+    IconDogPipe,
+    IconmeteoReqPipe,
+    IconHandicapPipe,
+    CatColorsPipe,
+    WeatherImagePipe,
+    WeatherDescriptionPipe,
+    CatTitlePipe,
+    WeatherIconsPipe
   ]
 })
 export class SharedModule { }

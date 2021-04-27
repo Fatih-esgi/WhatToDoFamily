@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-searchbar [(ngModel)]="searchInput" (keyup)="fetchEvents($event)" placeholder="Rechercher par nom"
+    <ion-searchbar [(ngModel)]="term" placeholder="Rechercher par nom"
         (ionClear)="cancelSearch()" class="ion-no-padding ion-no-margin">
       </ion-searchbar>
     <ion-buttons slot="end">
@@ -20,23 +20,23 @@
         </ion-text>
       </ion-col>
       <ion-col size="12">
-        <ion-segment scrollable value="all" mode="md" (ionChange)="catChanged($event)">
-          <ion-segment-button value="all">
+        <ion-segment scrollable value=0 mode="md" (ionChange)="catChanged($event)">
+          <ion-segment-button value=0>
             <ion-icon name="home"></ion-icon>
           </ion-segment-button>
-          <ion-segment-button value="actus">
+          <ion-segment-button value=1>
             <ion-icon name="heart"></ion-icon>
           </ion-segment-button>
-          <ion-segment-button value="sortir">
+          <ion-segment-button value=2>
             <ion-icon name="pin"></ion-icon>
           </ion-segment-button>
-          <ion-segment-button value="decouvrir">
+          <ion-segment-button value=3>
             <ion-icon name="star"></ion-icon>
           </ion-segment-button>
-          <ion-segment-button value="samuser">
+          <ion-segment-button value=4>
             <ion-icon name="call"></ion-icon>
           </ion-segment-button>
-          <ion-segment-button value="manger">
+          <ion-segment-button value=5>
             <ion-icon name="call"></ion-icon>
           </ion-segment-button>
         </ion-segment>
@@ -63,11 +63,10 @@
       </ion-col>
       <ion-col size="12">
 
-        <ion-list *ngFor="let evenement of (this.listeEvent|async)?.slice(min, max)">
-          <app-event-card [id]="evenement.key" [dateB]="evenement.dateBegin" [dateE]="evenement.dateEnd"
-            [title]="evenement.eventTitle" [avgRating]="evenement.rating" [eventLat]="evenement.eventLat"
-            [eventLong]="evenement.eventLong" [eventDog]="evenement.infoDog" [eventhandicap]="evenement.infoHandicap"
-            [meteoReq]="evenement.reqWeather" [media1]="evenement.media1" [cat]="evenement.category" [removeOpt]=false>
+        <ion-list *ngFor="let evenement of (this.listeEvent|async|filter:term)?.slice(min, max)">
+          <app-event-card [id]="evenement.key" [dateB]="evenement.dateBegin" [dateE]="evenement.dateEnd" [title]="evenement.eventTitle"
+            [avgRating]="evenement.rating" [eventLat]="evenement.eventLat" [eventLong]="evenement.eventLong" [city]="evenement.eventCity"
+            [eventDog]="evenement.infoDog" [eventhandicap]="evenement.infoHandicap" [meteoReq]="evenement.reqWeather" [media1]="evenement.media1" [category] ="evenement.category" [removeOpt]=false>
           </app-event-card>
         </ion-list>
 

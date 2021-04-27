@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
 
   @Input() 
   pageTitle: string;
-  backTo?: string;
+  backTo?;
 
   constructor( 
     public auth : AngularFireAuth,

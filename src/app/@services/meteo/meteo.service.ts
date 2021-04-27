@@ -25,7 +25,8 @@ export class MeteoService {
       temp: meteoData.main.temp,
       name: meteoData.name,
       imageUrl: `http://openweathermap.org/img/wn/${meteoData.weather[0].icon}@2x.png`,
-      descr: meteoData.weather[0].description 
+      descr: meteoData.weather[0].description,
+      id: meteoData.weather[0].id
     };
   }
 }

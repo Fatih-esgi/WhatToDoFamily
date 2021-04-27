@@ -8,7 +8,7 @@ import { SharedModule } from 'src/app/@shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { SearchModalComponent } from './search-modal/search-modal.component';
 
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 @NgModule({
   declarations: [
     ListeEventComponent,
@@ -19,7 +19,8 @@ import { SearchModalComponent } from './search-modal/search-modal.component';
     ListeEventRoutingModule,
     IonicModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    Ng2SearchPipeModule
   ]
 })
 export class ListeEventModule { }

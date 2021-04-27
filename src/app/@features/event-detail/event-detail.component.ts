@@ -13,7 +13,6 @@ export class EventDetailComponent implements OnInit, OnDestroy {
   like: boolean = true;
   favEventList: any;
   sub: any;
-
   slideOpts = {
     initialSlide: 1,
     speed: 400

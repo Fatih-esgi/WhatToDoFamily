@@ -3,7 +3,7 @@
 </ion-header>
 <ion-content>
 
-  <ion-item class="homeBg">
+  <ion-item class="homeBg" style="background: url({{meteoData?.id|weatherImage}});">
     <ion-grid fixed>
       <ion-row>
         <ion-col size="6">
@@ -11,7 +11,7 @@
           <ion-img [src]="meteoData?.imageUrl"></ion-img>
         </ion-col>
         <ion-col size="6">
-          {{ time | date: 'hh:mm' }}
+          {{ time | date: 'HH:mm' }}
         </ion-col>
         <ion-col size="6">
           {{meteoData?.name}}
@@ -41,8 +41,8 @@
       <ion-card class="ion-no-padding ion-no-margin" detail="false" [routerLink]="'../event/' + actus.key.toString()">
         <ion-card-content>
           <p>{{actus.dateBegin|date:'d.MM.yy'}} - {{actus.dateEnd|date:'d.MM.yy'}}</p>
-          <ion-img class="actusEvents" [src]="actus.media1" ></ion-img>
-          <div >{{actus.eventTitle|slice:0:40 }}</div>
+          <ion-img class="actusEvents" [src]="actus.media1" ></ion-img><div class="eventCatBar" [style.background-color]="actus.category|catColors"></div>
+          <p>{{actus.eventTitle|slice:0:40 }}</p>
         </ion-card-content>
       </ion-card>
     </ion-slide>
@@ -51,11 +51,12 @@
   <ion-grid fixed>
     <ion-row>
       <ion-col size="2">
-        <ion-img [src]="meteoData?.imageUrl"></ion-img>
+        <ion-icon [name]="meteoData?.id|weatherIcons"></ion-icon>
+        <ion-img [src]=""></ion-img>
       </ion-col>
       <ion-col size="10">
         <ion-text color="primary">
-          <h5>Notre séléction par temps {{meteoData?.descr}}</h5>
+          <h5>{{meteoData?.id|weatherDescription}}</h5>
         </ion-text>
       </ion-col>
     </ion-row>
