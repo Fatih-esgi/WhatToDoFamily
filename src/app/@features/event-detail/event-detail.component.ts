@@ -100,7 +100,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
   planificateEvent() {
     console.log(this.id);
     console.log(this.user)
-    // this._afs.sendToUserEvent(this.id);
+    // this._afs.sendToUserEvent(this.id); 
   }
 
 
