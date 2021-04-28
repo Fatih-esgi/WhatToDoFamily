@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { FirestoreService } from 'src/app/@services/storage/firestore.service';
 import { GeoService } from 'src/app/@services/gelocation/geo.service';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Plugins } from '@capacitor/core';
+const { Share } = Plugins;
 @Component({
   selector: 'app-event-detail',
   templateUrl: './event-detail.component.html',
@@ -82,9 +84,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     //unsubscribe activated route
     this.sub.unsubscribe();
   }
-  share() {
-    console.log('clicked share');
-  }
+
 
   // async toggleFavorites() {
   //   console.log('clicked favorites');
@@ -102,4 +102,19 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     console.log(this.user)
     // this._afs.sendToUserEvent(this.id);
   }
+
+
+
+
+
+async shareRet(){
+  const eventURL = "https://www.what-to-do.ch/tabs/event/"+this.id
+  await Share.share({
+  title: this.eventTitle,
+  text: 'Je tenais à partager cet évenement disponible sur WhatToDo Family',
+  url: eventURL,
+  dialogTitle: 'Partager sur :'
+});
+}
+
 }
