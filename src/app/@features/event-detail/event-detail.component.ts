@@ -112,7 +112,7 @@ async shareRet(){
   await Share.share({
   title: this.eventTitle,
   text: 'Je tenais à partager cet évenement disponible sur WhatToDo Family',
-  url: eventURL,
+  url: location.href,
   dialogTitle: 'Partager sur :'
 });
 }
