@@ -5,15 +5,20 @@ import { FirestoreService } from 'src/app/@services/storage/firestore.service';
 import { GeoService } from 'src/app/@services/gelocation/geo.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Plugins } from '@capacitor/core';
+
 const { Share } = Plugins;
+
+
 @Component({
   selector: 'app-event-detail',
   templateUrl: './event-detail.component.html',
   styleUrls: ['./event-detail.component.scss']
 })
 export class EventDetailComponent implements OnInit, OnDestroy {
-  like: boolean = true;
+
+  likeIcon:string = "heart-outline"
   favEventList: any;
+
   sub: any;
   slideOpts = {
     initialSlide: 1,
@@ -30,12 +35,14 @@ export class EventDetailComponent implements OnInit, OnDestroy {
 
   distBetween:any;
   user;
+
+
   constructor(
-    // private _favData: FavoritesStorageService,
     private route: ActivatedRoute,
     private _afs: FirestoreService,
     public _userPosition$ : GeoService,
     public auth: AngularFireAuth,
+    public _favStorage : FavoritesStorageService
   ) { 
   }
 
@@ -75,9 +82,13 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     this.orgState = this.eventData.orgState;
     this.reqWeather = this.eventData.reqWeather;
     this.distBetween = this._userPosition$.getdistance(this.eventLat,this.eventLong,"k")
-
     this.user = this.auth
    
+    if (this._favStorage.findItem(this.id)) {
+      this.likeIcon = "heart-dislike-outline"
+    } else {
+      this.likeIcon = "heart-outline"
+    }
   }
 
   ngOnDestroy() {
@@ -86,16 +97,22 @@ export class EventDetailComponent implements OnInit, OnDestroy {
   }
 
 
-  // async toggleFavorites() {
-  //   console.log('clicked favorites');
-  //   if (this.like == true) {
-  //     this.like = false;
-  //     this.favEventList = await this._favData.setFavorite(this.id);
-  //   } else {
-  //     this.like = true;
-  //     this.favEventList = await this._favData.removeFavorite(this.id);
-  //   }
-  // }
+  async toggleFavorites() {   
+    if (this._favStorage.findItem(this.id)) {
+
+      console.log(this._favStorage.findItem(this.id));
+      this.likeIcon = "heart-outline"
+      this.favEventList = await this._favStorage.destroy(this.id)
+      
+    } else {
+      console.log(this._favStorage.findItem(this.id));
+      this.favEventList = await this._favStorage.post(this.id,this.eventData);
+      this.likeIcon = "heart-dislike-outline"
+
+    }
+  }
+
+
 
   planificateEvent() {
     console.log(this.id);
@@ -107,8 +124,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
 
 
 
-async shareRet(){
-  const eventURL = "https://www.what-to-do.ch/tabs/event/"+this.id
+async sharePopup(){
   await Share.share({
   title: this.eventTitle,
   text: 'Je tenais à partager cet évenement disponible sur WhatToDo Family',

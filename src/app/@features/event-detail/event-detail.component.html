@@ -11,10 +11,10 @@
                 <ion-icon name="calendar-outline"></ion-icon>
             </ion-fab-button>
             <ion-fab-button>
-                <ion-icon name="share-social-outline" (click)="shareRet()"></ion-icon>
+                <ion-icon name="share-social-outline" (click)="sharePopup()"></ion-icon>
             </ion-fab-button>
             <ion-fab-button>
-                <ion-icon name="heart-outline"></ion-icon>
+                <ion-icon [name]="this.likeIcon" (click)="toggleFavorites()"></ion-icon>
             </ion-fab-button>
         </ion-fab-list>
       </ion-fab>

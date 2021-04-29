@@ -11,8 +11,8 @@ export class FirestoreService {
 
   ///connexion in firestore & generating list as observable
   private _eventsCollection: AngularFirestoreCollection<any>;
-  private _EventList$ = new BehaviorSubject([]);
-  public EventList$ = this._EventList$.asObservable();
+  private _EventList$:BehaviorSubject<any> = new BehaviorSubject([]);
+  public EventList$:Observable<any> = this._EventList$.asObservable();
   public filteredList;
 
 

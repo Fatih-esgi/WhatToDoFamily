@@ -12,21 +12,17 @@ export class FavoritesComponent implements OnInit {
 
   FavoriteListe: any;
 
-  constructor(private _getFavorite: FavoritesStorageService) { }
+  constructor(private _Favorite: FavoritesStorageService) { }
 
-  ngOnInit() {
-    // this.getFavListe();
+  async ngOnInit() {
+    this.FavoriteListe = await this._Favorite.get()
+    console.log(this.FavoriteListe); 
+     return this.FavoriteListe
 
   }
 
-  // async getFavListe() {
-  //   this.FavoriteListe = await this._getFavorite.getListEvent()
-  //   .then(res =>  res.favEventList );
-    
-  //   return this.FavoriteListe
-
-
-
-  // }
+  removeFav(eventId){
+    this._Favorite.destroy(eventId)
+  }
 
 }

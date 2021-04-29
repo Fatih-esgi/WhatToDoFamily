@@ -1,43 +1,63 @@
-import { Injectable } from '@angular/core';
-import { Storage } from '@capacitor/core'
+import { Injectable, OnInit } from '@angular/core';
+import { Plugins } from "@capacitor/core";
+const { Storage } = Plugins;
+
+const storageName = 'favourite';
+const defaultList = [];
+
 @Injectable({
   providedIn: 'root'
 })
 export class FavoritesStorageService {
 
-  listeFav:any;
+  private favListe;
 
-  constructor() { 
-    this.listeFav= [];
-    
+
+  constructor() {
+    this.favListe = JSON.parse(localStorage.getItem(storageName)) || defaultList;
+  }
+
+  // get items
+  get() {
+    return [...this.favListe];
+  }
+
+  // add a new item
+  post(item,value) {
+    this.favListe.push({item,value});
+    return this.update();
+  }
+
+  // // update an item //unused here in case i need them
+  // put(item, changes) {
+  //   Object.assign(this.favListe[this.findItemIndex(item)], changes);
+  //   return this.update();
+  // }
+
+  // remove an item 
+  destroy(item) {
+    this.favListe.splice(this.findItemIndex(item), 1);
+    return this.update();
+  }
+  
+  //find item 
+  findItem(item){
+   return this.favListe.find(element => element == item);
+   
+  }
+
+  //update storage
+  private update() {
+    localStorage.setItem(storageName, JSON.stringify(this.favListe));
+
+    return this.get();
+  }
+
+  //findIndex of item
+   findItemIndex(item) {
+    return this.favListe.indexOf(item);
   }
 
 
-   setFavorite(id) {
-     this.listeFav.push(id)
-    
-    // await Storage.set({
-    //   key: 'favEvents',
-    //   value: JSON.stringify({
-    //     ids: this.listeFav
-    //   })
-    // });
-     console.log(this.listeFav);
 
-  }
-
-  async removeFavorite(id) {
-    const index = this.listeFav.indexOf(id);
-    if (index > -1) {
-      this.listeFav.splice(index, 1);
-    }
-  }
-
-
-
-  async getListEvent() {
-    const ret = await Storage.get({ key: 'favEvents' });
-    const favEventList = JSON.parse(ret.value);
-    return { favEventList }
-  }
 }

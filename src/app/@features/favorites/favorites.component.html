@@ -2,10 +2,23 @@
   <app-header pageTitle="Mes Favoris"></app-header>
   </ion-header>
   <ion-content>
-          <!-- <ion-list *ngFor="let fav of this.FavoriteListe.ids|json">
-            <ion-item>
-              <ion-label>{{fav|json}}</ion-label>
-            </ion-item>
-          </ion-list> -->
-          <!-- {{this.FavoriteListe.ids|json}} -->
+    <ion-list *ngFor="let fav of this.FavoriteListe">
+      <ion-item-sliding>
+        <ion-item>
+          <app-event-card [id]="fav.item" [dateB]="fav.value.dateBegin" [dateE]="fav.value.dateEnd" [title]="fav.value.eventTitle"
+            [avgRating]="fav.value.rating" [eventLat]="fav.value.eventLat" [eventLong]="fav.value.eventLong" [city]="fav.value.eventCity"
+            [eventDog]="fav.value.infoDog" [eventhandicap]="fav.value.infoHandicap" [meteoReq]="fav.value.reqWeather" [media1]="fav.value.media1" 
+            [category] ="fav.value.category">
+          </app-event-card>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option color="alerte" (click)="removeFav(fav.item)">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+          <ion-list>
+            
+          </ion-list>
   </ion-content>

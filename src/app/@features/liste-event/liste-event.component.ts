@@ -31,7 +31,7 @@ term;
 
   async ngOnInit() {
     this.listeEvent = await this._afs.getliste$();
-    console.log('listeeventnew',this.listeEvent);
+    // console.log('listeeventnew',this.listeEvent);
     
   }
 
