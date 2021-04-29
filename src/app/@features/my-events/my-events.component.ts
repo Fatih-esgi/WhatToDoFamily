@@ -11,7 +11,7 @@ import { formatDate } from '@angular/common';
 export class MyEventsComponent implements OnInit {
   eventSource = [];
   viewTitle: string;
- 
+  calendarView:boolean = true;
   calendar = {
     mode: 'month',
     currentDate: new Date(),
@@ -28,7 +28,15 @@ export class MyEventsComponent implements OnInit {
   ) {}
  
   ngOnInit() {}
- 
+  segmentChanged(event){
+console.log(event.detail.value);
+if (event.detail.value == "calendrier") {
+  this.calendarView = true;
+} else {
+  this.calendarView = false;
+}
+  }
+
   // Change current month/week/day
   next() {
     this.myCal.slideNext();
