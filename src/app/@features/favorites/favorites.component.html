@@ -1,24 +1,29 @@
 <ion-header>
   <app-header pageTitle="Mes Favoris"></app-header>
-  </ion-header>
-  <ion-content>
-    <ion-list *ngFor="let fav of this.FavoriteListe">
-      <ion-item-sliding>
-        <ion-item>
-          <app-event-card [id]="fav.item" [dateB]="fav.value.dateBegin" [dateE]="fav.value.dateEnd" [title]="fav.value.eventTitle"
-            [avgRating]="fav.value.rating" [eventLat]="fav.value.eventLat" [eventLong]="fav.value.eventLong" [city]="fav.value.eventCity"
-            [eventDog]="fav.value.infoDog" [eventhandicap]="fav.value.infoHandicap" [meteoReq]="fav.value.reqWeather" [media1]="fav.value.media1" 
-            [category] ="fav.value.category">
-          </app-event-card>
-        </ion-item>
-        <ion-item-options side="end">
-          <ion-item-option color="alerte" (click)="removeFav(fav.item)">
-            <ion-icon name="trash-outline"></ion-icon>
-          </ion-item-option>
-        </ion-item-options>
-      </ion-item-sliding>
-    </ion-list>
-          <ion-list>
-            
-          </ion-list>
-  </ion-content>
+</ion-header>
+<ion-content *ngIf="this.FavoriteListe.length > 0 ;else noliste">
+  <ion-list *ngFor="let fav of this.FavoriteListe">
+    <ion-item-sliding *ngIf="fav">
+      <ion-item>
+        <app-event-card [id]="fav.item" [dateB]="fav.value.dateBegin" [dateE]="fav.value.dateEnd"
+          [title]="fav.value.eventTitle" [avgRating]="fav.value.rating" [eventLat]="fav.value.eventLat"
+          [eventLong]="fav.value.eventLong" [city]="fav.value.eventCity" [eventDog]="fav.value.infoDog"
+          [eventhandicap]="fav.value.infoHandicap" [meteoReq]="fav.value.reqWeather" [media1]="fav.value.media1"
+          [category]="fav.value.category">
+        </app-event-card>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option color="alerte" (click)="removeFav(fav.item)">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
+<ion-content #noliste>
+  <ion-text color="primary" class="ion-text-center">
+    <p>aucun favoris dans votre liste</p><br>
+    <p>les favoris vous permettent de garder de côté des évenément qui vous intéresse</p><br>
+    <p>Ajouter en depuis le boutton + dans le descriptif de l'évenements</p>
+  </ion-text>
+</ion-content>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
 @Component({
@@ -7,6 +7,11 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./search-modal.component.scss']
 })
 export class SearchModalComponent implements OnInit {
+  @Input()  date: Date;
+  @Output() dateChange = new EventEmitter<Date>();
+
+  @Input()  reqWeatherSelect: Date;
+  @Output() reqWeatherSelectUPD = new EventEmitter<Date>();
 
   constructor(public modalController: ModalController) { }
 
@@ -19,4 +24,14 @@ export class SearchModalComponent implements OnInit {
       'dismissed': true
     });
   }
+
+changeDate($event){
+  console.log('sadfasdf',$event.value);
+}
+
+changeReqWeather($event){
+  console.log('sadfasdf',$event);
+}
+  resetFilter(){}
+  filterSend(){}
 }

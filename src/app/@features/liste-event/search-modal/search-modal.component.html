@@ -9,5 +9,68 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
+    <ion-item>
+        <ion-label>Date</ion-label>
+        <ion-datetime displayFormat="DD MMMM YYYY" max="2022-12-31" (ionchange)="changeDate($event)" placeholder="Select Date"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Ville</ion-label>
+        <ion-select interface="popover">
+          <ion-select-option value="Fribourg">Fribourg</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Temps recommandé</ion-label>
+        <ion-select interface="popover" (ionchange)="changeReqWeather($event)">
+          <ion-select-option value="Beau">
+            <ion-icon slot="start" name="add"></ion-icon>  
+            Beau</ion-select-option>
+          <ion-select-option value="mauvais">
+            <ion-icon slot="start" name="add"></ion-icon>    
+            mauvais</ion-select-option>
+          <ion-select-option value="neige">
+            <ion-icon slot="start" name="add"></ion-icon>    
+            neige</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Rayon</ion-label>
+        <ion-range min="5" max="200" pin color="secondary">
+          <ion-icon slot="start" size="small" name="contrast"></ion-icon>
+          <ion-icon slot="end" name="contrast"></ion-icon>
+        </ion-range>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label>Coût</ion-label>
+        <ion-range min="5" max="200" pin color="secondary">
+          <ion-icon slot="start" size="small" name="contrast"></ion-icon>
+          <ion-icon slot="end" name="contrast"></ion-icon>
+        </ion-range>
+      </ion-item>
+
+      <ion-item>
+          
+        <ion-label>
+            <ion-icon slot="start" name="add"></ion-icon>
+            Accès handicapés</ion-label>
+<ion-checkbox color="primary"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        
+        <ion-label>
+            <ion-icon slot="start" name="add"></ion-icon>
+            chiens autorisés</ion-label>
+<ion-checkbox color="primary"></ion-checkbox>
+      </ion-item>
+      <ion-button (click)="filterSend()" expand="block" shape="round">
+          OK
+        </ion-button>
+        <ion-button (click)="resetFilter()" expand="block" fill="clear" shape="round">
+            tout effacer
+        </ion-button>
 </ion-content>
   
