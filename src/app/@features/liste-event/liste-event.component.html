@@ -1,7 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-searchbar [(ngModel)]="term" placeholder="Rechercher par nom"
-        (ionClear)="cancelSearch()" class="ion-no-padding ion-no-margin">
+    <ion-searchbar [(ngModel)]="term" placeholder="Rechercher par nom" class="ion-no-padding ion-no-margin">
       </ion-searchbar>
     <ion-buttons slot="end">
       <ion-button (click)="onClickFilter()">
@@ -43,22 +42,36 @@
       </ion-col>   
       <ion-col size="12">  
       <ion-text color="primary" class="ion-text-center ion-no-padding ion-no-margin">
-          <p class="ion-no-padding ion-no-margin">{{activeCategory}}</p>
+          <p class="ion-no-padding ion-no-margin">{{this.activeCategory|catTitle}}</p>
         </ion-text>
       </ion-col>   
       <ion-col size="12">
-        <ion-chip>
+        
+        <ion-chip *ngIf="(this.chips)?.ville != undefined||null" disabled="true">   
           <ion-icon name="pin" color="success"></ion-icon>
-          <ion-icon name="close"></ion-icon>
+          <ion-label>{{(this.chips)?.ville}}</ion-label>
         </ion-chip>
-        <ion-chip>
-          <ion-icon name="pin" color="success"></ion-icon>
-          <ion-icon name="close"></ion-icon>
+        <ion-chip *ngIf="(this.chips)?.date != undefined||null" disabled="true">
+          <ion-icon name="calendar-outline"></ion-icon>
+          <ion-label>{{(this.chips)?.date|date:'d.MM.yy'}}</ion-label>
         </ion-chip>
-        <ion-chip>
-          <ion-icon name="pin" color="primary"></ion-icon>
-          <ion-label>date</ion-label>
-          <ion-icon name="close"></ion-icon>
+        <ion-chip *ngIf="(this.chips)?.reqWeather != undefined||null" disabled="true">
+          <ion-icon name="partly-sunny-outline"></ion-icon>
+          <ion-label>{{(this.chips)?.reqWeather}}</ion-label>
+        </ion-chip>
+        <ion-chip *ngIf="(this.chips)?.range != undefined||null" disabled="true">
+          <ion-icon name="partly-sunny-outline"></ion-icon>
+          <ion-label>{{(this.chips)?.range}}km</ion-label>
+        </ion-chip>
+        <ion-chip *ngIf="(this.chips)?.cost != undefined||null" disabled="true">
+          <ion-icon name="partly-sunny-outline"></ion-icon>
+          <ion-label> - de {{(this.chips)?.cost}}chf</ion-label>
+        </ion-chip>
+        <ion-chip *ngIf="(this.chips)?.infoHandicap != undefined||null" disabled="true">
+          <ion-icon name="partly-sunny-outline"></ion-icon>
+        </ion-chip>
+        <ion-chip *ngIf="(this.chips)?.infoDog != undefined||null" disabled="true">
+          <ion-icon name="partly-sunny-outline"></ion-icon>
         </ion-chip>
       </ion-col>
       <ion-col size="12">

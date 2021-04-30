@@ -16,15 +16,17 @@
 
       <ion-item>
         <ion-label>Ville</ion-label>
-        <ion-select interface="popover">
+        <ion-select interface="popover" [(ngModel)]="ville">
           <ion-select-option value="Fribourg">Fribourg</ion-select-option>
+          <ion-select-option value="genève">Genève</ion-select-option>
+          <ion-select-option value="Lausanne">Lausanne</ion-select-option>
         </ion-select>
       </ion-item>
 
       <ion-item>
         <ion-label>Temps recommandé</ion-label>
-        <ion-select interface="popover" (ionChange)="changeReqWeather($event)">
-          <ion-select-option value="Beau">
+        <ion-select interface="popover" [(ngModel)]="reqWeather">
+          <ion-select-option value="beau">
             <ion-icon slot="start" name="add"></ion-icon>  
             Beau</ion-select-option>
           <ion-select-option value="mauvais">
@@ -38,7 +40,7 @@
 
       <ion-item>
         <ion-label>Rayon</ion-label>
-        <ion-range min="5" max="200" pin color="secondary">
+        <ion-range min="5" max="200" pin color="secondary" [(ngModel)]="range">
           <ion-icon slot="start" size="small" name="contrast"></ion-icon>
           <ion-icon slot="end" name="contrast"></ion-icon>
         </ion-range>
@@ -46,7 +48,7 @@
       
       <ion-item>
         <ion-label>Coût</ion-label>
-        <ion-range min="5" max="200" pin color="secondary">
+        <ion-range min="5" max="200" pin color="secondary" [(ngModel)]="cost">
           <ion-icon slot="start" size="small" name="contrast"></ion-icon>
           <ion-icon slot="end" name="contrast"></ion-icon>
         </ion-range>
@@ -57,14 +59,14 @@
         <ion-label>
             <ion-icon slot="start" name="add"></ion-icon>
             Accès handicapés</ion-label>
-<ion-checkbox color="primary"></ion-checkbox>
+<ion-checkbox color="primary" [(ngModel)]="infoHandicap"></ion-checkbox>
       </ion-item>
       <ion-item>
         
         <ion-label>
             <ion-icon slot="start" name="add"></ion-icon>
             chiens autorisés</ion-label>
-<ion-checkbox color="primary"></ion-checkbox>
+<ion-checkbox color="primary" [(ngModel)]="infoDog"></ion-checkbox>
       </ion-item>
       <ion-button (click)="filterSend()" expand="block" shape="round">
           OK

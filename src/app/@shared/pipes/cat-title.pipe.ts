@@ -8,6 +8,9 @@ export class CatTitlePipe implements PipeTransform {
   transform(value: number): string {
     let result;
     switch (true) {
+      case value === 0:
+        result ="Tous les événements"
+        break;
       case value === 1:
         result ="Sortir"
         break;
@@ -24,7 +27,7 @@ export class CatTitlePipe implements PipeTransform {
         result ="Se détendre"
         break;
     
-      default:
+      default: "cccvccc"
         break;
     }
     return result;

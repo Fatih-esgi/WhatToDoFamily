@@ -7,32 +7,47 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./search-modal.component.scss']
 })
 export class SearchModalComponent implements OnInit {
-  @Input()  date: Date;
-
-  @Input()  reqWeatherSelect: Date;
+  @Input() date: Date;
+  @Input() ville: string;
+  @Input() reqWeather: string;
+  @Input() range: number;
+  @Input() cost: number;
+  @Input() infoHandicap: boolean;
+  @Input() infoDog: boolean;
 
   constructor(public modalController: ModalController) { }
 
   ngOnInit(): void {
   }
 
-/// fermeture du modal
+  /// fermeture du modal
   dismiss() {
     this.modalController.dismiss({
       'dismissed': true
     });
   }
 
-changeReqWeather($event){
-  console.log('sadfasdf',$event);
-}
-  resetFilter(){}
 
-  filterSend(){
-    console.log(this.date);
+  resetFilter() {
+    this.date = undefined
+    this.ville = undefined
+    this.reqWeather= undefined
+    this.range = undefined
+    this.cost = undefined
+    this.infoHandicap = undefined
+    this.infoDog = undefined
+  }
+
+  filterSend() {
     this.modalController.dismiss({
-      date: this.date
+      date: this.date,
+      ville: this.ville,
+      reqWeather: this.reqWeather,
+      range: this.range,
+      cost: this.cost,
+      infoHandicap: this.infoHandicap,
+      infoDog: this.infoDog
     });
-    
+
   }
 }

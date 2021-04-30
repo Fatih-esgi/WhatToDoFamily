@@ -18,54 +18,50 @@ export class ListeEventComponent implements OnInit {
   max = 10;
   min = 0;
   listeEvent;
-  activeCategory: string = "all";
+  activeCategory: number ;
   searchResult: Array<any>;
   term;
-
+  chips;
 
   constructor(
     private _afs: FirestoreService,
     public modalController: ModalController,
-  ) {
+  ) {   this.activeCategory = 0;
   }
 
   async ngOnInit() {
     this.listeEvent = await this._afs.getliste$();
+ 
     // console.log('listeeventnew',this.listeEvent);
 
   }
 
-  cancelSearch() {
-  }
 
-  async catChanged($event: any) {
-    const activeCategory = $event.detail.value;
-    if (activeCategory == 0) {
-      this.listeEvent = await this._afs.getliste$();
-    } else {
-      this.listeEvent = await this._afs.getCategory$($event.detail.value);
 
-    }
-    return this.listeEvent;
+  async catChanged($event) {        
+     this.activeCategory = await Number($event.detail.value);
+    await this._afs.updateFilter({category : this.activeCategory});
   }
 
   async onClickFilter() {
-
+    this.chips = {};
     const modal = await this.modalController.create({
       component: SearchModalComponent,
     });
+
     await modal.present();
-    const newFilter = await modal.onWillDismiss().then(
-      res => {
-        return res.data
-      }
-    )
-    console.log(newFilter);
-    
+    const newFilter = await modal.onWillDismiss()
+      .then(
+        res => { return res.data; }
+      )
+
+      this.chips = newFilter;
+      this._afs.updateFilter(newFilter);
   }
 
   async loadData(event) {
     this.max = this.max + 10;
     event.target.complete();
   }
+
 }
