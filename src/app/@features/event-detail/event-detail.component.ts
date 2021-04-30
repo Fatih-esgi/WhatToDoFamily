@@ -5,6 +5,8 @@ import { FirestoreService } from 'src/app/@services/storage/firestore.service';
 import { GeoService } from 'src/app/@services/gelocation/geo.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Plugins } from '@capacitor/core';
+import { ModalController } from '@ionic/angular';
+import { RegisterEventComponent } from './register-event/register-event.component';
 
 const { Share } = Plugins;
 
@@ -42,7 +44,8 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     private _afs: FirestoreService,
     public _userPosition$ : GeoService,
     public auth: AngularFireAuth,
-    public _favStorage : FavoritesStorageService
+    public _favStorage : FavoritesStorageService,
+    private modalController: ModalController
   ) { 
   }
 
@@ -121,7 +124,12 @@ export class EventDetailComponent implements OnInit, OnDestroy {
   }
 
 
-
+  async registerEvent() {
+    const modal = await this.modalController.create({
+      component: RegisterEventComponent,
+    });
+    return await modal.present();
+  }
 
 
 async sharePopup(){

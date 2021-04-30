@@ -20,7 +20,7 @@ export class ListeEventComponent implements OnInit {
   listeEvent;
   activeCategory: string = "all";
   searchResult: Array<any>;
-term;
+  term;
 
 
   constructor(
@@ -32,7 +32,7 @@ term;
   async ngOnInit() {
     this.listeEvent = await this._afs.getliste$();
     // console.log('listeeventnew',this.listeEvent);
-    
+
   }
 
   cancelSearch() {
@@ -40,22 +40,30 @@ term;
 
   async catChanged($event: any) {
     const activeCategory = $event.detail.value;
-    if (activeCategory == 0) {      
+    if (activeCategory == 0) {
       this.listeEvent = await this._afs.getliste$();
     } else {
       this.listeEvent = await this._afs.getCategory$($event.detail.value);
-      
+
     }
     return this.listeEvent;
   }
 
   async onClickFilter() {
+
     const modal = await this.modalController.create({
       component: SearchModalComponent,
     });
-    return await modal.present();
+    await modal.present();
+    const newFilter = await modal.onWillDismiss().then(
+      res => {
+        return res.data
+      }
+    )
+    console.log(newFilter);
+    
   }
-  
+
   async loadData(event) {
     this.max = this.max + 10;
     event.target.complete();

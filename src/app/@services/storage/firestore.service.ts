@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -11,23 +11,34 @@ export class FirestoreService {
 
   ///connexion in firestore & generating list as observable
   private _eventsCollection: AngularFirestoreCollection<any>;
-  private _EventList$:BehaviorSubject<any> = new BehaviorSubject([]);
-  public EventList$:Observable<any> = this._EventList$.asObservable();
+  private _EventList$: BehaviorSubject<any> = new BehaviorSubject([]);
+  public EventList$: Observable<any> = this._EventList$.asObservable();
   public filteredList;
+  private _filtersItems$: BehaviorSubject<any> = new BehaviorSubject({});;
+  public filtersItems$: Observable<any> = this._filtersItems$.asObservable();
 
 
   constructor(private _fireStore: AngularFirestore) {
-    this._eventsCollection = this._fireStore.collection<any>('events');
 
-    this._eventsCollection.stateChanges(['added', 'modified'])
-      .pipe(
-        map(actions => actions.map(a => {
-          const key = a.payload.doc.id;
-          const data = a.payload.doc.data();
-          return { key, ...data };
-        })
-        )
-      )
+
+    this.filtersItems$.pipe(
+      switchMap(filteritem => {
+        this._eventsCollection = this._fireStore.collection<any>('events', ref => {
+          //ajouter des filtres ici if filter = ---> where
+          return ref
+        }
+        );
+        return this._eventsCollection.stateChanges(['added', 'modified'])
+          .pipe(
+            map(actions => actions.map(a => {
+              const key = a.payload.doc.id;
+              const data = a.payload.doc.data();
+              return { key, ...data };
+            })
+            )
+          )
+      })
+    )
       .subscribe(
         newData => {
           const currentState = this._EventList$.value.filter(
@@ -43,14 +54,7 @@ export class FirestoreService {
   }
 
   getliste$(): Observable<any[]> {
-    return combineLatest([
-      this.EventList$
-    ]).pipe(
-      map(([eventList]) => {
-        // console.log('collection--->', eventList);
-        return eventList
-      })
-    );
+    return this.EventList$;
   }
 
   async getByID(id: string) {
@@ -68,15 +72,18 @@ export class FirestoreService {
     });
   }
 
-   getCategory$(catid) {
-      
-     return this.EventList$.toPromise().then((fltredEvent)=>{
+  getCategory$(catid) {
+
+    return this.EventList$.toPromise().then((fltredEvent) => {
       fltredEvent.filter(event => event.category === catid);
-     })
-     
-    }
+    })
+
+  }
 
   addToRegistredEvent() {
 
+  } 
+  updateFilter(filter){
+    this._filtersItems$.next(filter);
   }
 }

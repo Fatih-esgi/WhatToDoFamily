@@ -11,7 +11,7 @@
     <ion-label>Liste</ion-label>
   </ion-segment-button>
 </ion-segment>
-   <ng-container  *ngIf="this.calendarView ==true ;else listeView">    
+   <ng-container  *ngIf="this.calendarView">    
      <ion-row>
        <ion-col size="2">
          <ion-button fill="clear" (click)="back()">
@@ -51,7 +51,7 @@
       </ion-col>
     </ion-row>
    </ng-container> 
-  <ng-container #listeView>
+  <ng-container *ngIf="!this.calendarView">
 <ion-text color="primary">
   <h1>Vos prochains évenements</h1>
 </ion-text>

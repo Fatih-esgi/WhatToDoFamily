@@ -8,10 +8,8 @@ import { ModalController } from '@ionic/angular';
 })
 export class SearchModalComponent implements OnInit {
   @Input()  date: Date;
-  @Output() dateChange = new EventEmitter<Date>();
 
   @Input()  reqWeatherSelect: Date;
-  @Output() reqWeatherSelectUPD = new EventEmitter<Date>();
 
   constructor(public modalController: ModalController) { }
 
@@ -25,13 +23,16 @@ export class SearchModalComponent implements OnInit {
     });
   }
 
-changeDate($event){
-  console.log('sadfasdf',$event.value);
-}
-
 changeReqWeather($event){
   console.log('sadfasdf',$event);
 }
   resetFilter(){}
-  filterSend(){}
+
+  filterSend(){
+    console.log(this.date);
+    this.modalController.dismiss({
+      date: this.date
+    });
+    
+  }
 }

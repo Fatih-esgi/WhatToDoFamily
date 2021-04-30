@@ -11,7 +11,7 @@
 <ion-content>
     <ion-item>
         <ion-label>Date</ion-label>
-        <ion-datetime displayFormat="DD MMMM YYYY" max="2022-12-31" (ionchange)="changeDate($event)" placeholder="Select Date"></ion-datetime>
+        <ion-datetime [(ngModel)]="date" displayFormat="DD MMMM YYYY" max="2022-12-31"  placeholder="Select Date"></ion-datetime>
       </ion-item>
 
       <ion-item>
@@ -23,7 +23,7 @@
 
       <ion-item>
         <ion-label>Temps recommandé</ion-label>
-        <ion-select interface="popover" (ionchange)="changeReqWeather($event)">
+        <ion-select interface="popover" (ionChange)="changeReqWeather($event)">
           <ion-select-option value="Beau">
             <ion-icon slot="start" name="add"></ion-icon>  
             Beau</ion-select-option>

@@ -6,11 +6,13 @@ import { IonicModule } from '@ionic/angular';
 import { IonicRatingComponentModule } from 'ionic-rating-component';
 import { EventDetailComponent } from './event-detail.component';
 import { SharedModule } from 'src/app/@shared/shared.module';
+import { RegisterEventComponent } from './register-event/register-event.component';
 
 
 @NgModule({
   declarations: [
-    EventDetailComponent
+    EventDetailComponent,
+    RegisterEventComponent,
   ],
   imports: [
     CommonModule,
