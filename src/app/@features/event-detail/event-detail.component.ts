@@ -7,6 +7,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Plugins } from '@capacitor/core';
 import { ModalController } from '@ionic/angular';
 import { RegisterEventComponent } from './register-event/register-event.component';
+import { InfoToastService } from 'src/app/@shared/toast/info-toast.service';
 
 const { Share } = Plugins;
 
@@ -45,7 +46,8 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     public _userPosition$ : GeoService,
     public auth: AngularFireAuth,
     public _favStorage : FavoritesStorageService,
-    private modalController: ModalController
+    private modalController: ModalController,
+    public _toast:InfoToastService
   ) { 
   }
 
@@ -104,21 +106,22 @@ export class EventDetailComponent implements OnInit, OnDestroy {
 
       console.log(this._favStorage.findItem(this.id));
       this.likeIcon = "heart-outline"
-      this.favEventList = await this._favStorage.destroy(this.id)
+      this.favEventList = await this._favStorage.destroy(this.id);
+      this._toast.presentToast('Favoris retiré','warning');
       
     } else {
       console.log(this._favStorage.findItem(this.id));
+      this.likeIcon = "heart-dislike-outline";
       this.favEventList = await this._favStorage.post(this.id,this.eventData);
-      this.likeIcon = "heart-dislike-outline"
-
+      this._toast.presentToast('Ajouté à vos Favoris','success');
     }
   }
 
 
 
-  planificateEvent() {
+  planificateEvent() { // a jeter apres la supression du button
     console.log(this.id);
-    console.log(this.user)
+    console.log(this.user.currentUser)
     // this._afs.sendToUserEvent(this.id); 
   }
 
@@ -126,6 +129,11 @@ export class EventDetailComponent implements OnInit, OnDestroy {
   async registerEvent() {
     const modal = await this.modalController.create({
       component: RegisterEventComponent,
+      componentProps: { 
+        begDate: this.eventStartDate,    
+        endDate: this.eventEndDate,
+        eventID:this.id
+      }
     });
     return await modal.present();
   }

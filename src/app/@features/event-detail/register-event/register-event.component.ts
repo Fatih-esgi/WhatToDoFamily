@@ -7,10 +7,19 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./register-event.component.scss']
 })
 export class RegisterEventComponent implements OnInit {
+  begDate;
+  endDate;
+  eventID;
+  constructor(private modalController: ModalController) { 
+    // this.begDate = new Date(this.begDate).toISOString()
+    // this.endDate = this.endDate
+  }
 
-  constructor(private modalController: ModalController) { }
 
   ngOnInit(): void {
+    console.log(this.begDate,this.endDate);
+    
+
   }
 
   dismiss() {
@@ -18,7 +27,8 @@ export class RegisterEventComponent implements OnInit {
       'dismissed': true
     });
   }
- planificateEvent(){
-   this.dismiss()
- }
+  
+  planificateEvent() {
+    this.dismiss()
+  }
 }

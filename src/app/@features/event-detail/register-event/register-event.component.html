@@ -11,30 +11,31 @@
 <ion-content>
     <ion-item>
         <ion-label>Date</ion-label>
-        <ion-datetime displayFormat="DD MMMM YYYY" min="" max="2022-12-31"  placeholder="Select Date"></ion-datetime>
-      </ion-item>
+        <ion-datetime displayFormat="DD MMMM YYYY" [min]="this.begDate" max="2022-12-31" placeholder="Select Date"></ion-datetime>
+    </ion-item>
     <ion-item>
         <ion-label>heure</ion-label>
-        <ion-datetime displayFormat="HH:mm" max="2022-12-31"  placeholder="Select Date"></ion-datetime>
-      </ion-item>
-      <ion-item>
+        <ion-datetime displayFormat="HH:mm" max="2022-12-31" placeholder="Select Date"></ion-datetime>
+    </ion-item>
+    <ion-item disabled="true">
         <ion-label>Inviter :</ion-label>
         <ion-select ok-text="Ok" cancel-text="annuler" multiple="true">
-          <ion-select-option value="FriendId">Robert</ion-select-option>
-          <ion-select-option value="FriendId">Robert</ion-select-option>
+            <ion-select-option value="FriendId">Robert</ion-select-option>
+            <ion-select-option value="FriendId">Robert</ion-select-option>
 
         </ion-select>
-      </ion-item>
-<ion-item>
+    </ion-item>
+    <ion-item disabled="true">
         <ion-chip color="primary" mode="ios" outline="true">
             <ion-avatar>
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=3569&q=80" />
+                <img
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=3569&q=80" />
             </ion-avatar>
             <ion-label>Robert B.</ion-label>
             <ion-icon name="close"></ion-icon>
-        </ion-chip> 
-</ion-item>
-<ion-button (click)="planificateEvent()" expand="block" fill="clear" shape="round">
-    Planifier
-</ion-button>
+        </ion-chip>
+    </ion-item>
+    <ion-button (click)="planificateEvent()" expand="block" fill="clear" shape="round">
+        Planifier
+    </ion-button>
 </ion-content>
