@@ -48,8 +48,8 @@ export class FavoritesStorageService {
     return this.update();
   }
 
-  findItem(item){
-    return this._favList.value.find(element => element == item);  
+  findItem(item$){
+    return this._favList.value.find(item => item.item == item$);  
    }
 
   private update() {
@@ -58,7 +58,7 @@ export class FavoritesStorageService {
   }
 
   findItemIndex(item) {
-    return this._favList.value.indexOf(item);
+    return this._favList.value.indexOf(item.item);
   }
 
 

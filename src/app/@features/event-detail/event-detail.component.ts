@@ -55,8 +55,6 @@ export class EventDetailComponent implements OnInit, OnDestroy {
       this.id = params['id'];
     });
     this.eventData = await this._afs.getByID(this.id)
-    console.log('testdata', this.eventData);
-
     this.eventTitle = this.eventData.eventTitle;
     this.eventCategory = this.eventData.category;
     this.eventStartDate = this.eventData.dateBegin;
@@ -87,7 +85,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     this.distBetween = this._userPosition$.getdistance(this.eventLat,this.eventLong,"k")
     this.user = this.auth
    
-    if (this._favStorage.findItem(this.id)) {
+    if (await this._favStorage.findItem(this.id)) {
       this.likeIcon = "heart-dislike-outline"
     } else {
       this.likeIcon = "heart-outline"
@@ -101,6 +99,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
 
 
   async toggleFavorites() {   
+    
     if (this._favStorage.findItem(this.id)) {
 
       console.log(this._favStorage.findItem(this.id));

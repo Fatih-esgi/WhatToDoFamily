@@ -10,7 +10,7 @@ export class HeaderComponent {
 
   @Input() 
   pageTitle: string;
-  backTo?;
+  backTo?:string;
 
   constructor( 
     ) {}
