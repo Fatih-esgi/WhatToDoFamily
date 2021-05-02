@@ -16,12 +16,12 @@
                 <ion-col size="12">
                     <ion-item>
                         <ion-label position="stacked">Catégorie</ion-label>
-                        <ion-select placeholder="Choisissez une catégorie" formControlName="eventCategory" required>
-                            <ion-select-option value="1">Sortir</ion-select-option>
-                            <ion-select-option value="2">Découvrir</ion-select-option>
-                            <ion-select-option value="3">s'amuser</ion-select-option>
-                            <ion-select-option value="4">manger</ion-select-option>
-                            <ion-select-option value="5">se détendre</ion-select-option>
+                        <ion-select placeholder="Choisissez une catégorie" formControlName="category" required>
+                            <ion-select-option [value]="1">Sortir</ion-select-option>
+                            <ion-select-option [value]="2">Découvrir</ion-select-option>
+                            <ion-select-option [value]="3">s'amuser</ion-select-option>
+                            <ion-select-option [value]="4">manger</ion-select-option>
+                            <ion-select-option [value]="5">se détendre</ion-select-option>
                         </ion-select>
                     </ion-item>
                 </ion-col>
@@ -64,7 +64,7 @@
                 <ion-col size="12">
                     <ion-item>
                         <ion-label position="stacked">Info Transport</ion-label>
-                        <ion-textarea autoGrow="true" formControlName="infoGen" type="text"
+                        <ion-textarea autoGrow="true" formControlName="infoTransp" type="text"
                             placeholder="ajouter une description"></ion-textarea>
                     </ion-item>
                 </ion-col>
@@ -79,6 +79,20 @@
                         </ion-select>
                     </ion-item>
                 </ion-col>
+                <ion-col size="6">
+                    <ion-item>
+                        <ion-label position="stacked">Latitude</ion-label>
+                        <ion-input formControlName="eventLat" type="number" placeholder="latitude" required>
+                        </ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="6">
+                    <ion-item>
+                        <ion-label position="stacked">Longitude</ion-label>
+                        <ion-input formControlName="eventLong" type="number" placeholder="longitude" required>
+                        </ion-input>
+                    </ion-item>
+                </ion-col>
                 <ion-col size="12">
                     <ion-item>
                         <ion-label position="stacked">Organisateur</ion-label>
@@ -86,7 +100,7 @@
                         <ion-input placeholder="Addresse" formControlName="orgAdress" required></ion-input>
                         <ion-input placeholder="NPA" type="number" formControlName="orgNPA" required></ion-input>
                         <ion-input placeholder="Ville" formControlName="orgCity" required></ion-input>
-                        <ion-select value="Fribourg" multiple="true" placeholder="Canton" formControlName="orgState"
+                        <ion-select value="Fribourg" placeholder="Canton" formControlName="orgState"
                             required>
                             <ion-select-option value="Fribourg">Fribourg</ion-select-option>
                         </ion-select>
@@ -95,7 +109,7 @@
                 </ion-col>
                 <ion-col size="12">
                     <ion-item>
-                        <ion-label>Météo recommandée (choix multiples)</ion-label>
+                        <ion-label position="stacked">Météo recommandée (choix multiples)</ion-label>
                         <ion-select multiple="true" formControlName="reqWeather" required>
                             <ion-select-option value="beau">Beau temps</ion-select-option>
                             <ion-select-option value="mauvais">Mauvais temps</ion-select-option>
@@ -106,7 +120,7 @@
                 <ion-col size="12">
                     <ion-item>
                         <ion-label position="stacked">Coût moyen par personne</ion-label>
-                        <ion-range min="0" max="100" pin snaps color="secondary" step="5" formControlName="infocost">
+                        <ion-range min="0" max="100" pin snaps color="secondary" step="5" formControlName="infoCost">
                             <ion-label slot="start">0 chf</ion-label>
                             <ion-label slot="end">+ 100</ion-label>
                         </ion-range>
@@ -114,25 +128,26 @@
                 </ion-col>
                 <ion-col size="6">
                     <ion-item>
-                        <ion-label>Handicapés</ion-label>
-                        <ion-checkbox slot="end" formControlName="infoHandicap"></ion-checkbox>
+                        <ion-select placeholder="accès Handicapés" formControlName="infoHandicap"
+                            required>
+                            <ion-select-option [value]="true">oui</ion-select-option>
+                            <ion-select-option [value]="false">non</ion-select-option>
+                        </ion-select>
                     </ion-item>
                 </ion-col>
                 <ion-col size="6">
                     <ion-item>
-                        <ion-label>Chiens autorisés</ion-label>
-                        <ion-checkbox slot="end" formControlName="infoDog"></ion-checkbox>
+                        <ion-select placeholder="Chiens autorisés" formControlName="infoDog" required>
+                            <ion-select-option [value]="true">oui</ion-select-option>
+                            <ion-select-option [value]="false">non</ion-select-option>
+                        </ion-select>
                     </ion-item>
                 </ion-col>
                 <div class="form-group">
-                    <ion-buttons slot="start">
-                        <button type="submit">
-                            Save
-                        </button>
+                        <ion-button type="submit" color="danger" expand="block">Submit</ion-button>
                         <ion-button routerLink="/admin" expand="full" fill="clear" shape="round">
                             Annuler
                         </ion-button>
-                    </ion-buttons>
                 </div>
             </ion-row>
         </ion-grid>

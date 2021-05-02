@@ -23,6 +23,13 @@ export class EventCRUDService {
     return this.eventDbRef.add({ ...event });
   }
 
+  async getByID(id: string) {
+    return await this.eventDbRef.doc(id).get().toPromise().then(
+      (doc) =>{ return doc.data()}
+    )
+    
+  }
+
   update(id: string, data: any): Promise<void> {
     return this.eventDbRef.doc(id).update(data);
   }

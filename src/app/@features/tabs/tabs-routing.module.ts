@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsComponent } from './tabs.component';
-import { AngularFireAuthGuard, canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
-
+import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+import { map } from 'rxjs/operators';
+import { } from 'firebase/auth'
+// const redirectToProfileEditOrLogin = () => map(user => user ? ['profiles', user.uid, 'edit'] : ['login']);
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['tabs/home']);
+
 const routes: Routes = [
   {
     path: '',
@@ -30,6 +33,7 @@ const routes: Routes = [
         path: 'user',
         loadChildren: () => import('../user/user.module')
           .then(m => m.UserModule),
+          // ...canActivate(redirectToProfileEditOrLogin)
       },
       {
         path: 'favorites',

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ToastController } from '@ionic/angular';
-import { IosInstallToastService } from 'src/app/@shared/toast/ios-install-toast.service';
+import { IosInstallToastService } from 'src/app/@services/toast/ios-install-toast.service';
 
 @Injectable({
   providedIn: 'root'

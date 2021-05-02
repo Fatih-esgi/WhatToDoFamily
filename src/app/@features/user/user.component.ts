@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthServiceService } from 'src/app/@services/authentication/auth-service.service';
 
@@ -7,18 +7,27 @@ import { AuthServiceService } from 'src/app/@services/authentication/auth-servic
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss']
 })
-export class UserComponent {
-  constructor(
-    public auth : AngularFireAuth,
-    private log : AuthServiceService
-    ){}
 
-    login(){
-      this.log.loginGoogle();
-    }
-    
-    logout(){
-      this.log.logout();
-    }
+export class UserComponent implements OnInit {
+  uid;
+
+  constructor(
+    public auth: AngularFireAuth,
+    private log: AuthServiceService
+  ) { }
+
+  ngOnInit() {
+    this.auth.user.subscribe(user => {
+      this.uid = user.uid;
+    });
+  }
+
+  login() {
+    this.log.loginGoogle();
+  }
+
+  logout() {
+    this.log.logout();
+  }
 
 }

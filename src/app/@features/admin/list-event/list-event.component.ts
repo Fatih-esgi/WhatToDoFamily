@@ -13,7 +13,7 @@ export class ListEventComponent implements OnInit {
   events?: EventsToDb[];
   currentIndex = -1;
   title = 'Administration';
-
+  
   constructor(private eventCRUD: EventCRUDService) { }
 
   ngOnInit(): void {

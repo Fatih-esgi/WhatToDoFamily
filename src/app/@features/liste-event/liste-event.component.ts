@@ -14,12 +14,10 @@ export class ListeEventComponent implements OnInit {
     speed: 400
   };
 
-  searchInput: String = '';
   max = 10;
   min = 0;
   listeEvent;
   activeCategory: number ;
-  searchResult: Array<any>;
   term;
   chips;
 

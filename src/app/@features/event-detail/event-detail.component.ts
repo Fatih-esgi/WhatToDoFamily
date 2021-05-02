@@ -7,7 +7,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Plugins } from '@capacitor/core';
 import { ModalController } from '@ionic/angular';
 import { RegisterEventComponent } from './register-event/register-event.component';
-import { InfoToastService } from 'src/app/@shared/toast/info-toast.service';
+import { InfoToastService } from 'src/app/@services/toast/info-toast.service';
 
 const { Share } = Plugins;
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
-import { UpdateToastService } from 'src/app/@shared/toast/update-toast.service';
+import { UpdateToastService } from 'src/app/@services/toast/update-toast.service';
 
 @Injectable({
   providedIn: 'root'
