@@ -11,11 +11,15 @@ import { NgCalendarModule  } from 'ionic2-calendar';
 
 import { registerLocaleData } from '@angular/common';
 import localFRCH from '@angular/common/locales/fr-CH';
+import { ListeComponent } from './liste/liste.component';
+import { CalendrarViewComponent } from './calendrar-view/calendrar-view.component';
 registerLocaleData(localFRCH);
 
 @NgModule({
   declarations: [
     MyEventsComponent,
+    ListeComponent,
+    CalendrarViewComponent,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr-CH' }

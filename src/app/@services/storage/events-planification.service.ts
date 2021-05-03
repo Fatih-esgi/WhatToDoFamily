@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { map } from 'rxjs/operators';
 import { EventToPlanification } from 'src/app/@interfaces/event-to-planification';
 
 @Injectable({
@@ -18,8 +19,8 @@ export class EventsPlanificationService {
     
   }
 
-  getAll(): AngularFirestoreCollection<EventToPlanification> {
-    return this.eventDbRef;
+  getAll() {
+    return this.eventDbRef
   }
 
   create(event: EventToPlanification): any {

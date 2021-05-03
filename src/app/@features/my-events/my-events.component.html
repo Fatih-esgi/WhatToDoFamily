@@ -1,59 +1,20 @@
 <ion-header>
   <app-header pageTitle="Evenements plannifiés "></app-header>
-  </ion-header>
-   
-  <ion-content> 
-<ion-segment value="calendrier" (ionChange)="segmentChanged($event)">
-  <ion-segment-button value="calendrier">
-    <ion-label>Calendrier</ion-label>
-  </ion-segment-button>
-  <ion-segment-button value="liste">
-    <ion-label>Liste</ion-label>
-  </ion-segment-button>
-</ion-segment>
-   <ng-container  *ngIf="this.calendarView">    
-     <ion-row>
-       <ion-col size="2">
-         <ion-button fill="clear" (click)="back()">
-           <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
-          </ion-button>
-        </ion-col>
-        
-        <ion-col size="8" class="ion-text-center">
-          <h2>{{ viewTitle }}</h2>
-        </ion-col>
-        
-        <ion-col size="2">
-          <ion-button fill="clear" (click)="next()">
-            <ion-icon name="arrow-forward" slot="icon-only"></ion-icon>
-          </ion-button>
-        </ion-col>
-      </ion-row>
-      
-      <calendar
-      [eventSource]="eventSource"
-      [calendarMode]="'month'"
-      [currentDate]="calendar.currentDate"
-      (onEventSelected)="onEventSelected($event)"
-      (onTitleChanged)="onViewTitleChanged($event)"
-      >
-    </calendar>
-    <ion-row>
-      <ion-col size="6">
-        <ion-button (click)="createRandomEvents()" expand="block" fill="outline">
-          Add random events
-        </ion-button>
-      </ion-col>
-      <ion-col size="6">
-        <ion-button (click)="removeEvents()" expand="block" fill="outline">
-          Remove all events
-        </ion-button>
-      </ion-col>
-    </ion-row>
-   </ng-container> 
-  <ng-container *ngIf="!this.calendarView">
-<ion-text color="primary">
-  <h1>Vos prochains évenements</h1>
-</ion-text>
+</ion-header>
+
+<ion-content>
+  <ion-segment value="calendrier" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="calendrier">
+      <ion-label>Calendrier</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="liste">
+      <ion-label>Liste</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <ng-container *ngIf="this.calendarView">
+    <app-calendrar-view></app-calendrar-view>
   </ng-container>
-  </ion-content>
+  <ng-container *ngIf="!this.calendarView">
+    <app-liste [userID]="this.userID"></app-liste>
+  </ng-container>
+</ion-content>
