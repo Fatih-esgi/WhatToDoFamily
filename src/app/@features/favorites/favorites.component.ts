@@ -17,7 +17,6 @@ export class FavoritesComponent implements OnInit {
  async ngOnInit() {
       await this._Favorite.get().subscribe(results => {
       // Do whatever you need to do with the results
-      console.log("sdfasdf",results);
       this.FavoriteListe = results
       return this.FavoriteListe;
   })
@@ -27,6 +26,8 @@ export class FavoritesComponent implements OnInit {
 
   async removeFav(eventId){
     await this._Favorite.destroy(eventId)
+    console.log(eventId);
+    
   }
 
 }

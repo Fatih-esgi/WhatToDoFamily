@@ -18,15 +18,16 @@ export class MeteoService {
 
   async getMeteo() {
     const pos = await this._geoService.getPosition();
-    const meteoData = await this._apiServie.getCurrentWeather(pos);
-    console.log(meteoData);
+    const meteoData = await this._apiServie.getDailyWeather(pos);
+    console.log('daily',meteoData);
     
     return {
-      temp: meteoData.main.temp,
-      name: meteoData.name,
-      imageUrl: `http://openweathermap.org/img/wn/${meteoData.weather[0].icon}@2x.png`,
-      descr: meteoData.weather[0].description,
-      id: meteoData.weather[0].id
+      currenttemp: meteoData.current.temp,
+      curentid: meteoData.current.weather[0].id,
+      curentIcon: `http://openweathermap.org/img/wn/${meteoData.current.weather[0].icon}@2x.png`,
+      dailyID: meteoData.daily[0].weather[0].id,
+      dailyIcon: `http://openweathermap.org/img/wn/${meteoData.daily[0].weather[0].icon}@2x.png`,
+
     };
   }
 }

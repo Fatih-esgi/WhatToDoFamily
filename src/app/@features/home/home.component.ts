@@ -19,12 +19,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   };
 
   meteoData: {
-    temp?: number;
-    name?: string;
-    imageUrl?: string;
-    descr?: string;
-    id?: number;
+    currenttemp: number;
+      curentid: number;
+      curentIcon: string;
+      dailyID:number;
+      dailyIcon: string;
   };
+  
   date: any;
   time: any = new Date();
   timer;

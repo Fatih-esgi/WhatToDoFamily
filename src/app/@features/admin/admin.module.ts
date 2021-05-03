@@ -7,19 +7,21 @@ import { IonicModule } from '@ionic/angular';
 import { AddEditEventComponent } from './add-edit-event/add-edit-event.component';
 import { ListEventComponent } from './list-event/list-event.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { AngularFireStorageModule} from '@angular/fire/storage'
 
 @NgModule({
   declarations: [
     AdminComponent,
     AddEditEventComponent,
-    ListEventComponent
+    ListEventComponent,
+    
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     IonicModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireStorageModule
   ]
 })
 export class AdminModule { }

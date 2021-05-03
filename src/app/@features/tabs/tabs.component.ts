@@ -7,12 +7,19 @@ import { AngularFireAuth } from '@angular/fire/auth';
   styleUrls: ['./tabs.component.scss']
 })
 export class TabsComponent implements OnInit {
-
+user;
   constructor(public auth:AngularFireAuth) { 
 
- }
 
-  ngOnInit(): void {
+ }
+  async ngOnInit() {
+
+     return this.user = await this.auth.user.toPromise().then(x =>{
+      x.uid
+    }
+    )
+    console.log('user',this.user);
+      
   }
 
 }

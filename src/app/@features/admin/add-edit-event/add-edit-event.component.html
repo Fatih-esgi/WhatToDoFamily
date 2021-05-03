@@ -143,6 +143,12 @@
                         </ion-select>
                     </ion-item>
                 </ion-col>
+                <ion-col size="12">
+                    <ion-item (click)="takePicture()">
+                        <ion-label>Photo 1</ion-label>
+                        <ion-img [src]="this.imageUrl1"></ion-img>
+                    </ion-item>
+                </ion-col>
                 <div class="form-group">
                         <ion-button type="submit" color="danger" expand="block">Submit</ion-button>
                         <ion-button routerLink="/admin" expand="full" fill="clear" shape="round">

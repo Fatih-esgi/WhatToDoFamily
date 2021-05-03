@@ -42,8 +42,10 @@ export class FavoritesStorageService {
 
   // remove an item
 
-  destroy(item) {
-    const updatedList = this._favList.value.splice(this.findItemIndex(item), 1);
+   destroy(item) {
+    const updatedList = this._favList.value.splice( this.findItemIndex(item),1);///!!!!!!!!!!!!!!!!!!!DEMANDER ICI LE NUMERO 
+    console.log('updliste',updatedList);
+    
     this._favList.next(updatedList)
     return this.update();
   }
@@ -58,7 +60,10 @@ export class FavoritesStorageService {
   }
 
   findItemIndex(item) {
-    return this._favList.value.indexOf(item.item);
+    console.log('item',item);
+        console.log('findindex',this._favList.value.findIndex(x => x.item ===item));
+    return this._favList.value.findIndex(x => x.item === item)
+    
   }
 
 

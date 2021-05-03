@@ -1,17 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map } from 'rxjs/operators';
-import { EventsToDb } from 'src/app/@interfaces/events-to-db';
+
 import { EventCRUDService } from 'src/app/@services/admin/event-crud.service';
 import { InfoToastService } from 'src/app/@services/toast/info-toast.service';
+
+import { Plugins, CameraResultType } from '@capacitor/core';
+const { Camera } = Plugins;
+
 
 @Component({
   selector: 'app-add-edit-event',
   templateUrl: './add-edit-event.component.html',
   styleUrls: ['./add-edit-event.component.scss']
 })
+
 export class AddEditEventComponent implements OnInit {
+
   form: FormGroup;
   id: string;
   isAddMode: boolean;
@@ -19,6 +24,8 @@ export class AddEditEventComponent implements OnInit {
   submitted = false;
   minCalendarDate: string
   SelectedEvent;
+  imageUrl1;
+
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -51,7 +58,7 @@ export class AddEditEventComponent implements OnInit {
       infoGen: ['', Validators.required],
       infoHandicap: ['', Validators.required],
       infoTransp: ['', Validators.required],
-      // media1:['', Validators.required],
+      media1:['', Validators.required],
       // media2:[''],
       // media3:[''],
       // media4:[''],
@@ -113,4 +120,24 @@ export class AddEditEventComponent implements OnInit {
   private updateEvent() {
     this._eventsDb.update(this.id,this.form.value)
   }
+
+
+  async takePicture() {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: true,
+      resultType: CameraResultType.Uri
+    });
+    // image.webPath will contain a path that can be set as an image src.
+    // You can access the original file using image.path, which can be
+    // passed to the Filesystem API to read the raw data of the image,
+    // if desired (or pass resultType: CameraResultType.Base64 to getPhoto)
+    var imageUrl = image.webPath;
+    // Can be set to the src of an image now
+    this.imageUrl1 = imageUrl;
+    console.log(this.imageUrl1);
+    
+  }
+
+
 }

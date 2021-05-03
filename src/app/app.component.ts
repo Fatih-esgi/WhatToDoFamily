@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CheckdeviceService } from './@services/update&devices/checkdevice.service';
 import { UpdatesService } from './@services/update&devices/updates.service';
+import { Plugins } from '@capacitor/core';
 
 @Component({
   selector: 'app-root',

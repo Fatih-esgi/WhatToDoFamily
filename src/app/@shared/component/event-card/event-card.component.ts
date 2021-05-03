@@ -33,7 +33,7 @@ export class EventCardComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    this.distBetween = this._userPosition$.getdistance(this.eventLat,this.eventLong,"k")
+    this.distBetween = this._userPosition$.getdistance(this.eventLat,this.eventLong,"K")
   }
 
 }
