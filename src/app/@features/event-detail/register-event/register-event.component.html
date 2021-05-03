@@ -11,12 +11,9 @@
 <ion-content>
     <ion-item>
         <ion-label>Date</ion-label>
-        <ion-datetime displayFormat="DD MMMM YYYY" [min]="this.begDate" max="2022-12-31" placeholder="Select Date"></ion-datetime>
+        <ion-datetime  displayFormat="DD MMMM YYYY : HH:mm" [(ngModel)]="selectedDateTime" [min]="this.begDate" [max]="this.endDate"  placeholder="Select Date"></ion-datetime>
     </ion-item>
-    <ion-item>
-        <ion-label>heure</ion-label>
-        <ion-datetime displayFormat="HH:mm" max="2022-12-31" placeholder="Select Date"></ion-datetime>
-    </ion-item>
+
     <ion-item disabled="true">
         <ion-label>Inviter :</ion-label>
         <ion-select ok-text="Ok" cancel-text="annuler" multiple="true">

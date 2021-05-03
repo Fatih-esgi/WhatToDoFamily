@@ -73,6 +73,7 @@ export class AddEditEventComponent implements OnInit {
       reqWeather: ['', Validators.required],
     });
 
+    /// if not add mode, get event from db & patch to form
     if (!this.isAddMode) {
       this.SelectedEvent = await this._eventsDb.getByID(this.id)
       this.form.patchValue(this.SelectedEvent)

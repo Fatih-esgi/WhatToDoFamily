@@ -19,7 +19,7 @@ const { Share } = Plugins;
 })
 export class EventDetailComponent implements OnInit, OnDestroy {
 
-  likeIcon:string = "heart-outline"
+  likeIcon: string = "heart-outline"
   favEventList: any;
 
   sub: any;
@@ -36,19 +36,19 @@ export class EventDetailComponent implements OnInit, OnDestroy {
   media6: string | null; orgAdress: string; orgCity: string; orgName: string;
   orgPhone: string; orgState: string; reqWeather: string;
 
-  distBetween:any;
+  distBetween: any;
   user;
 
 
   constructor(
     private route: ActivatedRoute,
     private _afs: FirestoreService,
-    public _userPosition$ : GeoService,
+    public _userPosition$: GeoService,
     public auth: AngularFireAuth,
-    public _favStorage : FavoritesStorageService,
+    public _favStorage: FavoritesStorageService,
     private modalController: ModalController,
-    public _toast:InfoToastService
-  ) { 
+    public _toast: InfoToastService
+  ) {
   }
 
   async ngOnInit() {
@@ -59,8 +59,8 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     this.eventData = await this._afs.getByID(this.id)
     this.eventTitle = this.eventData.eventTitle;
     this.eventCategory = this.eventData.category;
-    this.eventStartDate = this.eventData.dateBegin;
-    this.eventEndDate = this.eventData.dateEnd;
+    this.eventStartDate = this.eventData.eventStartDate;
+    this.eventEndDate = this.eventData.eventEndDate;
     this.eventAddress = this.eventData.eventAddress;
     this.eventCity = this.eventData.eventCity;
     this.eventDescr = this.eventData.eventDescr;
@@ -84,14 +84,16 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     this.orgPhone = this.eventData.orgPhone;
     this.orgState = this.eventData.orgState;
     this.reqWeather = this.eventData.reqWeather;
-    this.distBetween = this._userPosition$.getdistance(this.eventLat,this.eventLong,"k")
-    this.user = this.auth
-   
+    this.distBetween = this._userPosition$.getdistance(this.eventLat, this.eventLong, "k")
+    this.user = (await this.auth.currentUser).uid
+
     if (await this._favStorage.findItem(this.id)) {
       this.likeIcon = "heart-dislike-outline"
     } else {
       this.likeIcon = "heart-outline"
     }
+    // console.log('---->user',this.user);
+
   }
 
   ngOnDestroy() {
@@ -99,53 +101,47 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
+  ///TOOGLE FAVOURITE ---> icon change,toast and switch add/delete function
+  async toggleFavorites() {
 
-  async toggleFavorites() {   
-    
     if (this._favStorage.findItem(this.id)) {
 
       console.log(this._favStorage.findItem(this.id));
       this.likeIcon = "heart-outline"
       this.favEventList = await this._favStorage.destroy(this.id);
-      this._toast.presentToast('Favoris retiré','warning');
-      
+      this._toast.presentToast('Favoris retiré', 'warning');
+
     } else {
       console.log(this._favStorage.findItem(this.id));
       this.likeIcon = "heart-dislike-outline";
-      this.favEventList = await this._favStorage.post(this.id,this.eventData);
-      this._toast.presentToast('Ajouté à vos Favoris','success');
+      this.favEventList = await this._favStorage.post(this.id, this.eventData);
+      this._toast.presentToast('Ajouté à vos Favoris', 'success');
     }
   }
 
 
 
-  planificateEvent() { // a jeter apres la supression du button
-    console.log(this.id);
-    console.log(this.user.currentUser)
-    // this._afs.sendToUserEvent(this.id); 
-  }
-
 
   async registerEvent() {
     const modal = await this.modalController.create({
       component: RegisterEventComponent,
-      componentProps: { 
-        begDate: this.eventStartDate,    
+      componentProps: {
         endDate: this.eventEndDate,
-        eventID:this.id
+        eventID: this.id,
+        userUID: this.user
       }
     });
     return await modal.present();
   }
 
 
-async sharePopup(){
-  await Share.share({
-  title: this.eventTitle,
-  text: 'Je tenais à partager cet évenement disponible sur WhatToDo Family',
-  url: location.href,
-  dialogTitle: 'Partager sur :'
-});
-}
+  async sharePopup() {
+    await Share.share({
+      title: this.eventTitle,
+      text: 'Je tenais à partager cet évenement disponible sur WhatToDo Family',
+      url: location.href,
+      dialogTitle: 'Partager sur :'
+    });
+  }
 
 }

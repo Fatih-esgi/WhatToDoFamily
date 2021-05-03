@@ -7,6 +7,7 @@ import { IonicRatingComponentModule } from 'ionic-rating-component';
 import { EventDetailComponent } from './event-detail.component';
 import { SharedModule } from 'src/app/@shared/shared.module';
 import { RegisterEventComponent } from './register-event/register-event.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { RegisterEventComponent } from './register-event/register-event.componen
     EventDetailRoutingModule,
     IonicModule,
     IonicRatingComponentModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
   ]
 })
 export class EventDetailModule { }
