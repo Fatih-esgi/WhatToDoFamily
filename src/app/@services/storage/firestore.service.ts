@@ -10,6 +10,9 @@ import { map, switchMap, tap } from 'rxjs/operators';
 export class FirestoreService {
 
   ///connexion in firestore & generating list & filters as observable
+  private _eventsActus: AngularFirestoreCollection<any>;
+  actus$: Observable<any[]>;
+
   private _eventsCollection: AngularFirestoreCollection<any>;
   private _EventList$: BehaviorSubject<any> = new BehaviorSubject([]);
   public EventList$: Observable<any> = this._EventList$.asObservable();
@@ -20,7 +23,7 @@ export class FirestoreService {
 
   constructor(private _fireStore: AngularFirestore) {
 
-
+    ///collection de la page evenements
     this.filtersItems$.pipe(
       switchMap((filterItem) => {
         const filterChange = true;
@@ -33,7 +36,7 @@ export class FirestoreService {
           if (filterItem.category >= 1) { query = query.where('category', '==', filterItem.category) };
           if (filterItem.infoDog == true) { query = query.where('infoDog', '==', true) };
           if (filterItem.infoHandicap == true) { query = query.where('infoHandicap', '==', true) };
-          if (filterItem.reqWeather != undefined) { query = query.where('reqWeather', '==', filterItem.reqWeather) };
+          if (!!filterItem.reqWeather) { query = query.where('reqWeather', '==', filterItem.reqWeather) };
           //si range ou cost --> ref where
           return query
         }
@@ -57,13 +60,17 @@ export class FirestoreService {
     )
       .subscribe(
         newData => { this._EventList$.next(newData); }
-      );
+      );//end collection page events
+      
+
   }
 
-  //filter update
+
+  //filter update -> ajouter des les valeurs des élements filtres à la liste
   updateFilter(filter) {
     this._filtersItems$.next(filter);
   }
+
 
   ///GET FUCTIONS///
 
@@ -87,10 +94,8 @@ export class FirestoreService {
 
 
   async getActuality() {
-    let dateLimit = new Date();
-    dateLimit.setDate(dateLimit.getDate() + 10);
-    console.log('-->',dateLimit);
-    return await this._fireStore.collection<any>('events', ref =>
-      ref.where('eventBegDate', '<=', dateLimit))
+    return this._eventsActus;
   }
+
+
 }

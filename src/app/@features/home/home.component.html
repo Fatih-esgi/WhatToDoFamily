@@ -34,7 +34,7 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
+{{this.listeEvent|async}}
   <ion-slides [options]="slideOpts" >
     <ion-slide *ngFor="let actus of (this.listeEvent|async)?.slice(min, max)">
       <ion-card class="ion-no-padding ion-no-margin" detail="false" [routerLink]="'../event/' + actus.key.toString()">

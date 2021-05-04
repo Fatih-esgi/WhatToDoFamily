@@ -28,14 +28,7 @@ export class CalendrarViewComponent implements OnInit {
   ) {}
  
   ngOnInit() {}
-  segmentChanged(event){
-console.log(event.detail.value);
-if (event.detail.value == "calendrier") {
-  this.calendarView = true;
-} else {
-  this.calendarView = false;
-}
-  }
+ 
 
   // Change current month/week/day
   next() {

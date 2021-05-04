@@ -1,6 +1,6 @@
 import { formatDate } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { InjectJsonToFirestoreService } from 'src/app/@services/Firestore-dataPusher/inject-json-to-firestore.service';
+import { map } from 'rxjs/operators';
 import { MeteoService } from 'src/app/@services/meteo/meteo.service';
 import { FirestoreService } from 'src/app/@services/storage/firestore.service';
 @Component({
@@ -50,10 +50,18 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.time = new Date();
     }, 1000);
 
-    this.listeEvent = await this._afs.getActuality();
+    await (await this._afs.getActuality()).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.listeEvent = data;
+    });
+  };
     // this._jsonToFirestore.saveobjFirestore()
-  }
-
+  
   ngOnDestroy() {
     clearInterval(this.timer);
   }

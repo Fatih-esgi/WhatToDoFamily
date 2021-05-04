@@ -12,20 +12,25 @@ import { InfoToastService } from 'src/app/@services/toast/info-toast.service';
 
 // ------------------------------------------------------------------------------------------------------
 
-export class RegisterEventComponent{
+export class RegisterEventComponent {
   begDate; ////--->string fonctionne pas?
-  endDate: Date;
-  eventID:string;
-  userUID:string;
+  endDate;
+  eventID: string;
+  userUID: string;
+  eventTitle: string;
+  image1: string;
   @Input() selectedDateTime$: Date;
 
   constructor(
     private modalController: ModalController,
     private _planificationService: EventsPlanificationService,
-    private toast : InfoToastService
+    private toast: InfoToastService
   ) {
-     // assignation date du jour pour limiter sélécteur date min
+    // assignation date du jour pour limiter sélécteur date min
     this.begDate = new Date().toISOString();
+    console.log('this.enddate',this.endDate);
+    console.log('this.begdate',this.begDate);
+    
   }
 
   //dismiss du modal
@@ -37,9 +42,15 @@ export class RegisterEventComponent{
 
   //planification de l'événement
   planificateEvent() {
-    const dataToSend = {userUID: this.userUID,eventID:this.eventID,dateTime:this.selectedDateTime$} // creation liste à envoyer
+    const dataToSend = {
+      userUID: this.userUID,
+      eventID: this.eventID,
+      dateTime: this.selectedDateTime$,
+      eventTitle: this.eventTitle,
+      image1: this.image1
+    } // creation liste à envoyer
     this._planificationService.create(dataToSend) // envoi de la liste
     this.toast.presentToast('événement planifié', 'success') // présentation du toast
-      this.dismiss()
+    this.dismiss()
   }
 }

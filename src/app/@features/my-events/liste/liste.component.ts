@@ -10,14 +10,14 @@ import { EventsPlanificationService } from 'src/app/@services/storage/events-pla
 export class ListeComponent implements OnInit {
 
   @Input() userID;
-listEvents;
+  listEvents;
   constructor(
-    private _myEventDB : EventsPlanificationService
+    private _myEventDB: EventsPlanificationService
   ) { }
 
   ngOnInit(): void {
     console.log(this.userID);
-    
+
     this._myEventDB.getAll().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>

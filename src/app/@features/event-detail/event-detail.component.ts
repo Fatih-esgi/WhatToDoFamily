@@ -129,7 +129,9 @@ export class EventDetailComponent implements OnInit, OnDestroy {
       componentProps: {
         endDate: this.eventEndDate,
         eventID: this.id,
-        userUID: this.user
+        userUID: this.user,
+        eventTitle: this.eventTitle,
+        image1: this.media1
       }
     });
     return await modal.present();
