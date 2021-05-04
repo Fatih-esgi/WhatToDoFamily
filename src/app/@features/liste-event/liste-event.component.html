@@ -47,30 +47,30 @@
       </ion-col>   
       <ion-col size="12">
         
-        <ion-chip *ngIf="(this.chips)?.ville != undefined||null" disabled="true">   
+        <ion-chip *ngIf="!!(this.chips)?.ville" disabled="true">   
           <ion-icon name="pin" color="success"></ion-icon>
           <ion-label>{{(this.chips)?.ville}}</ion-label>
         </ion-chip>
-        <ion-chip *ngIf="(this.chips)?.date != undefined||null" disabled="true">
+        <ion-chip *ngIf="!!(this.chips)?.date" disabled="true">
           <ion-icon name="calendar-outline"></ion-icon>
           <ion-label>{{(this.chips)?.date|date:'d.MM.yy'}}</ion-label>
         </ion-chip>
-        <ion-chip *ngIf="(this.chips)?.reqWeather != undefined||null" disabled="true">
+        <ion-chip *ngIf="!!(this.chips)?.reqWeather" disabled="true">
           <ion-icon name="partly-sunny-outline"></ion-icon>
           <ion-label>{{(this.chips)?.reqWeather}}</ion-label>
         </ion-chip>
-        <ion-chip *ngIf="(this.chips)?.range != undefined||null" disabled="true">
+        <ion-chip *ngIf="!!(this.chips)?.range" disabled="true">
           <ion-icon name="partly-sunny-outline"></ion-icon>
           <ion-label>{{(this.chips)?.range}}km</ion-label>
         </ion-chip>
-        <ion-chip *ngIf="(this.chips)?.cost != undefined||null" disabled="true">
+        <ion-chip *ngIf="!!(this.chips)?.cost" disabled="true">
           <ion-icon name="partly-sunny-outline"></ion-icon>
           <ion-label> - de {{(this.chips)?.cost}}chf</ion-label>
         </ion-chip>
-        <ion-chip *ngIf="(this.chips)?.infoHandicap != undefined||null" disabled="true">
+        <ion-chip *ngIf="!!(this.chips)?.infoHandicap" disabled="true">
           <ion-icon name="partly-sunny-outline"></ion-icon>
         </ion-chip>
-        <ion-chip *ngIf="(this.chips)?.infoDog != undefined||null" disabled="true">
+        <ion-chip *ngIf="!!(this.chips)?.infoDog" disabled="true">
           <ion-icon name="partly-sunny-outline"></ion-icon>
         </ion-chip>
       </ion-col>

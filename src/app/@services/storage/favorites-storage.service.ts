@@ -43,10 +43,8 @@ export class FavoritesStorageService {
   // remove an item
 
    destroy(item) {
-    const updatedList = this._favList.value.splice( this.findItemIndex(item),1);///!!!!!!!!!!!!!!!!!!!DEMANDER ICI LE NUMERO 
-    console.log('updliste',updatedList);
-    
-    this._favList.next(updatedList)
+    this._favList.value.splice( this.findItemIndex(item),1);///!!!!!!!!!!!!!!!!!!!DEMANDER ICI LE NUMERO   
+    this._favList.next(this._favList.value)
     return this.update();
   }
 

@@ -14,10 +14,12 @@ export class SearchModalComponent implements OnInit {
   @Input() cost: number;
   @Input() infoHandicap: boolean;
   @Input() infoDog: boolean;
-
+  activeCat;
   constructor(public modalController: ModalController) { }
 
   ngOnInit(): void {
+    console.log(this.activeCat);
+    
   }
 
   /// fermeture du modal
@@ -29,13 +31,16 @@ export class SearchModalComponent implements OnInit {
 
 
   resetFilter() {
-    this.date = undefined
-    this.ville = undefined
-    this.reqWeather= undefined
-    this.range = undefined
-    this.cost = undefined
-    this.infoHandicap = undefined
-    this.infoDog = undefined
+    this.modalController.dismiss({
+      date: undefined,
+      ville: undefined,
+      reqWeather: undefined,
+      range: undefined,
+      cost: undefined,
+      infoHandicap: undefined,
+      infoDog: undefined,
+      category:this.activeCat
+    });
   }
 
   filterSend() {
@@ -46,7 +51,8 @@ export class SearchModalComponent implements OnInit {
       range: this.range,
       cost: this.cost,
       infoHandicap: this.infoHandicap,
-      infoDog: this.infoDog
+      infoDog: this.infoDog,
+      category:this.activeCat
     });
 
   }

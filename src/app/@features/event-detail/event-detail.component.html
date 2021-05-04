@@ -47,6 +47,10 @@
                 <ionic-rating-component activeIcon="star" defaultIcon="star" activeColor="#488aff" defaultColor="#f4f4f4"
               readonly="true" rating="3" fontSize="13px">
             </ionic-rating-component>
+            <ion-button (click)="rateEvent()">
+                <ion-icon slot="star" name="add"></ion-icon>
+                voter
+            </ion-button>
             </ion-col>
             <ion-col size="1">
                 <!-- <ion-icon [name]="this.reqWeather|meteoReq"></ion-icon> -->
@@ -74,13 +78,8 @@
                         </ion-col>
                         <ion-col size="7">
                             <ion-text>
-                                <p>du {{this.eventStartDate}} au {{this.eventEndDate}}
-                                    <br>ouvert de 10h à 22h30
-                                </p>
+                                <p>du {{this.eventStartDate}} au {{this.eventEndDate}}</p>
                             </ion-text>
-                        </ion-col>
-                        <ion-col size="4">
-                            
                         </ion-col>
                     </ion-item>
                     <ion-item class="ion-no-margin ion-no-padding">

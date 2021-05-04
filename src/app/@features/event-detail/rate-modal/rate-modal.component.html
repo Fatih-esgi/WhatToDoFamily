@@ -1,0 +1,40 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Voter</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="dismiss()">
+                annuler
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-grid fixed>
+        <ion-row>
+            <ion-col size="12">
+                <ion-text color="primary">
+                    <h1>Quelle note donnez vous à cet événement?</h1>
+                </ion-text>
+            </ion-col>
+            <ion-col size="12" class="ion-text-center">
+                <ionic-rating-component activeIcon="star" defaultIcon="star" activeColor="#488aff"
+                    defaultColor="#f4f4f4" rating="3" fontSize="25px">
+                </ionic-rating-component>
+            </ion-col>
+            <ion-col size="12">
+                <ion-item>
+                <ion-label position="stacked">Commentaire</ion-label>
+                    <ion-textarea placeholder="vous pouvez ajouter un commentaire ici si vous le souhaitez"></ion-textarea>
+                </ion-item>
+            </ion-col>
+            <ion-col size="12">
+                <ion-button (click)="shareRating()" expand="block"  shape="round">
+                    voter
+                </ion-button> 
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+
+
+</ion-content>

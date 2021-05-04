@@ -8,6 +8,7 @@ import { Plugins } from '@capacitor/core';
 import { ModalController } from '@ionic/angular';
 import { RegisterEventComponent } from './register-event/register-event.component';
 import { InfoToastService } from 'src/app/@services/toast/info-toast.service';
+import { RateModalComponent } from './rate-modal/rate-modal.component';
 
 const { Share } = Plugins;
 
@@ -127,6 +128,18 @@ export class EventDetailComponent implements OnInit, OnDestroy {
       component: RegisterEventComponent,
       componentProps: {
         endDate: this.eventEndDate,
+        eventID: this.id,
+        userUID: this.user
+      }
+    });
+    return await modal.present();
+  }
+
+
+  async rateEvent() {
+    const modal = await this.modalController.create({
+      component: RateModalComponent,
+      componentProps: {
         eventID: this.id,
         userUID: this.user
       }

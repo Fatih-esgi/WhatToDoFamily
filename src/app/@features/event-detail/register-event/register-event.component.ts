@@ -22,8 +22,6 @@ export class RegisterEventComponent{
   constructor(
     private modalController: ModalController,
     private _planificationService: EventsPlanificationService,
-    private route: ActivatedRoute,
-    private router: Router,
     private toast : InfoToastService
   ) {
      // assignation date du jour pour limiter sélécteur date min
