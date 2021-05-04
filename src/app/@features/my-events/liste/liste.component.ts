@@ -28,5 +28,5 @@ export class ListeComponent implements OnInit {
       this.listEvents = data
     });
   }
-
+//
 }
