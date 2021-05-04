@@ -14,6 +14,14 @@
         <ion-grid fixed>
             <ion-row>
                 <ion-col size="12">
+                    <ion-text color="primary" class="ion-text-center">
+                        <h1>Photo</h1>
+                    </ion-text>
+                </ion-col>
+                <ion-col size="12">
+                    <app-take-picture [eventID]="this.id" (newImgEvent)="addPictUrl($event)"></app-take-picture>
+                </ion-col>
+                <ion-col size="12">
                     <ion-item>
                         <ion-label position="stacked">Catégorie</ion-label>
                         <ion-select placeholder="Choisissez une catégorie" formControlName="category" required>
@@ -100,8 +108,7 @@
                         <ion-input placeholder="Addresse" formControlName="orgAdress" required></ion-input>
                         <ion-input placeholder="NPA" type="number" formControlName="orgNPA" required></ion-input>
                         <ion-input placeholder="Ville" formControlName="orgCity" required></ion-input>
-                        <ion-select value="Fribourg" placeholder="Canton" formControlName="orgState"
-                            required>
+                        <ion-select value="Fribourg" placeholder="Canton" formControlName="orgState" required>
                             <ion-select-option value="Fribourg">Fribourg</ion-select-option>
                         </ion-select>
                         <ion-input placeholder="téléphone" formControlName="orgPhone" required></ion-input>
@@ -128,8 +135,8 @@
                 </ion-col>
                 <ion-col size="6">
                     <ion-item>
-                        <ion-select placeholder="accès Handicapés" formControlName="infoHandicap"
-                            required>
+                        <ion-label position="stacked">accès Handicapés</ion-label>
+                        <ion-select placeholder="accès Handicapés" formControlName="infoHandicap" required>
                             <ion-select-option [value]="true">oui</ion-select-option>
                             <ion-select-option [value]="false">non</ion-select-option>
                         </ion-select>
@@ -137,24 +144,22 @@
                 </ion-col>
                 <ion-col size="6">
                     <ion-item>
+                        <ion-label position="stacked">Chiens autorisés</ion-label>
                         <ion-select placeholder="Chiens autorisés" formControlName="infoDog" required>
                             <ion-select-option [value]="true">oui</ion-select-option>
                             <ion-select-option [value]="false">non</ion-select-option>
                         </ion-select>
                     </ion-item>
                 </ion-col>
+
+                <!-- <div class="form-group"> -->
                 <ion-col size="12">
-                    <ion-item (click)="takePicture()">
-                        <ion-label>Photo 1</ion-label>
-                        <ion-img [src]="this.imageUrl1"></ion-img>
-                    </ion-item>
+                    <ion-button type="submit" color="danger" expand="full">Submit</ion-button>
+                    <ion-button routerLink="/admin" expand="full" fill="clear" shape="round">
+                        Annuler
+                    </ion-button>
                 </ion-col>
-                <div class="form-group">
-                        <ion-button type="submit" color="danger" expand="block">Submit</ion-button>
-                        <ion-button routerLink="/admin" expand="full" fill="clear" shape="round">
-                            Annuler
-                        </ion-button>
-                </div>
+                <!-- </div> -->
             </ion-row>
         </ion-grid>
     </form>

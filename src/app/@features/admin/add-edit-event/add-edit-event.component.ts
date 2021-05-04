@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {  Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -6,6 +6,9 @@ import { EventCRUDService } from 'src/app/@services/admin/event-crud.service';
 import { InfoToastService } from 'src/app/@services/toast/info-toast.service';
 
 import { Plugins, CameraResultType } from '@capacitor/core';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { TakePictureComponent } from '../take-picture/take-picture.component';
 const { Camera } = Plugins;
 
 
@@ -16,6 +19,7 @@ const { Camera } = Plugins;
 })
 
 export class AddEditEventComponent implements OnInit {
+ 
 
   form: FormGroup;
   id: string;
@@ -24,20 +28,23 @@ export class AddEditEventComponent implements OnInit {
   submitted = false;
   minCalendarDate: string
   SelectedEvent;
-  imageUrl1;
+
+  img1WebUrl$
 
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private _eventsDb: EventCRUDService,
-    private _toast: InfoToastService
+    private _toast: InfoToastService,
+
 
   ) { }
 
   async ngOnInit() {
     this.id = this.route.snapshot.params['id'];
     this.isAddMode = !this.id;
+
 
     this.minCalendarDate = new Date().toISOString();
 
@@ -58,12 +65,7 @@ export class AddEditEventComponent implements OnInit {
       infoGen: ['', Validators.required],
       infoHandicap: ['', Validators.required],
       infoTransp: ['', Validators.required],
-      media1:['', Validators.required],
-      // media2:[''],
-      // media3:[''],
-      // media4:[''],
-      // media5:[''],
-      // media6:[''],
+      media1: ['', Validators.required],
       orgAdress: ['', Validators.required],
       orgCity: ['', Validators.required],
       orgName: ['', Validators.required],
@@ -82,15 +84,17 @@ export class AddEditEventComponent implements OnInit {
     }
   }
 
-
   get errorControl() {
     return this.form.controls;
   }
-  // convenience getter for easy access to form fields
-  get f() { return this.form.controls; }
 
+  
+  get f() { return this.form.controls; }// raccourci controle formulaire 
+
+  
   onSubmit() {
-    console.log('------->', this.form);
+    console.log('-formulaire------>', this.form.value);
+    console.log('-img------>', this.img1WebUrl$);
 
     this.submitted = true;
 
@@ -114,6 +118,14 @@ export class AddEditEventComponent implements OnInit {
     }
   }
 
+  addPictUrl($event){
+    console.log('event---->',$event);
+    console.log('formbefore---->',this.form.value.media1);
+    this.form.value.media1 = $event
+    console.log('formafter---->',this.form.value.media1);
+  }
+
+
   private createEvent() {
     this._eventsDb.create(this.form.value)
   }
@@ -121,24 +133,5 @@ export class AddEditEventComponent implements OnInit {
   private updateEvent() {
     this._eventsDb.update(this.id,this.form.value)
   }
-
-
-  async takePicture() {
-    const image = await Camera.getPhoto({
-      quality: 90,
-      allowEditing: true,
-      resultType: CameraResultType.Uri
-    });
-    // image.webPath will contain a path that can be set as an image src.
-    // You can access the original file using image.path, which can be
-    // passed to the Filesystem API to read the raw data of the image,
-    // if desired (or pass resultType: CameraResultType.Base64 to getPhoto)
-    var imageUrl = image.webPath;
-    // Can be set to the src of an image now
-    this.imageUrl1 = imageUrl;
-    console.log(this.imageUrl1);
-    
-  }
-
 
 }

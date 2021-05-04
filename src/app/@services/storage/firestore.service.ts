@@ -46,17 +46,17 @@ export class FirestoreService {
               const data = a.payload.doc.data();
               return { key, ...data };
             })
-            ),tap(
+            ), tap(
               toto => {
-                console.log('toto',toto);
-                console.log('filterc',filterChange);           
+                console.log('toto', toto);
+                console.log('filterc', filterChange);
               }
             )
           )
       })
     )
       .subscribe(
-        newData => {this._EventList$.next(newData);}
+        newData => { this._EventList$.next(newData); }
       );
   }
 
@@ -85,4 +85,12 @@ export class FirestoreService {
     });
   }
 
+
+  async getActuality() {
+    let dateLimit = new Date();
+    dateLimit.setDate(dateLimit.getDate() + 10);
+    console.log('-->',dateLimit);
+    return await this._fireStore.collection<any>('events', ref =>
+      ref.where('eventBegDate', '<=', dateLimit))
+  }
 }

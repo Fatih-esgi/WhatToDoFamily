@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
 import { map } from 'rxjs/operators';
 import { EventsToDb } from 'src/app/@interfaces/events-to-db';
 import { EventCRUDService } from 'src/app/@services/admin/event-crud.service';
@@ -35,10 +34,6 @@ export class ListEventComponent implements OnInit {
       this.events = data;
     });
   }
-
-  createEvent(){}
-
-  editEvent(){}
 
   eraseEvent(id){
     this.eventCRUD.delete(id)

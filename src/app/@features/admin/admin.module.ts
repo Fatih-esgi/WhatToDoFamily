@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { AddEditEventComponent } from './add-edit-event/add-edit-event.component';
 import { ListEventComponent } from './list-event/list-event.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AngularFireStorageModule} from '@angular/fire/storage'
+import { AngularFireStorageModule} from '@angular/fire/storage';
+import { TakePictureComponent } from './take-picture/take-picture.component'
 
 @NgModule({
   declarations: [
     AdminComponent,
     AddEditEventComponent,
     ListEventComponent,
+    TakePictureComponent,
     
   ],
   imports: [

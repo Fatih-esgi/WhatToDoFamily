@@ -10,10 +10,10 @@ export class MyEventsComponent implements OnInit {
 
   calendarView: boolean = true;
   userID;
+
   constructor(
     private _auth: AngularFireAuth
-  ) {
-  }
+  ) {}
   
   async ngOnInit(){
      this.userID = await (await (this._auth.currentUser)).uid

@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.time = new Date();
     }, 1000);
 
-    this.listeEvent = await this._afs.getliste$();
+    this.listeEvent = await this._afs.getActuality();
     // this._jsonToFirestore.saveobjFirestore()
   }
 
