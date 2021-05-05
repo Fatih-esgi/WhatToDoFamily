@@ -9,13 +9,13 @@ export class WeatherImagePipe implements PipeTransform {
     let result;
     switch (true) {
       case value === 800:
-        result = "image soleil"
+        result = "https://firebasestorage.googleapis.com/v0/b/whattododev.appspot.com/o/beautemps.jpg?alt=media&token=54ca148c-fe76-4c8b-9698-911814e95068"
         break;
       case value === 801:
       case value === 802:
       case value === 803:
       case value === 804:
-        result = "https://picsum.photos/seed/picsum/800/1200"
+        result = "https://firebasestorage.googleapis.com/v0/b/whattododev.appspot.com/o/beautemps.jpg?alt=media&token=54ca148c-fe76-4c8b-9698-911814e95068"
         break;
 
       case value === 300:

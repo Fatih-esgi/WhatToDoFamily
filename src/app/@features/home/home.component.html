@@ -1,34 +1,37 @@
 <ion-header>
-  <app-header pageTitle="WhatToDo Family"></app-header>
+  <ion-toolbar>
+    <ion-icon class="logo" src="/assets/logoWhatToDo.svg"></ion-icon>
+  </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-item class="homeBg" style="background: url({{meteoData?.curentid|weatherImage}});">
-    <ion-grid fixed>
-      <ion-row>
-        <ion-col size="6">
-          <ion-text color="primary">{{meteoData?.currenttemp| number: '1.0-0'}}°</ion-text>
-          <ion-img [src]="meteoData?.curentIcon"></ion-img>
-        </ion-col>
-        <ion-col size="6">
-          {{ time | date: 'HH:mm' }}
-        </ion-col>
-        <ion-col size="6">
-          position a mettre
-        </ion-col>
-        <ion-col size="6">
-          {{date}}
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-item>
-
+<ion-item class="homeBg ion-no-margin ion-no-padding" style="background: url({{meteoData?.curentid|weatherImage}})">
   <ion-grid fixed>
+    <ion-row>
+      <ion-col size="6">
+        <ion-text color="primary">{{meteoData?.currenttemp| number: '1.0-0'}}°</ion-text>
+        <ion-img class="currMeteoIcon" [src]="meteoData?.curentIcon"></ion-img>
+      </ion-col>
+      <ion-col size="6">
+        {{ time | date: 'HH:mm' }}
+      </ion-col>
+      <ion-col size="6">
+        position a mettre
+      </ion-col>
+      <ion-col size="6">
+        {{date}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-item>
+
+      
+    <ion-grid fixed >
     <ion-row>
       <ion-col size="2">
         <ion-icon name="flame-outline" size="large"></ion-icon>
       </ion-col>
       <ion-col size="10">
-        <ion-text color="primary">
+        <ion-text >
           <h5>Actualitées</h5>
         </ion-text>
       </ion-col>
@@ -71,5 +74,4 @@
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="chargement...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
-
 </ion-content>

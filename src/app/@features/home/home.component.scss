@@ -1,9 +1,15 @@
 
+ion-icon.logo{
+    width: 100%;
+    font-size: 35px;
+    margin: 10px 0;
+}
+
 ion-item.homeBg{
     --background: 100%;
-    height:18vh;
-    object-fit: cover;
-    object-position: center;
+    height:30vh;
+    --object-fit: cover;
+    background-size: cover;
    
 
 }
@@ -13,12 +19,11 @@ ion-item.homeBg{
      object-fit: cover;
 }
 .eventCatBar{
-    height: 4px;
+    height: 5px;
 }
 ion-card{
     display: flex;
     flex-direction: column;
     margin: 0 !important;
-    background: rgb(231, 231, 231);
     width: 100%;
   }

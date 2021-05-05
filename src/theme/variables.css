@@ -4,3 +4,30 @@
 
 /* To quickly generate your own theme, check out the color generator */
 /* https://ionicframework.com/docs/theming/color-generator */
+:root {
+    --ion-background-color: #24262B;
+    --ion-background-color-rgb: 36,38,43;
+  
+    --ion-text-color: #F1F1F1;
+    --ion-text-color-rgb: 241,241,241;
+  
+    --ion-color-step-50: #2e3035;
+    --ion-color-step-100: #393a3f;
+    --ion-color-step-150: #434449;
+    --ion-color-step-200: #4d4f53;
+    --ion-color-step-250: #57595d;
+    --ion-color-step-300: #626366;
+    --ion-color-step-350: #6c6d70;
+    --ion-color-step-400: #76777a;
+    --ion-color-step-450: #808184;
+    --ion-color-step-500: #8b8c8e;
+    --ion-color-step-550: #959698;
+    --ion-color-step-600: #9fa0a2;
+    --ion-color-step-650: #a9aaac;
+    --ion-color-step-700: #b4b4b6;
+    --ion-color-step-750: #bebec0;
+    --ion-color-step-800: #c8c8c9;
+    --ion-color-step-850: #d2d3d3;
+    --ion-color-step-900: #dddddd;
+    --ion-color-step-950: #e7e7e7;
+  }
