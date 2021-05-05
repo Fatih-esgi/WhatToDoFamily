@@ -73,6 +73,8 @@ export class AddEditEventComponent implements OnInit {
       orgState: ['', Validators.required],
       orgNPA: ['', Validators.required],
       reqWeather: ['', Validators.required],
+      ratingGlobal: 0,
+      raters: 0,
     });
 
     /// if not add mode, get event from db & patch to form

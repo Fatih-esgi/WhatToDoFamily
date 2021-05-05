@@ -49,11 +49,6 @@ export class FirestoreService {
               const data = a.payload.doc.data();
               return { key, ...data };
             })
-            ), tap(
-              toto => {
-                console.log('toto', toto);
-                console.log('filterc', filterChange);
-              }
             )
           )
       })

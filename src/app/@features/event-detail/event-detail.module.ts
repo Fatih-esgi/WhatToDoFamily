@@ -9,6 +9,7 @@ import { SharedModule } from 'src/app/@shared/shared.module';
 import { RegisterEventComponent } from './register-event/register-event.component';
 import { FormsModule } from '@angular/forms';
 import { RateModalComponent } from './rate-modal/rate-modal.component';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 
 @NgModule({

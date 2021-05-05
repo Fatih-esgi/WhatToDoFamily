@@ -160,9 +160,10 @@
                     <p>Commentaires</p>
                 </ion-text>
             </ion-col>
+            {{this.comments|async|json}}
             <ion-col size="12">
                 <ion-list class="ion-no-margin ion-no-padding">
-                    <ion-card>
+                    <ion-card *ngFor="let comment of this.comments|async">
                         <ion-row>
                             <ion-col size="6">
                                 <ion-text>
@@ -171,14 +172,12 @@
                             </ion-col>
                             <ion-col size="6">
                                 <ionic-rating-component activeIcon="star" defaultIcon="star" activeColor="#488aff"
-                                    defaultColor="#f4f4f4" readonly="true" fontSize="13px">
+                                    defaultColor="#f4f4f4" readonly="true" fontSize="13px" [rating]="comment.rating">
                                 </ionic-rating-component>
                             </ion-col>
                             <ion-col size="12">
                                 <ion-text>
-                                    <p>Accès en transport public depuis la gare de fribourg, prendre ligne 3 jusqu'à
-                                        l'arrêt st-michel,
-                                        l'evenement est franchement moyen, toujours la meme chose blablabla</p>
+                                    <p>{{comment.comment}}</p>
                                 </ion-text>
                             </ion-col>
                         </ion-row>

@@ -18,17 +18,17 @@
             </ion-col>
             <ion-col size="12" class="ion-text-center">
                 <ionic-rating-component activeIcon="star" defaultIcon="star" activeColor="#488aff"
-                    defaultColor="#f4f4f4" rating="3" fontSize="25px">
-                </ionic-rating-component>
+                    defaultColor="#f4f4f4" rating="3" fontSize="25px" [(ngModel)]="rating$">
+                </ionic-rating-component >
             </ion-col>
             <ion-col size="12">
                 <ion-item>
                 <ion-label position="stacked">Commentaire</ion-label>
-                    <ion-textarea placeholder="vous pouvez ajouter un commentaire ici si vous le souhaitez"></ion-textarea>
+                    <ion-textarea placeholder="vous pouvez ajouter un commentaire ici si vous le souhaitez" [(ngModel)]="comment$"></ion-textarea>
                 </ion-item>
             </ion-col>
             <ion-col size="12">
-                <ion-button (click)="shareRating()" expand="block"  shape="round">
+                <ion-button (click)="share()" expand="block"  shape="round">
                     voter
                 </ion-button> 
             </ion-col>

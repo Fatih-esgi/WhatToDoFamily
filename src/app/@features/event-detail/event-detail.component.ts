@@ -9,6 +9,8 @@ import { ModalController } from '@ionic/angular';
 import { RegisterEventComponent } from './register-event/register-event.component';
 import { InfoToastService } from 'src/app/@services/toast/info-toast.service';
 import { RateModalComponent } from './rate-modal/rate-modal.component';
+import { RatingService } from 'src/app/@services/rating/rating.service';
+import { map } from 'rxjs/operators';
 const { Share } = Plugins;
 
 
@@ -32,13 +34,13 @@ export class EventDetailComponent implements OnInit, OnDestroy {
   eventStartDate: Date; eventEndDate: Date; eventAddress: string; eventCity: string;
   eventDescr: string; eventLat: number; eventLong: number; eventStates: string;
   infocost: number; infoDog: boolean; infoGen: string; infoHandicap: boolean; infoTransp: string; media1: string;
-  media2: string | null; media3: string | null; media4: string | null; media5: string | null;
-  media6: string | null; orgAdress: string; orgCity: string; orgName: string;
-  orgPhone: string; orgState: string; reqWeather: string;
+  orgAdress: string; orgCity: string; orgName: string;
+  orgPhone: string; orgState: string; reqWeather: string; ratingGlobal: number; raters: number;
 
   distBetween: any;
-  user;
-
+  userUID;
+  userName;
+  comments;
 
   constructor(
     private route: ActivatedRoute,
@@ -48,15 +50,29 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     public _favStorage: FavoritesStorageService,
     private modalController: ModalController,
     public _toast: InfoToastService,
+    private _ratingStorage: RatingService
   ) {
   }
 
   async ngOnInit() {
+    this.userUID = (await this.auth.currentUser)?.uid
+    this.userName = (await this.auth.currentUser)?.displayName
+    console.log((await this.auth.currentUser)?.displayName);
+    
     //active route --> get id
     this.sub = await this.route.params.subscribe(params => {
       this.id = params['id'];
     });
+
+    //get comments by id from db
+    this.comments = await this._ratingStorage.getAllComms(this.id).valueChanges();
+    console.log('comms', this.comments);
+
+    //get data by id from db
     this.eventData = await this._afs.getByID(this.id)
+
+
+    //assignation des datas
     this.eventTitle = this.eventData.eventTitle;
     this.eventCategory = this.eventData.category;
     this.eventStartDate = this.eventData.eventStartDate;
@@ -73,46 +89,41 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     this.infoHandicap = this.eventData.infoHandicap;
     this.infoTransp = this.eventData.infoTransp;
     this.media1 = this.eventData.media1;
-    this.media2 = this.eventData.media2;
-    this.media3 = this.eventData.media3;
-    this.media4 = this.eventData.media4;
-    this.media5 = this.eventData.media5;
-    this.media6 = this.eventData.media6;
     this.orgAdress = this.eventData.orgAddress;
     this.orgCity = this.eventData.orgCity;
     this.orgName = this.eventData.orgName;
     this.orgPhone = this.eventData.orgPhone;
     this.orgState = this.eventData.orgState;
     this.reqWeather = this.eventData.reqWeather;
+    this.ratingGlobal = this.eventData.ratingGlobal;
+    this.raters = this.eventData.raters;
+    //calcul de la distance entre user et position de l'event
     this.distBetween = this._userPosition$.getdistance(this.eventLat, this.eventLong, "k")
-    this.user = (await this.auth.currentUser).uid
 
+    //affichage du boutton favoris à l'initialisation
     if (await this._favStorage.findItem(this.id)) {
       this.likeIcon = "heart-dislike-outline"
     } else {
       this.likeIcon = "heart-outline"
     }
-    // console.log('---->user',this.user);
-
   }
+
 
   ngOnDestroy() {
     //unsubscribe activated route
     this.sub.unsubscribe();
   }
 
-  ///TOOGLE FAVOURITE ---> icon change,toast and switch add/delete function
+  //fonction AJOUTER FAVORIS
   async toggleFavorites() {
 
     if (this._favStorage.findItem(this.id)) {
 
-      console.log(this._favStorage.findItem(this.id));
-      this.likeIcon = "heart-outline"
-      this.favEventList = await this._favStorage.destroy(this.id);
-      this._toast.presentToast('Favoris retiré', 'warning');
+      this.likeIcon = "heart-outline"//change icone
+      this.favEventList = await this._favStorage.destroy(this.id);//destroy event dans le storage
+      this._toast.presentToast('Favoris retiré', 'warning');//afficher msg
 
     } else {
-      console.log(this._favStorage.findItem(this.id));
       this.likeIcon = "heart-dislike-outline";
       this.favEventList = await this._favStorage.post(this.id, this.eventData);
       this._toast.presentToast('Ajouté à vos Favoris', 'success');
@@ -128,7 +139,8 @@ export class EventDetailComponent implements OnInit, OnDestroy {
       componentProps: {
         endDate: this.eventEndDate,
         eventID: this.id,
-        userUID: this.user,
+        userUID: this.userUID,
+        userName: this.userName,
         eventTitle: this.eventTitle,
         image1: this.media1
       }
@@ -142,7 +154,8 @@ export class EventDetailComponent implements OnInit, OnDestroy {
       component: RateModalComponent,
       componentProps: {
         eventID: this.id,
-        userUID: this.user
+        ratingGlobal: this.ratingGlobal,
+        raters: this.raters
       }
     });
     return await modal.present();

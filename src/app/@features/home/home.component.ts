@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(
     private _meteo: MeteoService,
     private _afs: FirestoreService,
-    private _weatherDBPipe : WeatherDBFilterPipe
+    private _weatherDBPipe: WeatherDBFilterPipe
   ) {
 
   }
@@ -51,8 +51,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.time = new Date();
     }, 1000);
 
-this. weatherToDayString = this.transformDate(this.meteoData.dailyID)
-console.log(this.weatherToDayString);
+    this.weatherToDayString = this.transformDate(this.meteoData.dailyID)
 
     await this._afs.getWeather(await this.weatherToDayString).snapshotChanges().pipe(
       map(changes =>
