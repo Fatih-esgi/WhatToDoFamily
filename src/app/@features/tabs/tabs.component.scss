@@ -1,0 +1,24 @@
+ion-tab-bar {
+    ion-tab-button {
+        background-color: var(--ion-color-step-100);
+        bottom: 0;
+    }
+
+    ion-tab-button.homeIcon {
+        position: relative;
+    }
+}
+ion-fab {
+ion-fab-button {
+    transform: translateY(-12px) scale(1.3);
+    --box-shadow:none;
+        ion-icon {
+            
+            background-color: var(--ion-color-step-100);
+            border-radius: 50%;
+            padding: 10px;
+            border: 6px solid var(--ion-background-color);
+            
+        }
+    }
+}

@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   slideOpts = {
     initialSlide: 1,
-    slidesPerView: 1.2,
+    slidesPerView: 1.3,
     spaceBetween: 10,
     freeMode: true,
 
