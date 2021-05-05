@@ -92,9 +92,12 @@ export class FirestoreService {
     });
   }
 
-
-  async getActuality() {
-    return this._eventsActus;
+ 
+  getWeather(weather) {
+    return this._fireStore.collection<any>(
+      'events', // nom de lacollectoin (ref)
+      ref => ref.where('reqWeather', '==', weather) // query firebase sur la réféernce choisi
+    );
   }
 
 

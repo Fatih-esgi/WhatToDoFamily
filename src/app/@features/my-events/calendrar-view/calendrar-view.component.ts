@@ -1,7 +1,9 @@
 import { formatDate } from '@angular/common';
-import { Component, OnInit, ViewChild,LOCALE_ID, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild,LOCALE_ID, Inject, Input } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
 import { CalendarComponent } from 'ionic2-calendar';
+import { map } from 'rxjs/operators';
+import { EventsPlanificationService } from 'src/app/@services/storage/events-planification.service';
 
 @Component({
   selector: 'app-calendrar-view',
@@ -18,16 +20,43 @@ export class CalendrarViewComponent implements OnInit {
   };
  
   selectedDate: Date;
- 
+ @Input() userID;
   @ViewChild(CalendarComponent) myCal: CalendarComponent;
  
   constructor(
     private alertCtrl: AlertController,
     @Inject(LOCALE_ID) private locale: string,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private _myEventDB: EventsPlanificationService
   ) {}
  
-  ngOnInit() {}
+  async ngOnInit() {
+    
+    this._myEventDB.getAll(this.userID).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          (c.payload.doc.data())    ////!!! ({ id: c.payload.doc.id, ...c.payload.doc.data() })   ne fonctionne pas    
+          )
+          )
+          )
+          .subscribe(data => {
+            this.eventSource = data
+            console.log(this.eventSource);
+          });
+        }
+        createEvent() {
+    var events = [];
+    this.eventSource.forEach(element => {
+      events.push({
+        title: element.eventTitle,
+        startTime: element.dateTime,
+        eventID: element.eventID,
+        imgEvent: element.image1
+      })
+      console.log('---> events', events);
+
+    });
+  }
  
 
   // Change current month/week/day

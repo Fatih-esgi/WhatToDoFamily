@@ -9,7 +9,6 @@ import { ModalController } from '@ionic/angular';
 import { RegisterEventComponent } from './register-event/register-event.component';
 import { InfoToastService } from 'src/app/@services/toast/info-toast.service';
 import { RateModalComponent } from './rate-modal/rate-modal.component';
-
 const { Share } = Plugins;
 
 
@@ -48,7 +47,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     public auth: AngularFireAuth,
     public _favStorage: FavoritesStorageService,
     private modalController: ModalController,
-    public _toast: InfoToastService
+    public _toast: InfoToastService,
   ) {
   }
 

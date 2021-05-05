@@ -12,6 +12,7 @@ import { WeatherImagePipe } from './pipes/weather-image.pipe';
 import { WeatherDescriptionPipe } from './pipes/weather-description.pipe';
 import { CatTitlePipe } from './pipes/cat-title.pipe';
 import { WeatherIconsPipe } from './pipes/weather-icons.pipe';
+import { WeatherDBFilterPipe } from './pipes/weather-dbfilter.pipe';
 
 
 
@@ -25,7 +26,8 @@ import { WeatherIconsPipe } from './pipes/weather-icons.pipe';
     WeatherImagePipe,
     WeatherDescriptionPipe,
     CatTitlePipe,
-    WeatherIconsPipe
+    WeatherIconsPipe,
+    WeatherDBFilterPipe
   ],
   imports: [
     CommonModule,

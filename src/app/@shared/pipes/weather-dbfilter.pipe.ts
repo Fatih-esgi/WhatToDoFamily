@@ -1,10 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'weatherDescription'
+  name: 'weatherDBFilter'
 })
-export class WeatherDescriptionPipe implements PipeTransform {
+export class WeatherDBFilterPipe implements PipeTransform {
 
+ 
   transform(value: number): string {
     let result;
     switch (true) {
@@ -13,7 +14,7 @@ export class WeatherDescriptionPipe implements PipeTransform {
       case value === 802:
       case value === 803:
       case value === 804:
-        result = "Temps prévu: beau! voici notre séléction :"
+        result = "beau"
         break;
         
       case value === 200:
@@ -45,7 +46,7 @@ export class WeatherDescriptionPipe implements PipeTransform {
       case value === 521:
       case value === 522:
       case value === 531:
-        result = "Temps prévu: mauvais temps! découvrez notre séléction :"
+        result = "mauvais"
         break;
 
       case value === 600:
@@ -59,9 +60,9 @@ export class WeatherDescriptionPipe implements PipeTransform {
       case value === 620:
       case value === 621:
       case value === 622:
-        result = "Temps prévu: Neige! sortez les doudounes, on vous propose :"
+        result = "neige"
         break;
-      default: "météo non disponible"
+      default: "beau"
         break;
     }
     return result;

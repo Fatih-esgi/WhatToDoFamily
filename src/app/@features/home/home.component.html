@@ -34,10 +34,9 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-{{this.listeEvent|async}}
   <ion-slides [options]="slideOpts" >
-    <ion-slide *ngFor="let actus of (this.listeEvent|async)?.slice(min, max)">
-      <ion-card class="ion-no-padding ion-no-margin" detail="false" [routerLink]="'../event/' + actus.key.toString()">
+    <ion-slide *ngFor="let actus of (this.listeEvent)?.slice(min, max)">
+      <ion-card class="ion-no-padding ion-no-margin" detail="false" [routerLink]="'../event/' + actus.id.toString()">
         <ion-card-content>
           <p>{{actus.dateBegin|date:'d.MM.yy'}} - {{actus.dateEnd|date:'d.MM.yy'}}</p>
           <ion-img class="actusEvents" [src]="actus.media1" ></ion-img><div class="eventCatBar" [style.background-color]="actus.category|catColors"></div>
@@ -61,8 +60,8 @@
     </ion-row>
   </ion-grid>
     
-  <ion-list *ngFor="let evenement of (this.listeEvent|async)?.slice(min, max)">
-    <app-event-card [id]="evenement.key" [dateB]="evenement.dateBegin" [dateE]="evenement.dateEnd" [title]="evenement.eventTitle"
+  <ion-list *ngFor="let evenement of (this.listeEvent)?.slice(min, max)">
+    <app-event-card [id]="evenement.id" [dateB]="evenement.dateBegin" [dateE]="evenement.dateEnd" [title]="evenement.eventTitle"
       [avgRating]="evenement.rating" [eventLat]="evenement.eventLat" [eventLong]="evenement.eventLong" [city]="evenement.eventCity"
       [eventDog]="evenement.infoDog" [eventhandicap]="evenement.infoHandicap" [meteoReq]="evenement.reqWeather" [media1]="evenement.media1" [category] ="evenement.category" [removeOpt]=false>
     </app-event-card>

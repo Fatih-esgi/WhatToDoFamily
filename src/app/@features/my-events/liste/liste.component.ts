@@ -18,7 +18,7 @@ export class ListeComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.userID);
 
-    this._myEventDB.getAll().snapshotChanges().pipe(
+    this._myEventDB.getAll(this.userID).snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
           ({ id: c.payload.doc.id, ...c.payload.doc.data() })

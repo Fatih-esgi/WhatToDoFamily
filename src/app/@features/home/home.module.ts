@@ -6,6 +6,7 @@ import { HomeComponent } from './home.component';
 import { IonicModule } from '@ionic/angular';
 import { SharedModule } from 'src/app/@shared/shared.module';
 import { IonicRatingComponentModule } from 'ionic-rating-component';
+import { WeatherDBFilterPipe } from 'src/app/@shared/pipes/weather-dbfilter.pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { IonicRatingComponentModule } from 'ionic-rating-component';
     IonicModule,
     SharedModule,
     IonicRatingComponentModule
-
-  ]
+  ],
+  providers:[WeatherDBFilterPipe]
 })
 export class HomeModule { }

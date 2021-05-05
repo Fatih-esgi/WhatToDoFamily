@@ -19,8 +19,11 @@ export class EventsPlanificationService {
     
   }
 
-  getAll() {
-    return this.eventDbRef
+  getAll(id) {
+    return this.db.collection<any>(
+      'eventsPlanified', // nom de lacollectoin (ref)
+      ref => ref.where('userUID', '==', id).orderBy('dateTime','asc') // query firebase sur la réféernce choisi
+    );
   }
 
   create(event: EventToPlanification): any {
