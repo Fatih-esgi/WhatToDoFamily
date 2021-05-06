@@ -1,5 +1,5 @@
  <ion-header>
-    <app-header [pageTitle]="this.eventTitle" backTo="/home" ></app-header>
+    <app-header [pageTitle]="this.eventData?.eventTitle" backTo="/home" ></app-header>
 </ion-header> 
 <ion-content fullscreen="true">
     <ion-fab vertical="top" horizontal="end" edge slot="fixed">
@@ -20,34 +20,40 @@
       </ion-fab>
     <ion-slides pager="true" [options]="slideOpts">
         <ion-slide>
-            <ion-img [src]="this.media1"></ion-img>
+            <ion-img [src]="this.eventData?.media1"></ion-img>
         </ion-slide>
     </ion-slides>
     <ion-grid fixed>
         <ion-row>
             <ion-col size="7">
-                <p>{{this.eventCategory|catTitle}}</p>
+                <p>{{this.eventData?.category|catTitle}}</p>
             </ion-col>
             <ion-col size="5">
-                <ionic-rating-component activeIcon="star" defaultIcon="star" activeColor="#488aff" defaultColor="#f4f4f4"
-              readonly="true" rating="3" fontSize="13px">
-            </ionic-rating-component>
-            <ion-button (click)="rateEvent()">
+                <ion-row>
+                    <ion-col size="3">({{this.eventData?.raters}})</ion-col>
+                    <ion-col size="9"><ionic-rating-component activeIcon="star" defaultIcon="star" activeColor="#488aff" defaultColor="#f4f4f4"
+              readonly="true" [rating]="this.eventData?.ratingGlobal" fontSize="13px">
+            </ionic-rating-component></ion-col>
+                </ion-row>
+                <ion-col size="12">
+                     <ion-button (click)="rateEvent()">
                 <ion-icon slot="star" name="add"></ion-icon>
                 voter
-            </ion-button>
+            </ion-button>  
+                </ion-col>
+         
             </ion-col>
             <ion-col size="1">
                 <!-- <ion-icon [name]="this.reqWeather|meteoReq"></ion-icon> -->
             </ion-col>
             <ion-col size="12">
                 <ion-text color="primary">
-                    <h1>{{this.eventTitle}}</h1>
+                    <h1>{{this.eventData?.eventTitle}}</h1>
                 </ion-text>
             </ion-col>
             <ion-col size="12">
                 <ion-text color="secondary">
-                    <p>{{this.eventDescr}}</p>
+                    <p>{{this.eventData?.eventDescr}}</p>
                 </ion-text>
             </ion-col>
             <ion-col size="12">
@@ -63,7 +69,7 @@
                         </ion-col>
                         <ion-col size="7">
                             <ion-text>
-                                <p>du {{this.eventStartDate}} au {{this.eventEndDate}}</p>
+                                <p>du {{this.eventData?.eventStartDate}} au {{this.eventData?.eventEndDate}}</p>
                             </ion-text>
                         </ion-col>
                     </ion-item>
@@ -73,7 +79,7 @@
                         </ion-col>
                         <ion-col size="4">
                             <ion-text>
-                                <p>{{this.eventAddress}}<br>{{this.eventCity}}<br>{{this.eventStates}}</p>
+                                <p>{{this.eventData?.eventAddress}}<br>{{this.eventData?.eventCity}}<br>{{this.eventData?.eventStates}}</p>
                             </ion-text>
                         </ion-col>
                         <ion-col size="3">
@@ -94,10 +100,10 @@
                         <ion-col size="7">
                             <ion-text>
                                 <p>
-                                    {{this.orgName}}<br>
-                                    {{this.orgCity}}<br>
-                                    {{this.orgState}}<br>
-                                    {{this.orgPhone}}
+                                    {{this.eventData?.orgName}}<br>
+                                    {{this.eventData?.orgCity}}<br>
+                                    {{this.eventData?.orgState}}<br>
+                                    {{this.eventData?.orgPhone}}
                                 </p>
                             </ion-text>
                         </ion-col>
@@ -118,7 +124,7 @@
                 </ion-col>
                 <ion-col size="11">
                     <ion-text>
-                        <p>{{this.infoGen}}</p>
+                        <p>{{this.eventData?.infoGen}}</p>
                     </ion-text>
                 </ion-col>
             </ion-item>
@@ -128,7 +134,7 @@
                 </ion-col>
                 <ion-col size="11">
                     <ion-text>
-                        <p>{{this.infoTransp}}</p>
+                        <p>{{this.eventData?.infoTransp}}</p>
                     </ion-text>
                 </ion-col>
             </ion-item>
@@ -138,7 +144,7 @@
                 </ion-col>
                 <ion-col size="11">
                     <ion-text>
-                        <p>{{this.infoDog}}</p>
+                        <p>{{this.eventData?.infoDog}}</p>
                     </ion-text>
                 </ion-col>
             </ion-item>
@@ -148,7 +154,7 @@
                 </ion-col>
                 <ion-col size="11">
                     <ion-text>
-                        <p>{{this.infoHandicap}}</p>
+                        <p>{{this.eventData?.infoHandicap}}</p>
                     </ion-text>
                 </ion-col>
             </ion-item>
@@ -160,14 +166,13 @@
                     <p>Commentaires</p>
                 </ion-text>
             </ion-col>
-            {{this.comments|async|json}}
             <ion-col size="12">
                 <ion-list class="ion-no-margin ion-no-padding">
                     <ion-card *ngFor="let comment of this.comments|async">
                         <ion-row>
                             <ion-col size="6">
                                 <ion-text>
-                                    <h6>Christelle T.</h6>
+                                    <h6>{{comment.userName}}</h6>
                                 </ion-text>
                             </ion-col>
                             <ion-col size="6">

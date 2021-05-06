@@ -1,6 +1,7 @@
 <ion-header>
     <ion-toolbar>
-        <ion-title>Voter</ion-title>
+        <ion-title *ngIf="this.addMode === true">ajouter un vote</ion-title>
+        <ion-title *ngIf="this.addMode === false">modifier un vote</ion-title>
         <ion-buttons slot="end">
             <ion-button (click)="dismiss()">
                 annuler

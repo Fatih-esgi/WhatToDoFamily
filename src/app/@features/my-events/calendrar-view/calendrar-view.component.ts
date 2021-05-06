@@ -1,5 +1,5 @@
 import { formatDate } from '@angular/common';
-import { Component, OnInit, ViewChild,LOCALE_ID, Inject, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, LOCALE_ID, Inject, Input } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
 import { CalendarComponent } from 'ionic2-calendar';
 import { map } from 'rxjs/operators';
@@ -13,43 +13,45 @@ import { EventsPlanificationService } from 'src/app/@services/storage/events-pla
 export class CalendrarViewComponent implements OnInit {
   eventSource = [];
   viewTitle: string;
-  calendarView:boolean = true;
+  calendarView: boolean = true;
   calendar = {
     mode: 'month',
     currentDate: new Date(),
   };
- 
+
   selectedDate: Date;
- @Input() userID;
+  @Input() userID;
   @ViewChild(CalendarComponent) myCal: CalendarComponent;
- 
+
   constructor(
     private alertCtrl: AlertController,
     @Inject(LOCALE_ID) private locale: string,
     private modalCtrl: ModalController,
     private _myEventDB: EventsPlanificationService
-  ) {}
- 
+  ) { }
+
   async ngOnInit() {
-    
+
     this._myEventDB.getAll(this.userID).snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
           (c.payload.doc.data())    ////!!! ({ id: c.payload.doc.id, ...c.payload.doc.data() })   ne fonctionne pas    
-          )
-          )
-          )
-          .subscribe(data => {
-            this.eventSource = data
-            console.log(this.eventSource);
-          });
-        }
-        createEvent() {
+        )
+      )
+    )
+      .subscribe(data => {
+        this.eventSource = data
+        console.log(this.eventSource);
+      });
+  }
+
+  createEvent() {
     var events = [];
     this.eventSource.forEach(element => {
+      const dateformat= new Date(element.dateTime)
       events.push({
         title: element.eventTitle,
-        startTime: element.dateTime,
+        startTime: dateformat,
         eventID: element.eventID,
         imgEvent: element.image1
       })
@@ -57,37 +59,37 @@ export class CalendrarViewComponent implements OnInit {
 
     });
   }
- 
+
 
   // Change current month/week/day
   next() {
     this.myCal.slideNext();
   }
- 
+
   back() {
     this.myCal.slidePrev();
   }
- 
+
   // Selected date reange and hence title changed
   onViewTitleChanged(title) {
     this.viewTitle = title;
   }
- 
+
   // Calendar event was clicked
   async onEventSelected(event) {
     // Use Angular date pipe for conversion
     let start = formatDate(event.startTime, 'medium', this.locale);
     let end = formatDate(event.endTime, 'medium', this.locale);
- 
+
     const alert = await this.alertCtrl.create({
       header: event.title,
       subHeader: event.desc,
       message: 'From: ' + start + '<br><br>To: ' + end,
-      buttons: ['OK','supprimer'],
+      buttons: ['OK', 'supprimer'],
     });
     alert.present();
   }
- 
+
   createRandomEvents() {
     var events = [];
     for (var i = 0; i < 50; i += 1) {
@@ -148,7 +150,7 @@ export class CalendrarViewComponent implements OnInit {
     }
     this.eventSource = events;
   }
- 
+
   removeEvents() {
     this.eventSource = [];
   }

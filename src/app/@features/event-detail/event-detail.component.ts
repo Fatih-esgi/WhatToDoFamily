@@ -29,14 +29,10 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     initialSlide: 1,
     speed: 400
   };
-  ///eventDatas
-  id: any; eventData: any; eventTitle: string; eventCategory: number;
-  eventStartDate: Date; eventEndDate: Date; eventAddress: string; eventCity: string;
-  eventDescr: string; eventLat: number; eventLong: number; eventStates: string;
-  infocost: number; infoDog: boolean; infoGen: string; infoHandicap: boolean; infoTransp: string; media1: string;
-  orgAdress: string; orgCity: string; orgName: string;
-  orgPhone: string; orgState: string; reqWeather: string; ratingGlobal: number; raters: number;
 
+  ///eventDatas
+  id: any; 
+  eventData: any; 
   distBetween: any;
   userUID;
   userName;
@@ -56,49 +52,24 @@ export class EventDetailComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     this.userUID = (await this.auth.currentUser)?.uid
-    this.userName = (await this.auth.currentUser)?.displayName
-    console.log((await this.auth.currentUser)?.displayName);
+
+    // this.userName = (await this.auth.currentUser)?.displayName
     
     //active route --> get id
-    this.sub = await this.route.params.subscribe(params => {
+    this.sub =  this.route.params.subscribe(params => {
       this.id = params['id'];
     });
 
     //get comments by id from db
-    this.comments = await this._ratingStorage.getAllComms(this.id).valueChanges();
-    console.log('comms', this.comments);
+    this.comments =  this._ratingStorage.getAllComms(this.id).valueChanges()
+    
 
     //get data by id from db
     this.eventData = await this._afs.getByID(this.id)
 
-
-    //assignation des datas
-    this.eventTitle = this.eventData.eventTitle;
-    this.eventCategory = this.eventData.category;
-    this.eventStartDate = this.eventData.eventStartDate;
-    this.eventEndDate = this.eventData.eventEndDate;
-    this.eventAddress = this.eventData.eventAddress;
-    this.eventCity = this.eventData.eventCity;
-    this.eventDescr = this.eventData.eventDescr;
-    this.eventLat = await this.eventData.eventLat;
-    this.eventLong = await this.eventData.eventLong;
-    this.eventStates = this.eventData.eventStates;
-    this.infocost = this.eventData.infoCost;
-    this.infoDog = this.eventData.infoDog;
-    this.infoGen = this.eventData.infoGen;
-    this.infoHandicap = this.eventData.infoHandicap;
-    this.infoTransp = this.eventData.infoTransp;
-    this.media1 = this.eventData.media1;
-    this.orgAdress = this.eventData.orgAddress;
-    this.orgCity = this.eventData.orgCity;
-    this.orgName = this.eventData.orgName;
-    this.orgPhone = this.eventData.orgPhone;
-    this.orgState = this.eventData.orgState;
-    this.reqWeather = this.eventData.reqWeather;
-    this.ratingGlobal = this.eventData.ratingGlobal;
-    this.raters = this.eventData.raters;
+    
     //calcul de la distance entre user et position de l'event
-    this.distBetween = this._userPosition$.getdistance(this.eventLat, this.eventLong, "k")
+    this.distBetween = this._userPosition$.getdistance(this.eventData.eventLat, this.eventData.eventLong, "k")
 
     //affichage du boutton favoris à l'initialisation
     if (await this._favStorage.findItem(this.id)) {
@@ -137,12 +108,11 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     const modal = await this.modalController.create({
       component: RegisterEventComponent,
       componentProps: {
-        endDate: this.eventEndDate,
+        endDate: this.eventData.eventEndDate,
         eventID: this.id,
         userUID: this.userUID,
-        userName: this.userName,
-        eventTitle: this.eventTitle,
-        image1: this.media1
+        eventTitle: this.eventData.eventTitle,
+        image1: this.eventData.media1
       }
     });
     return await modal.present();
@@ -154,8 +124,8 @@ export class EventDetailComponent implements OnInit, OnDestroy {
       component: RateModalComponent,
       componentProps: {
         eventID: this.id,
-        ratingGlobal: this.ratingGlobal,
-        raters: this.raters
+        ratingGlobal: this.eventData.ratingGlobal,
+        raters: this.eventData.raters,
       }
     });
     return await modal.present();
@@ -164,7 +134,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
 
   async sharePopup() {
     await Share.share({
-      title: this.eventTitle,
+      title: this.eventData.eventTitle,
       text: 'Je tenais à partager cet évenement disponible sur WhatToDo Family',
       url: location.href,
       dialogTitle: 'Partager sur :'

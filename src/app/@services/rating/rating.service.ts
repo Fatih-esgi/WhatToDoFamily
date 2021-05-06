@@ -1,48 +1,52 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { first, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RatingService {
-  userID:string;
+  userID: string;
 
   private dbPath = '/evaluations';
 
   eventDbRef: AngularFirestoreCollection<any>;
 
   constructor(private db: AngularFirestore) {
-    this.eventDbRef = db.collection(this.dbPath);    
+    this.eventDbRef = db.collection(this.dbPath);
   }
 
-  // getAll(id) {
-  //   return this.db.collection<any>(
-  //     'evaluations', // nom de lacollectoin (ref)
-  //     ref => ref.where('userUID', '==', id).orderBy('dateTime','asc') // query firebase sur la réféernce choisi
-  //   );
-  // }
+  async getUser(userID, eventID) {
 
-  create(event): any {
-    return this.eventDbRef.add({ ...event });
+    const userRating = await this.db.collection<any>('evaluations', ref =>
+      ref.where('userUID', '==', userID)
+        .where('eventID', '==', eventID))
+      .valueChanges({ idField: 'id' })
+      .pipe(first())
+      .toPromise()
+
+    if (userRating.length === 1) {
+      return userRating[0];
+    }
+    else {
+      return null;
+    }
   }
 
+  create(rating): any {
+    return this.eventDbRef.add({ ...rating });
+  }
 
-  getAllComms(id){
+  getAllComms(id) {
     return this.db.collection<any>(
       'evaluations', // nom de lacollectoin (ref)
       ref => ref.where('eventID', '==', id) // query firebase sur la réféernce choisi
     );
   }
-  // async getByID(id: string) {
-  //   return await this.eventDbRef.doc(id).get().toPromise().then(
-  //     (doc) =>{ return doc.data()}
-  //   )
-    
-  //  }
 
-  // update(id: string, data: any): Promise<void> {
-  //   return this.eventDbRef.doc(id).update(data);
-  // }
+  update(id: string, data: any): Promise<void> {
+    return this.eventDbRef.doc(id).update(data);
+  }
 
   // delete(id: string): Promise<void> {
   //   return this.eventDbRef.doc(id).delete();

@@ -12,7 +12,7 @@
     </ion-segment-button>
   </ion-segment>
   <ng-container *ngIf="this.calendarView">
-    <app-calendrar-view></app-calendrar-view>
+    <app-calendrar-view [userID]="this.userID"></app-calendrar-view>
   </ng-container>
   <ng-container *ngIf="!this.calendarView">
     <app-liste [userID]="this.userID"></app-liste>
