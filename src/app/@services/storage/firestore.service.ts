@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { first, map, switchMap, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class FirestoreService {
-
+  private _singleEvent: AngularFirestoreCollection<any>;
+  singleEvent$: Observable<any[]>;
   ///connexion in firestore & generating list & filters as observable
   private _eventsActus: AngularFirestoreCollection<any>;
   actus$: Observable<any[]>;
@@ -75,17 +76,17 @@ export class FirestoreService {
   }
 
   //get event by id
-  async getByID(id: string) {
-    return await this._eventsCollection.doc(id).get().toPromise().then((doc) => {
-      if (doc.exists) {
-        return doc.data()
-      } else {
-        return ("No such document!")
-      }
-    }).catch((error) => {
-      console.log("Error getting document:", error);
-    });
-  }
+  // async getByID(id: string) {
+  //   return await this._eventsCollection.doc(id).get().toPromise().then((doc) => {
+  //     if (doc.exists) {
+  //       return doc.data()
+  //     } else {
+  //       return ("No such document!")
+  //     }
+  //   }).catch((error) => {
+  //     console.log("Error getting document:", error);
+  //   });
+  // }
 
  
   getWeather(weather) {

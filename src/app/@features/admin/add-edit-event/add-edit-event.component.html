@@ -19,7 +19,11 @@
                     </ion-text>
                 </ion-col>
                 <ion-col size="12">
-                    <app-take-picture [eventID]="this.id" (newImgEvent)="addPictUrl($event)"></app-take-picture>
+                    <ion-button *ngIf="!this.imgTempUrl1" (click)="takePicture()" expand="full">
+                        <ion-icon name="image-outline"></ion-icon>
+                        Ajouter une image
+                    </ion-button>
+                    <ion-img  [src]="this.imgTempUrl1" (click)="takePicture()" ></ion-img>
                 </ion-col>
                 <ion-col size="12">
                     <ion-item>

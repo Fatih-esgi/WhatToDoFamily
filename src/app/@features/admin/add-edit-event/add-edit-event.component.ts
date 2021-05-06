@@ -1,16 +1,12 @@
 import {  Component, OnInit } from '@angular/core';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { EventCRUDService } from 'src/app/@services/admin/event-crud.service';
 import { InfoToastService } from 'src/app/@services/toast/info-toast.service';
 
-import { Plugins, CameraResultType } from '@capacitor/core';
-import { AngularFireStorage } from '@angular/fire/storage';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { TakePictureComponent } from '../take-picture/take-picture.component';
-const { Camera } = Plugins;
-
+import { Camera, CameraResultType } from '@capacitor/core';
 
 @Component({
   selector: 'app-add-edit-event',
@@ -29,17 +25,14 @@ export class AddEditEventComponent implements OnInit {
   minCalendarDate: string
   SelectedEvent;
 
-  img1WebUrl$
+  imgTempUrl1;
+  img1WebUrl;
 
   constructor(
-    private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
-    private _eventsDb: EventCRUDService,
-    private _toast: InfoToastService,
-
-
-  ) { }
+    private formBuilder: FormBuilder, private route: ActivatedRoute,
+    private router: Router, private _eventsDb: EventCRUDService,
+    private _toast: InfoToastService, private _storage: AngularFireStorage
+) { }
 
   async ngOnInit() {
     this.id = this.route.snapshot.params['id'];
@@ -47,7 +40,6 @@ export class AddEditEventComponent implements OnInit {
 
 
     this.minCalendarDate = new Date().toISOString();
-
     this.form = this.formBuilder.group({
       eventTitle: ['', Validators.required],
       category: ['', Validators.required],
@@ -89,14 +81,12 @@ export class AddEditEventComponent implements OnInit {
   get errorControl() {
     return this.form.controls;
   }
-
   
   get f() { return this.form.controls; }// raccourci controle formulaire 
 
-  
   onSubmit() {
     console.log('-formulaire------>', this.form.value);
-    console.log('-img------>', this.img1WebUrl$);
+    console.log('-img------>', this.img1WebUrl);
 
     this.submitted = true;
 
@@ -106,8 +96,6 @@ export class AddEditEventComponent implements OnInit {
       return;
     }
 
-    this.loading = true;
-
     if (this.isAddMode) {
       this.createEvent();
       this._toast.presentToast('événement créé', 'success');
@@ -116,17 +104,9 @@ export class AddEditEventComponent implements OnInit {
       this.updateEvent();
       this._toast.presentToast('événement modifié', 'success');
       this.router.navigate(['../../'], { relativeTo: this.route });
-
     }
-  }
 
-  addPictUrl($event){
-    console.log('event---->',$event);
-    console.log('formbefore---->',this.form.value.media1);
-    this.form.value.media1 = $event
-    console.log('formafter---->',this.form.value.media1);
   }
-
 
   private createEvent() {
     this._eventsDb.create(this.form.value)
@@ -136,4 +116,37 @@ export class AddEditEventComponent implements OnInit {
     this._eventsDb.update(this.id,this.form.value)
   }
 
+  /////-----------------pictures functions-------------------------//////
+
+  async takePicture() {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: true,
+      resultType: CameraResultType.Uri
+    });
+
+    const imageUrl = image.webPath;
+    this.imgTempUrl1 = imageUrl;
+   await this.savePict();
+    
+  }
+
+  async savePict() {
+    const blob = await this._readAsBlob(this.imgTempUrl1);
+    const timeStamp = Date.now();
+    const eventID = this.id;
+    const ref = this._storage.ref(timeStamp + '_' + eventID + '.jpeg');
+    const task = ref.put(blob);
+    await task.then();
+    const url = await ref.getDownloadURL().toPromise();
+    this.img1WebUrl = await url;
+    this.form.get('media1').setValue(url);
+  }
+
+  private async _readAsBlob(webPath: string) {
+    // Fetch the file and read as a blob
+    const response = await fetch(webPath);
+    const blob = await response.blob();
+    return blob;
+  }
 }

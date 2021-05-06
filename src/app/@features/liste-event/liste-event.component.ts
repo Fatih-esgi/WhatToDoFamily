@@ -31,7 +31,6 @@ export class ListeEventComponent implements OnInit {
 
   async ngOnInit() {
     this.listeEvent = await this._afs.getliste$();
-
     // console.log('listeeventnew',this.listeEvent);
 
   }

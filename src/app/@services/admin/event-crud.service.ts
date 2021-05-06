@@ -27,7 +27,6 @@ export class EventCRUDService {
     return await this.eventDbRef.doc(id).get().toPromise().then(
       (doc) =>{ return doc.data()}
     )
-    
   }
 
   update(id: string, data: any): Promise<void> {

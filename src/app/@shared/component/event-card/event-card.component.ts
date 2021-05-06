@@ -10,10 +10,10 @@ export class EventCardComponent implements OnInit {
   @Input() id: string;
   @Input() dateB: Date;
   @Input() dateE: Date;
-  @Input() title:string;
-  @Input() avgRating:string;
-  @Input() eventLat:number;
-  @Input() eventLong:number;
+  @Input() title: string;
+  @Input() avgRating: string;
+  @Input() eventLat: number;
+  @Input() eventLong: number;
   @Input() eventDog: boolean;
   @Input() eventhandicap: boolean;
   @Input() meteoReq: string;
@@ -21,19 +21,27 @@ export class EventCardComponent implements OnInit {
   @Input() removeOpt: boolean;
   @Input() category: number;
   @Input() city: string;
-  
-  distBetween;
+  @Input() raters: number;
+  @Input() ratingGlobal: number;
 
-  rmvoption:boolean;
+  distBetween;
+  ratingValue:number;
+  rmvoption: boolean;
 
 
   constructor(
-    public _userPosition$ : GeoService
+    public _userPosition$: GeoService
   ) {
   }
-  
+
   ngOnInit(): void {
-    this.distBetween = this._userPosition$.getdistance(this.eventLat,this.eventLong,"K")
+    this.distBetween = this._userPosition$.getdistance(this.eventLat, this.eventLong, "K")
+    console.log(this.raters);
+    console.log(this.ratingGlobal);
+    
+    this.ratingValue = this.ratingGlobal / this.raters
+    console.log(this.ratingValue);
+    
   }
 
 }

@@ -11,6 +11,7 @@ import { InfoToastService } from 'src/app/@services/toast/info-toast.service';
 import { RateModalComponent } from './rate-modal/rate-modal.component';
 import { RatingService } from 'src/app/@services/rating/rating.service';
 import { map } from 'rxjs/operators';
+import { GetByIdService } from 'src/app/@services/storage/get-by-id.service';
 const { Share } = Plugins;
 
 
@@ -46,7 +47,8 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     public _favStorage: FavoritesStorageService,
     private modalController: ModalController,
     public _toast: InfoToastService,
-    private _ratingStorage: RatingService
+    private _ratingStorage: RatingService,
+    private _getByID: GetByIdService
   ) {
   }
 
@@ -65,7 +67,12 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     
 
     //get data by id from db
-    this.eventData = await this._afs.getByID(this.id)
+    console.log(this.id);
+    
+    this.eventData = await this._getByID.getByID(this.id)
+    console.log(this.eventData);
+    console.log(this.comments);
+    
 
     
     //calcul de la distance entre user et position de l'event
