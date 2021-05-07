@@ -5,12 +5,8 @@
 <ng-container *ngIf="(this.FavoriteListe)?.length >= 1">
   <ion-list *ngFor="let fav of this.FavoriteListe">
     <ion-item-sliding>
-      <ion-item>
-        <app-event-card [id]="fav.item" [dateB]="fav.value.dateBegin" [dateE]="fav.value.dateEnd"
-          [title]="fav.value.eventTitle" [avgRating]="fav.value.rating" [eventLat]="fav.value.eventLat"
-          [eventLong]="fav.value.eventLong" [city]="fav.value.eventCity" [eventDog]="fav.value.infoDog"
-          [eventhandicap]="fav.value.infoHandicap" [meteoReq]="fav.value.reqWeather" [media1]="fav.value.media1"
-          [category]="fav.value.category">
+      <ion-item>{{fav.value|json}}
+        <app-event-card [event]="fav.value">
         </app-event-card>
       </ion-item>
       <ion-item-options side="end">
@@ -23,6 +19,7 @@
 </ng-container>
  <ng-container *ngIf="this.FavoriteListe?.length < 1">
   <ion-text color="primary" class="ion-text-center">
+    <ion-icon  name="sad-outline"></ion-icon>
     <p>aucun favoris dans votre liste</p><br>
     <p>les favoris vous permettent de garder de côté des évenément qui vous intéresse</p><br>
     <p>Ajouter en depuis le boutton + dans le descriptif de l'évenements</p>

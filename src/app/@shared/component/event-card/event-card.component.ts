@@ -7,41 +7,23 @@ import { GeoService } from 'src/app/@services/gelocation/geo.service';
   styleUrls: ['./event-card.component.scss']
 })
 export class EventCardComponent implements OnInit {
-  @Input() id: string;
-  @Input() dateB: Date;
-  @Input() dateE: Date;
-  @Input() title: string;
-  @Input() avgRating: string;
-  @Input() eventLat: number;
-  @Input() eventLong: number;
-  @Input() eventDog: boolean;
-  @Input() eventhandicap: boolean;
-  @Input() meteoReq: string;
-  @Input() media1: string;
-  @Input() removeOpt: boolean;
-  @Input() category: number;
-  @Input() city: string;
-  @Input() raters: number;
-  @Input() ratingGlobal: number;
+
+  @Input() event: any;
 
   distBetween;
-  ratingValue:number;
+  ratingValue: number;
   rmvoption: boolean;
 
 
   constructor(
     public _userPosition$: GeoService
-  ) {
-  }
+  ) { }
 
   ngOnInit(): void {
-    this.distBetween = this._userPosition$.getdistance(this.eventLat, this.eventLong, "K")
-    console.log(this.raters);
-    console.log(this.ratingGlobal);
-    
-    this.ratingValue = this.ratingGlobal / this.raters
-    console.log(this.ratingValue);
-    
+    console.log('eventcard thisevent',this.event);
+    this.distBetween = this._userPosition$.getdistance(this.event.eventLat, this.event.eventLong, "K")
+    this.ratingValue = this.event.ratingGlobal / this.event.raters
+
   }
 
 }

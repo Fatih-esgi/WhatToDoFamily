@@ -77,11 +77,7 @@
       <ion-col size="12">
 
         <ion-list *ngFor="let evenement of (this.listeEvent|async|filter:term)?.slice(min, max)">
-          <app-event-card [id]="evenement.key" [dateB]="evenement.dateBegin" [dateE]="evenement.dateEnd" [title]="evenement.eventTitle"
-            [avgRating]="evenement.rating" [eventLat]="evenement.eventLat" [eventLong]="evenement.eventLong" [city]="evenement.eventCity"
-            [eventDog]="evenement.infoDog" [eventhandicap]="evenement.infoHandicap" [meteoReq]="evenement.reqWeather" [media1]="evenement.media1"
-             [category] ="evenement.category" [raters] ="evenement.raters" [ratingGlobal] ="evenement.ratingGlobal" [removeOpt]=false>
-          </app-event-card>
+          <app-event-card [event]="evenement"></app-event-card>
         </ion-list>
 
         <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">

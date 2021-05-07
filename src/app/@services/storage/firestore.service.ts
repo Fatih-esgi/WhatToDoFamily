@@ -46,9 +46,9 @@ export class FirestoreService {
         return this._eventsCollection.stateChanges(['added', 'modified'])
           .pipe(
             map(actions => actions.map(a => {
-              const key = a.payload.doc.id;
+              const id = a.payload.doc.id;
               const data = a.payload.doc.data();
-              return { key, ...data };
+              return { id, ...data };
             })
             )
           )
@@ -57,7 +57,7 @@ export class FirestoreService {
       .subscribe(
         newData => { this._EventList$.next(newData); }
       );//end collection page events
-      
+
 
   }
 
@@ -88,11 +88,27 @@ export class FirestoreService {
   //   });
   // }
 
- 
-  getWeather(weather) {
+
+  getListFromWeather(weather) {
     return this._fireStore.collection<any>(
       'events', // nom de lacollectoin (ref)
       ref => ref.where('reqWeather', '==', weather) // query firebase sur la réféernce choisi
+    );
+  }
+
+  getListActu(date) {
+    const dateNow = date;
+    const year = dateNow.getFullYear()
+    const month = dateNow.getMonth()
+    const day = dateNow.getDate()
+
+    // Creating a new Date (with the delta)
+    const finalDate = new Date(year, month, day + 30)
+    console.log(finalDate);
+
+    return this._fireStore.collection<any>(
+      'events', // nom de lacollectoin (ref)
+      ref => ref.where('eventEndDate', '<=', finalDate)// query firebase sur la réféernce choisi
     );
   }
 

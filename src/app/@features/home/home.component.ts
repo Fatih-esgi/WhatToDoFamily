@@ -1,4 +1,3 @@
-import { formatDate } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { MeteoService } from 'src/app/@services/meteo/meteo.service';
@@ -10,7 +9,7 @@ import { WeatherDBFilterPipe } from '../../@shared/pipes/weather-dbfilter.pipe'
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-
+  //opt for slider actus
   slideOpts = {
     initialSlide: 1,
     slidesPerView: 1.3,
@@ -18,7 +17,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     freeMode: true,
 
   };
-
+  //data from meteo service
   meteoData: {
     currenttemp: number;
     curentid: number;
@@ -27,54 +26,87 @@ export class HomeComponent implements OnInit, OnDestroy {
     dailyIcon: string;
   };
 
-  date: any;
-  time: any = new Date();
-  timer;
+  //data Current Date
+  date: Date = new Date();
+  time: Date = new Date();
+  timer: any;
 
-  max = 10;
-  min = 0;
-  listeEvent;
+  //infinite scroll limits
+  max: number = 10;
+  min: number = 0;
 
-  weatherToDayString;
+  //generated list event (meteo), Actus
+  listeEvent: Array<any>;
+  listeActus: Array<any>;
+
+  //converted meteo id -> weather category from DB
+  weatherDBString: string;
+
+
   constructor(
     private _meteo: MeteoService,
     private _afs: FirestoreService,
     private _weatherDBPipe: WeatherDBFilterPipe
-  ) {
-
-  }
+  ) { }
 
   async ngOnInit() {
+    //get Météo
     this.meteoData = await this._meteo.getMeteo();
-    this.date = formatDate(new Date(), 'dd/MMMM/yyyy', 'en');
-    this.timer = setInterval(() => {
-      this.time = new Date();
-    }, 1000);
 
-    this.weatherToDayString = this.transformDate(this.meteoData.dailyID)
+    //timeNow   
+    this.timer = setInterval(() => { this.time = new Date(); }, 1000);
 
-    await this._afs.getWeather(await this.weatherToDayString).snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+    //transform daily meteo.id to DB weather category
+    this.weatherDBString = this.transformWeather(this.meteoData.dailyID);
+
+    //get events -> filter by meteo from DB 
+    this._afs.getListFromWeather(this.weatherDBString).snapshotChanges()
+      .pipe(
+        map(changes =>
+          changes.map(c =>
+          ({
+            id: c.payload.doc.id,
+            ...c.payload.doc.data()
+          })
+          )
         )
       )
-    ).subscribe(data => {
-      console.log(data);
+      .subscribe(data => {
+        return this.listeEvent = [...data]
+      });
 
-      return this.listeEvent = [...data]
+    //get events -> filter by date from DB 
+    this._afs.getListActu(this.date).snapshotChanges()
+      .pipe(
+        map(changes =>
+          changes.map(c =>
+          ({
+            id: c.payload.doc.id,
+            ...c.payload.doc.data()
+          })
+          )
+        )
+      )
+      .subscribe(data => {
+        return this.listeActus = [...data]
+      });
 
-    });
   };
 
-  transformDate(weather) {
+  ngOnDestroy() {
+    // clear timer interval
+    clearInterval(this.timer); 
+  }
+
+  // -------------------------called functions-------------------------
+
+
+  //function transform meteoID to DB weather category
+  transformWeather(weather: number) {
     return this._weatherDBPipe.transform(weather);
   }
 
-  ngOnDestroy() {
-    clearInterval(this.timer);
-  }
-
+  //infinite scroll function
   async loadData(event) {
     this.max = this.max + 10;
     event.target.complete();
