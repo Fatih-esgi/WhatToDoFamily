@@ -1,6 +1,6 @@
-import { formatDate } from '@angular/common';
 import { Component, OnInit, ViewChild, LOCALE_ID, Inject, Input } from '@angular/core';
-import { AlertController, ModalController } from '@ionic/angular';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 import { CalendarComponent } from 'ionic2-calendar';
 import { map } from 'rxjs/operators';
 import { EventsPlanificationService } from 'src/app/@services/storage/events-planification.service';
@@ -14,54 +14,89 @@ export class CalendrarViewComponent implements OnInit {
   eventSource = [];
   viewTitle: string;
   calendarView: boolean = true;
+  isToday: boolean;
+
   calendar = {
     mode: 'month',
+    step: 30,
     currentDate: new Date(),
+    dateFormatter: {
+      formatMonthViewDay: function (date: Date) {
+        return date.getDate().toString();
+      },
+      formatMonthViewDayHeader: function (date: Date) {
+        return 'MonMH';
+      },
+      formatMonthViewTitle: function (date: Date) {
+        return 'testMT';
+      }
+    }
   };
 
+  userID;
   selectedDate: Date;
-  @Input() userID;
   @ViewChild(CalendarComponent) myCal: CalendarComponent;
 
   constructor(
-    private alertCtrl: AlertController,
     @Inject(LOCALE_ID) private locale: string,
-    private modalCtrl: ModalController,
-    private _myEventDB: EventsPlanificationService
+    private _myEventDB: EventsPlanificationService,
+    private _auth: AngularFireAuth,
+    private _router: Router
   ) { }
 
   async ngOnInit() {
+    this.userID = await (await (this._auth.currentUser)).uid
+    console.log(this.userID);
 
-    this._myEventDB.getAll(this.userID).snapshotChanges().pipe(
+    this._myEventDB.getAll(await this.userID).snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
           (c.payload.doc.data())    ////!!! ({ id: c.payload.doc.id, ...c.payload.doc.data() })   ne fonctionne pas    
         )
       )
-    )
-      .subscribe(data => {
-        this.eventSource = data
-        console.log(this.eventSource);
-      });
-  }
-
-  createEvent() {
-    var events = [];
-    this.eventSource.forEach(element => {
-      const dateformat= new Date(element.dateTime)
-      events.push({
-        title: element.eventTitle,
-        startTime: dateformat,
-        eventID: element.eventID,
-        imgEvent: element.image1
-      })
-      console.log('---> events', events);
-
+    ).subscribe(data => {
+      this.eventSource = this.createCalendar([...data]);
     });
+
   }
 
 
-  // Change current month/week/day
+  createCalendar(data) {
+
+    var events = [];
+
+    data.forEach(index => {
+      
+      const transformedDate = new Date(index.dateTime)
+      events.push({
+        title: index.eventTitle,
+        startTime: transformedDate,
+        endTime: transformedDate,
+        allDay: false,
+        id: index.eventID
+      });
+    });
+    return events;
+  }
+
+
+  // Calendar event was clicked
+  async onEventSelected(event) {
+    console.log(event);
+    
+    console.log(this._router.navigate(['/tabs/event/',event.id] ));
+    
+    // this._router.navigate(['tabs/event'], event.id );
+  }
+
+
+  removeEvents() {
+    this.eventSource = [];
+  }
+
+
+
+  // Change current month
   next() {
     this.myCal.slideNext();
   }
@@ -73,85 +108,5 @@ export class CalendrarViewComponent implements OnInit {
   // Selected date reange and hence title changed
   onViewTitleChanged(title) {
     this.viewTitle = title;
-  }
-
-  // Calendar event was clicked
-  async onEventSelected(event) {
-    // Use Angular date pipe for conversion
-    let start = formatDate(event.startTime, 'medium', this.locale);
-    let end = formatDate(event.endTime, 'medium', this.locale);
-
-    const alert = await this.alertCtrl.create({
-      header: event.title,
-      subHeader: event.desc,
-      message: 'From: ' + start + '<br><br>To: ' + end,
-      buttons: ['OK', 'supprimer'],
-    });
-    alert.present();
-  }
-
-  createRandomEvents() {
-    var events = [];
-    for (var i = 0; i < 50; i += 1) {
-      var date = new Date();
-      var eventType = Math.floor(Math.random() * 2);
-      var startDay = Math.floor(Math.random() * 90) - 45;
-      var endDay = Math.floor(Math.random() * 2) + startDay;
-      var startTime;
-      var endTime;
-      if (eventType === 0) {
-        startTime = new Date(
-          Date.UTC(
-            date.getUTCFullYear(),
-            date.getUTCMonth(),
-            date.getUTCDate() + startDay
-          )
-        );
-        if (endDay === startDay) {
-          endDay += 1;
-        }
-        endTime = new Date(
-          Date.UTC(
-            date.getUTCFullYear(),
-            date.getUTCMonth(),
-            date.getUTCDate() + endDay
-          )
-        );
-        events.push({
-          title: 'All Day - ' + i,
-          startTime: startTime,
-          endTime: endTime,
-          allDay: true,
-        });
-      } else {
-        let startMinute = Math.floor(Math.random() * 24 * 60);
-        let endMinute = Math.floor(Math.random() * 180) + startMinute;
-        startTime = new Date(
-          date.getFullYear(),
-          date.getMonth(),
-          date.getDate() + startDay,
-          0,
-          date.getMinutes() + startMinute
-        );
-        endTime = new Date(
-          date.getFullYear(),
-          date.getMonth(),
-          date.getDate() + endDay,
-          0,
-          date.getMinutes() + endMinute
-        );
-        events.push({
-          title: 'Event - ' + i,
-          startTime: startTime,
-          endTime: endTime,
-          allDay: false,
-        });
-      }
-    }
-    this.eventSource = events;
-  }
-
-  removeEvents() {
-    this.eventSource = [];
   }
 }

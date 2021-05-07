@@ -44,4 +44,5 @@ export class EventsPlanificationService {
   delete(id: string): Promise<void> {
     return this.eventDbRef.doc(id).delete();
   }
+  
 }

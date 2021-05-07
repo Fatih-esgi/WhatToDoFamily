@@ -37,8 +37,12 @@ export class FirestoreService {
           if (filterItem.category >= 1) { query = query.where('category', '==', filterItem.category) };
           if (filterItem.infoDog == true) { query = query.where('infoDog', '==', true) };
           if (filterItem.infoHandicap == true) { query = query.where('infoHandicap', '==', true) };
-          if (!!filterItem.reqWeather) { query = query.where('reqWeather', '==', filterItem.reqWeather) };
-          //si range ou cost --> ref where
+          if (!!filterItem.reqWeather) { query = query.where('reqWeather', 'array-contains', filterItem.reqWeather) };
+          if (!!filterItem.ville) { query = query.where('eventStates', '==', filterItem.ville) };
+          if (!!filterItem.cost) { query = query.where('infoCost', '<=', filterItem.cost) };    //bug entre cost et start date dû inegalité 2x "<="
+          if (!!filterItem.date) { query = query.where('eventStartDate', '<=', filterItem.date) };  ///imposiible de query deux inégalité faire filtre pour date fin coté client
+          ///range a faire ici///
+
           return query
         }
         );
@@ -75,24 +79,10 @@ export class FirestoreService {
     return this.EventList$;
   }
 
-  //get event by id
-  // async getByID(id: string) {
-  //   return await this._eventsCollection.doc(id).get().toPromise().then((doc) => {
-  //     if (doc.exists) {
-  //       return doc.data()
-  //     } else {
-  //       return ("No such document!")
-  //     }
-  //   }).catch((error) => {
-  //     console.log("Error getting document:", error);
-  //   });
-  // }
-
-
   getListFromWeather(weather) {
     return this._fireStore.collection<any>(
       'events', // nom de lacollectoin (ref)
-      ref => ref.where('reqWeather', '==', weather) // query firebase sur la réféernce choisi
+      ref => ref.where('reqWeather', 'array-contains', weather) // query firebase sur la réféernce choisi
     );
   }
 

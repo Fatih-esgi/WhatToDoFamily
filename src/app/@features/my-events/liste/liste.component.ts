@@ -28,5 +28,9 @@ export class ListeComponent implements OnInit {
       this.listEvents = data
     });
   }
-//
+
+  removeItem(eventID) {
+    this._myEventDB.delete(eventID);
+  }
+  //
 }

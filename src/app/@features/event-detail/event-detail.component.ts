@@ -70,7 +70,8 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     console.log(this.id);
     
     this.eventData = await this._getByID.getByID(this.id)
-    console.log(this.eventData);
+    console.log('eventdata',this.eventData);
+   
     console.log(this.comments);
     
 

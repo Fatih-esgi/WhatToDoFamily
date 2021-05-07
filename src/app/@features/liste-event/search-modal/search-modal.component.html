@@ -18,8 +18,8 @@
         <ion-label>Ville</ion-label>
         <ion-select interface="popover" [(ngModel)]="ville">
           <ion-select-option value="Fribourg">Fribourg</ion-select-option>
-          <ion-select-option value="genève">Genève</ion-select-option>
-          <ion-select-option value="Lausanne">Lausanne</ion-select-option>
+          <ion-select-option disabled value="genève">Genève</ion-select-option>
+          <ion-select-option disabled value="Lausanne">Lausanne</ion-select-option>
         </ion-select>
       </ion-item>
 
@@ -40,7 +40,7 @@
 
       <ion-item>
         <ion-label>Rayon</ion-label>
-        <ion-range min="5" max="200" pin color="secondary" [(ngModel)]="range">
+        <ion-range min="5" max="200" pin color="secondary" [(ngModel)]="range" disabled>
           <ion-icon slot="start" size="small" name="contrast"></ion-icon>
           <ion-icon slot="end" name="contrast"></ion-icon>
         </ion-range>

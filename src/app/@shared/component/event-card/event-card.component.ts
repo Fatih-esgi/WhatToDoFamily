@@ -13,17 +13,26 @@ export class EventCardComponent implements OnInit {
   distBetween;
   ratingValue: number;
   rmvoption: boolean;
-
+  noRating:boolean;
 
   constructor(
     public _userPosition$: GeoService
   ) { }
 
   ngOnInit(): void {
-    console.log('eventcard thisevent',this.event);
+    console.log('eventcard thisevent', this.event);
     this.distBetween = this._userPosition$.getdistance(this.event.eventLat, this.event.eventLong, "K")
-    this.ratingValue = this.event.ratingGlobal / this.event.raters
 
+    console.log('raters',this.event.raters);
+    console.log('rat',this.event.ratingGlobal);
+    
+    if (this.event.raters == 0) {
+      this.noRating = true
+    }
+    else {
+      this.noRating = false
+      this.ratingValue = this.event.ratingGlobal / this.event.raters
+    }
   }
 
 }
