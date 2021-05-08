@@ -38,6 +38,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
   userUID;
   userName;
   comments;
+  eventData4fav;
 
   constructor(
     private route: ActivatedRoute,
@@ -71,7 +72,9 @@ export class EventDetailComponent implements OnInit, OnDestroy {
     
     this.eventData = await this._getByID.getByID(this.id)
     console.log('eventdata',this.eventData);
-   
+   this.eventData4fav=  {id: this.id, ...this.eventData} 
+   console.log('eventdataddd',this.eventData4fav);
+
     console.log(this.comments);
     
 
@@ -104,7 +107,7 @@ export class EventDetailComponent implements OnInit, OnDestroy {
 
     } else {
       this.likeIcon = "heart-dislike-outline";
-      this.favEventList = await this._favStorage.post(this.id, this.eventData);
+      this.favEventList = await this._favStorage.post( this.id, this.eventData4fav);
       this._toast.presentToast('Ajouté à vos Favoris', 'success');
     }
   }

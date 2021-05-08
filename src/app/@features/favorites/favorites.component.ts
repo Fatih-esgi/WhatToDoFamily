@@ -18,6 +18,8 @@ export class FavoritesComponent implements OnInit {
       await this._Favorite.get().subscribe(results => {
       // Do whatever you need to do with the results
       this.FavoriteListe = results
+      console.log(this.FavoriteListe);
+      
       return this.FavoriteListe;
   })
      

@@ -5,7 +5,7 @@
 <ng-container *ngIf="(this.FavoriteListe)?.length >= 1">
   <ion-list *ngFor="let fav of this.FavoriteListe">
     <ion-item-sliding>
-      <ion-item>{{fav.value|json}}
+      <ion-item>
         <app-event-card [event]="fav.value">
         </app-event-card>
       </ion-item>
