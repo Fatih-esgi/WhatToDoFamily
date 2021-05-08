@@ -1,35 +1,62 @@
+ion-toolbar {
+    --background: 0000000;
+    --border-color: transparent;
 
-ion-icon.logo{
-    width: 100%;
-    font-size: 35px;
-    margin: 10px 0;
-}
-
-div.homeBg{
-    --background: 100%;
-    height:20vh;
-    background-size: cover!important;
-   
-    .currMeteoIcon{
-        width: 50px;
+    ion-icon.logo {
+        width: 100%;
+        font-size: 35px;
+        margin: 10px 0;
     }
-
 }
 
+ion-content {
+    position: absolute;
+    --offset-top: 0px;
 
-ion-card{
-    display: flex;
-    flex-direction: column;
-    margin: 0 !important;
-    width: 100%;
-    --background: var(--ion-color-step-50);
+    ion-grid {
+        margin-top: 70px;
 
-.actusEventsImg {
-     width: 100%;
-     height: 20vh;
-     object-fit: cover;
+        p.boldWeatherTxT {
+            margin-top: -20px;
+            margin-bottom: 30px;
+            font-weight: 700;
+            font-size: 20px;
+        }
+        .meteoCurrIco {
+            width: 100%;
+            font-size: 45px;
+            margin-top: 15px;
+        }
+
+        .actuIcon{
+            margin-right: 5px;
+        }
+        ion-card {
+            display: flex;
+            flex-direction: column;
+            margin: 0 !important;
+            width: 100%;
+            border-radius: 15px;
+
+            .actusEventsImg {
+                width: 100%;
+                height: 20vh;
+                object-fit: cover;
+            }
+
+            .eventCatBar {
+                height: 5px;
+            }
+        }
+
+        div.homeBg {
+            --background: 100%;
+            height: 30vh;
+            background-size: cover !important;
+
+            .currMeteoIcon {
+                width: 50px;
+            }
+        }
+    }
 }
-.eventCatBar{
-    height: 5px;
-}
-  }

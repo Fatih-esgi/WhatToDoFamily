@@ -5,29 +5,110 @@
 /* To quickly generate your own theme, check out the color generator */
 /* https://ionicframework.com/docs/theming/color-generator */
 :root {
-    --ion-background-color: #24262B;
-    --ion-background-color-rgb: 36,38,43;
-  
-    --ion-text-color: #F1F1F1;
-    --ion-text-color-rgb: 241,241,241;
-  
-    --ion-color-step-50: #2B2B2B;
-    --ion-color-step-100: #393a3f;
-    --ion-color-step-150: #434449;
-    --ion-color-step-200: #4d4f53;
-    --ion-color-step-250: #57595d;
-    --ion-color-step-300: #626366;
-    --ion-color-step-350: #6c6d70;
-    --ion-color-step-400: #76777a;
-    --ion-color-step-450: #808184;
-    --ion-color-step-500: #8b8c8e;
-    --ion-color-step-550: #959698;
-    --ion-color-step-600: #9fa0a2;
-    --ion-color-step-650: #a9aaac;
-    --ion-color-step-700: #b4b4b6;
-    --ion-color-step-750: #bebec0;
-    --ion-color-step-800: #c8c8c9;
-    --ion-color-step-850: #d2d3d3;
-    --ion-color-step-900: #dddddd;
-    --ion-color-step-950: #e7e7e7;
-  }
+  --ion-background-color: #ffffff3a;
+  --ion-background-color-rgb: 255,255,255;
+
+  --ion-text-color: #001b33;
+  --ion-text-color-rgb: 0,27,51;
+
+  --ion-color-step-50: #f2f4f53a;
+  --ion-color-step-100: #e6e8eb3a;
+  --ion-color-step-150: #d9dde03a;
+  --ion-color-step-200: #ccd1d63a;
+  --ion-color-step-250: #bfc6cc3a;
+  --ion-color-step-300: #b3bbc23a;
+  --ion-color-step-350: #a6afb83a;
+  --ion-color-step-400: #99a4ad3a;
+  --ion-color-step-450: #8c98a33a;
+  --ion-color-step-500: #808d993a;
+  --ion-color-step-550: #73828f3a;
+  --ion-color-step-600: #6676853a;
+  --ion-color-step-650: #596b7a3a;
+  --ion-color-step-700: #4d5f703a;
+  --ion-color-step-750: #4054663a;
+  --ion-color-step-800: #33495c3a;
+  --ion-color-step-850: #263d523a;
+  --ion-color-step-900: #1932473a;
+  --ion-color-step-950: #0d263d3a;
+
+
+  --ion-color-primary: #3E3F48;
+  --ion-color-primary-rgb: 62,63,72;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255,255,255;
+  --ion-color-primary-shade: #37373f;
+  --ion-color-primary-tint: #51525a;
+
+  --ion-color-secondary: #FFC403;
+  --ion-color-secondary-rgb: 255,196,3;
+  --ion-color-secondary-contrast: #000000;
+  --ion-color-secondary-contrast-rgb: 0,0,0;
+  --ion-color-secondary-shade: #e0ac03;
+  --ion-color-secondary-tint: #ffca1c;
+
+  --ion-color-tertiary: #2C668D;
+  --ion-color-tertiary-rgb: 44,102,141;
+  --ion-color-tertiary-contrast: #ffffff;
+  --ion-color-tertiary-contrast-rgb: 255,255,255;
+  --ion-color-tertiary-shade: #275a7c;
+  --ion-color-tertiary-tint: #417598;
+
+  --ion-color-success: #1f9e52;
+  --ion-color-success-rgb: 31,158,82;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-contrast-rgb: 255,255,255;
+  --ion-color-success-shade: #1b8b48;
+  --ion-color-success-tint: #35a863;
+
+  --ion-color-warning: #ffae00;
+  --ion-color-warning-rgb: 255,174,0;
+  --ion-color-warning-contrast: #000000;
+  --ion-color-warning-contrast-rgb: 0,0,0;
+  --ion-color-warning-shade: #e09900;
+  --ion-color-warning-tint: #ffb61a;
+
+  --ion-color-danger: #e70d2b;
+  --ion-color-danger-rgb: 231,13,43;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255,255,255;
+  --ion-color-danger-shade: #cb0b26;
+  --ion-color-danger-tint: #e92540;
+
+  --ion-color-dark: #222428;
+  --ion-color-dark-rgb: 34,36,40;
+  --ion-color-dark-contrast: #ffffff;
+  --ion-color-dark-contrast-rgb: 255,255,255;
+  --ion-color-dark-shade: #1e2023;
+  --ion-color-dark-tint: #383a3e;
+
+  --ion-color-medium: #92949c;
+  --ion-color-medium-rgb: 146,148,156;
+  --ion-color-medium-contrast: #ffffff;
+  --ion-color-medium-contrast-rgb: 255,255,255;
+  --ion-color-medium-shade: #808289;
+  --ion-color-medium-tint: #9d9fa6;
+
+  --ion-color-light: #f4f5f8;
+  --ion-color-light-rgb: 244,245,248;
+  --ion-color-light-contrast: #000000;
+  --ion-color-light-contrast-rgb: 0,0,0;
+  --ion-color-light-shade: #d7d8da;
+  --ion-color-light-tint: #f5f6f9;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+p,div{
+  font-weight: 400;
+}
+p.lightTitle{
+  font-size: 25px;
+  font-weight: 500;
+  margin-top: 0;
+  margin-bottom: 0;
+}

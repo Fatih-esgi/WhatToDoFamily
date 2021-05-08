@@ -9,11 +9,17 @@ export class WeatherIconsPipe implements PipeTransform {
     let result;
     switch (true) {
       case value === 800:
+        result = "/assets/icons/weather/weather-soleil.svg"
+        break;
       case value === 801:
+        result = "/assets/icons/weather/weather-ptnuage.svg"
+        break;
       case value === 802:
+        result = "/assets/icons/weather/weather-nuage.svg"
+        break;
       case value === 803:
       case value === 804:
-        result = "partly-sunny-outline"
+        result = "/assets/icons/weather/weather-grnuage.svg"
         break;
 
       case value === 200:
@@ -26,6 +32,9 @@ export class WeatherIconsPipe implements PipeTransform {
       case value === 230:
       case value === 231:
       case value === 232:
+        result = "/assets/icons/weather/weather-orage.svg"
+        break;
+
       case value === 300:
       case value === 301:
       case value === 302:
@@ -35,17 +44,26 @@ export class WeatherIconsPipe implements PipeTransform {
       case value === 313:
       case value === 314:
       case value === 321:
+        result = "/assets/icons/weather/weather-pluie.svg"
+        break;
+
       case value === 500:
       case value === 501:
       case value === 502:
       case value === 503:
       case value === 504:
+        result = "/assets/icons/weather/weather-pluie.svg"
+        break;
+
       case value === 511:
+        result = "/assets/icons/weather/weather-plgivre.svg"
+        break;
+
       case value === 520:
       case value === 521:
       case value === 522:
       case value === 531:
-        result = "rainy-outline"
+        result = "/assets/icons/weather/weather-grossepluie.svg"
         break;
 
       case value === 600:
@@ -59,10 +77,23 @@ export class WeatherIconsPipe implements PipeTransform {
       case value === 620:
       case value === 621:
       case value === 622:
-        result = "snow-outline"
+        result = "/assets/icons/weather/weather-neige.svg"
         break;
-        
-      default: "alert-circle-outline"
+
+      case value === 701:
+      case value === 711:
+      case value === 721:
+      case value === 731:
+      case value === 741:
+      case value === 751:
+      case value === 761:
+      case value === 762:
+      case value === 771:
+      case value === 781:
+        result = "/assets/icons/weather/weather-warn.svg"
+        break;
+
+      default: "/assets/icons/weather/alert-circle-outline"
         break;
     }
     return result;
