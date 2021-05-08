@@ -29,17 +29,18 @@
             <ion-col size="1">
               <ion-icon [name]="event?.infoDog|iconDog"></ion-icon>
             </ion-col>
-            <ion-col size="5" *ngIf="this.noRating== false">
-              <p>({{this.event.raters}})</p>
+            <!-- <ion-col size="5" *ngIf="this.noRating== false"> -->
+            <ion-col size="5">
+              <p>({{this.event.raters}})</p>        
               <ionic-rating-component  activeIcon="star" defaultIcon="star" activeColor="#488aff" defaultColor="#f4f4f4"
               readonly="true" [rating]="this.ratingValue" halfStar="true" fontSize="13px">
             </ionic-rating-component>
           </ion-col>
-            <ion-col size="5" *ngIf="this.noRating== true">
+            <!-- <ion-col size="5" *ngIf="this.noRating== true">
               <ion-text color="primary">
                 <p>aucun vote</p>
               </ion-text>
-          </ion-col>
+          </ion-col> -->
         </ion-row>
       </ion-col>
       </ion-row>

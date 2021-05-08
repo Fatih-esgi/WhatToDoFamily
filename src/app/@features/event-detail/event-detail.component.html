@@ -30,10 +30,14 @@
             </ion-col>
             <ion-col size="5">
                 <ion-row>
-                    <ion-col size="3">({{this.eventData?.raters}})</ion-col>
-                    <ion-col size="9"><ionic-rating-component activeIcon="star" defaultIcon="star" activeColor="#488aff" defaultColor="#f4f4f4"
-              readonly="true" [rating]="this.eventData?.ratingGlobal" fontSize="13px">
-            </ionic-rating-component></ion-col>
+                    <ion-col size="3">
+                        ({{this.eventData?.raters}})
+                    </ion-col>
+                    <ion-col size="9">
+                        <ionic-rating-component activeIcon="star" defaultIcon="star" activeColor="#488aff" defaultColor="#f4f4f4"
+              readonly="true" [rating]="this.eventData?.ratingGlobal" fontSize="13px" halfStar="true">
+            </ionic-rating-component>
+        </ion-col>
                 </ion-row>
                 <ion-col size="12">
                      <ion-button (click)="rateEvent()">

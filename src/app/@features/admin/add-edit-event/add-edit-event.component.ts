@@ -62,9 +62,12 @@ export class AddEditEventComponent implements OnInit {
       orgCity: ['', Validators.required],
       orgName: ['', Validators.required],
       orgPhone: ['', Validators.required],
+      orgMail: [''],
+      orgWeb: [''],
       orgState: ['', Validators.required],
       orgNPA: ['', Validators.required],
       reqWeather: ['', Validators.required],
+      public: ['', Validators.required],
       ratingGlobal: 0,
       raters: 0,
     });
@@ -76,10 +79,6 @@ export class AddEditEventComponent implements OnInit {
       console.log(this.SelectedEvent);
 
     }
-  }
-
-  get errorControl() {
-    return this.form.controls;
   }
   
   get f() { return this.form.controls; }// raccourci controle formulaire 

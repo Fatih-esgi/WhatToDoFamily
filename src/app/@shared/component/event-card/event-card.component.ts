@@ -27,7 +27,7 @@ export class EventCardComponent implements OnInit {
     console.log('rat',this.event.ratingGlobal);
     
     if (this.event.raters == 0) {
-      this.noRating = true
+      this.ratingValue = 0
     }
     else {
       this.noRating = false

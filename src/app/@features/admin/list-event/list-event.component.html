@@ -20,7 +20,7 @@
                 <ion-button routerLink="edit/{{event.id}}">
                     <ion-icon name="create-outline"></ion-icon>
                 </ion-button>
-                <ion-button (click)="eraseEvent(event.id)">
+                <ion-button (click)="eraseEvent(event.id,event.eventTitle)">
                     <ion-icon name="trash-outline"></ion-icon>
                 </ion-button>
             </ion-buttons>

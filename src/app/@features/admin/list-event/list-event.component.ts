@@ -35,8 +35,9 @@ export class ListEventComponent implements OnInit {
     });
   }
 
-  eraseEvent(id){
-    this.eventCRUD.delete(id)
-    console.log(id);
+  eraseEvent(id,title){
+    if(confirm("Voulez vous vraiment Effacer"+ title)) {
+      this.eventCRUD.delete(id)
+    }
   }
 }
