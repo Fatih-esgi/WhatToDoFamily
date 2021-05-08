@@ -50,6 +50,7 @@
                 <ion-text color="primary">
                   <p class="date">{{actus.eventStartDate|date:'d.MM.yy'}} - {{actus.eventEndDate|date:'d.MM.yy'}}</p>
                   <h2><strong>{{actus.eventTitle|slice:0:40 }}</strong></h2>
+                  <p class="cat">{{actus.category|catTitle}}</p>
                 </ion-text>
               </ion-card-content>
             </ion-card>
