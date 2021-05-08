@@ -112,3 +112,9 @@ p.lightTitle{
   margin-top: 0;
   margin-bottom: 0;
 }
+.alert-wrapper,.picker-wrapper{
+  background-color: #ffffff!important;
+}
+.alert-radio-label,.alert-checkbox-label{
+  color: #001b33!important;
+}

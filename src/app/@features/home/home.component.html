@@ -28,34 +28,37 @@
       </ion-col>
     </ion-row>
 
-    
+
     <ion-row>
-        <ion-col size="5" push="4">
-          <ion-icon name="newspaper-outline" size="large" class="ion-float-left actuIcon"></ion-icon>
-          <ion-text class="ion-float-left"color="tertiary">
-            <h5>Actualitées</h5>
-          </ion-text>
-        </ion-col>
-      </ion-row>
-      
-      <ion-row>
-        <ion-col size="12">
-          <ion-slides [options]="slideOpts" class="actuItems">
-            <ion-slide class="actuItems" *ngFor="let actus of (this.listeEvent)?.slice(min, max)">
-              <ion-card class="ion-no-padding ion-no-margin" detail="false"
+      <ion-col size="5" push="4">
+        <ion-icon name="newspaper-outline" size="large" class="ion-float-left actuIcon"></ion-icon>
+        <ion-text class="ion-float-left" color="tertiary">
+          <h5>Actualités</h5>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <ion-slides [options]="slideOpts" class="actuItems">
+          <ion-slide class="actuItems" *ngFor="let actus of (this.listeEvent)?.slice(min, max)">
+            <ion-card detail="false"
               [routerLink]="'../event/' + actus.id.toString()">
-              <ion-card-content class="no-margin no-padding">
-                <p class="date">{{actus.eventStartDate|date:'d.MM.yy'}} - {{actus.eventEndDate|date:'d.MM.yy'}}</p>
-                <ion-img class="actusEventsImg no-margin no-padding" [src]="actus.media1"></ion-img>
+              <ion-card-content>
+                <ion-img class="actusEventsImg" [src]="actus.media1"></ion-img>
                 <div class="eventCatBar" [style.background-color]="actus.category|catColors"></div>
-                <p>{{actus.eventTitle|slice:0:40 }}</p>
+                <ion-text color="primary">
+                  <p class="date">{{actus.eventStartDate|date:'d.MM.yy'}} - {{actus.eventEndDate|date:'d.MM.yy'}}</p>
+                  <h2><strong>{{actus.eventTitle|slice:0:40 }}</strong></h2>
+                </ion-text>
               </ion-card-content>
             </ion-card>
           </ion-slide>
         </ion-slides>
       </ion-col>
-      </ion-row>
-      <ion-row>
+    </ion-row>
+
+    <ion-row>
       <ion-col size="4" push="4">
         <ion-icon [src]="meteoData?.dailyID|weatherIcons"></ion-icon>
         <ion-img [src]=""></ion-img>
