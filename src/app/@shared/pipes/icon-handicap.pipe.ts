@@ -9,10 +9,10 @@ export class IconHandicapPipe implements PipeTransform {
     let result;
     switch (true) {
       case value === true:
-        result ="heart-outline"
+        result ="/assets/icons/handicap.svg"
         break;
       case value === false:
-        result ="heart-dislike-outline"
+        result ="/assets/icons/nohandicap.svg"
         break;
     
       default:

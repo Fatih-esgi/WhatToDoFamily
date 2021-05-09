@@ -5,31 +5,31 @@
 /* To quickly generate your own theme, check out the color generator */
 /* https://ionicframework.com/docs/theming/color-generator */
 :root {
-  --ion-background-color: #ffffff3a;
+  --ion-background-color: #ffffff00;
   --ion-background-color-rgb: 255,255,255;
 
   --ion-text-color: #001b33;
   --ion-text-color-rgb: 0,27,51;
 
-  --ion-color-step-50: #f2f4f53a;
-  --ion-color-step-100: #e6e8eb3a;
-  --ion-color-step-150: #d9dde03a;
-  --ion-color-step-200: #ccd1d63a;
-  --ion-color-step-250: #bfc6cc3a;
-  --ion-color-step-300: #b3bbc23a;
-  --ion-color-step-350: #a6afb83a;
-  --ion-color-step-400: #99a4ad3a;
-  --ion-color-step-450: #8c98a33a;
-  --ion-color-step-500: #808d993a;
-  --ion-color-step-550: #73828f3a;
-  --ion-color-step-600: #6676853a;
-  --ion-color-step-650: #596b7a3a;
-  --ion-color-step-700: #4d5f703a;
-  --ion-color-step-750: #4054663a;
-  --ion-color-step-800: #33495c3a;
-  --ion-color-step-850: #263d523a;
-  --ion-color-step-900: #1932473a;
-  --ion-color-step-950: #0d263d3a;
+  --ion-color-step-50: #f2f4f5;
+  --ion-color-step-100: #e6e8eb;
+  --ion-color-step-150: #d9dde0;
+  --ion-color-step-200: #ccd1d6;
+  --ion-color-step-250: #bfc6cc;
+  --ion-color-step-300: #b3bbc2;
+  --ion-color-step-350: #a6afb8;
+  --ion-color-step-400: #99a4ad;
+  --ion-color-step-450: #8c98a3;
+  --ion-color-step-500: #808d99;
+  --ion-color-step-550: #73828f;
+  --ion-color-step-600: #667685;
+  --ion-color-step-650: #596b7a;
+  --ion-color-step-700: #4d5f70;
+  --ion-color-step-750: #405466;
+  --ion-color-step-800: #33495c;
+  --ion-color-step-850: #263d52;
+  --ion-color-step-900: #193247;
+  --ion-color-step-950: #0d263d;
 
 
   --ion-color-primary: #3E3F48;
@@ -114,7 +114,4 @@ p.lightTitle{
 }
 .alert-wrapper,.picker-wrapper{
   background-color: #ffffff!important;
-}
-.alert-radio-label,.alert-checkbox-label{
-  color: #001b33!important;
 }

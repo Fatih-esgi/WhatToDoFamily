@@ -10,15 +10,15 @@ export class IconmeteoReqPipe implements PipeTransform {
     switch (true) {
 
       case value === "beau":
-        result ="partly-sunny-outline"
+        result ="/assets/icons/weather/weather-ptnuage.svg"
         break;
 
       case value === "mauvais":
-        result ="rainy-outline"
+        result ="/assets/icons/weather/weather-pluie.svg"
         break;
 
       case value === "neige":
-        result ="snow-outline"
+        result ="/assets/icons/weather/weather-neige.svg"
         break;
     
       default:

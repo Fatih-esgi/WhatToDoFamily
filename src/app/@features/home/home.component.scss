@@ -33,7 +33,8 @@ ion-content {
         }
         ion-slide {
             margin-bottom: 10px;
-            margin-top: 2px;
+            margin-top: 0px;
+
             ion-card {
                 display: flex;
                 flex-direction: column;
@@ -41,28 +42,52 @@ ion-content {
                 width: 100%;
                 border-radius: 15px;
                 padding: 0;
-
-                .actusEventsImg {
-                    margin-top: 3px;
-                    width: 100%;
+                background-color: #ffffff18;
+                  
+                div.imgBox {
+                    position: relative;
                     height: 20vh;
-                    object-fit: cover;
-                    border-radius: 12px 12px 0 0;
-                    overflow: hidden;
+
+                    .actusEventsImg {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: 12px 12px 0 0;
+                        overflow: hidden;
+                    }
+                    .cat {
+                        position: absolute;
+                        top: 0;
+                        padding-left: 10px;
+                        background-color: rgba(255, 255, 255, 0.692);
+                        padding: 5px 10px 5px 10px;
+                        width: 100px;
+                        text-align: center;
+                        font-weight: 700;
+                        color: rgb(44, 44, 44);
+                        border-radius: 12px 0 12px 0;
+                    }
                 }
-                .eventCatBar {
-                    height: 5px;
+                h2{
+                    max-height: 23px;
+                    overflow: hidden;
+                    padding: 3px;
                 }
             }
         }
-        div.homeBg {
-            --background: 100%;
-            height: 30vh;
-            background-size: cover !important;
-
+        .meteoListIcon {
+            font-size: 40px;
+            width: 100%;
+            margin-top: 20px;
+        }
+       
             .currMeteoIcon {
                 width: 50px;
             }
-        }
+        
+        
     }
+ 
+    
 }
+

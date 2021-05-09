@@ -9,10 +9,10 @@ export class IconDogPipe implements PipeTransform {
     let result;
     switch (true) {
       case value === true:
-        result ="caret-up-outline"
+        result ="/assets/icons/dog.svg"
         break;
       case value === false:
-        result ="caret-down-outline"
+        result ="/assets/icons/nodog.svg"
         break;
     
       default:

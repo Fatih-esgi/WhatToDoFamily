@@ -6,7 +6,7 @@
 <ion-content [fullscreen]="true" scrollEvents="true" [appToolbarEffect]="toolbar" class="bgImg">
   <ion-grid fixed>
 
-    <ion-row>
+    <ion-row class="ion-no-margin">
       <ion-col size="5">
         <ion-text color="primary">
           <p class="lightTitle">Fribourg</p>
@@ -42,15 +42,15 @@
       <ion-col size="12">
         <ion-slides [options]="slideOpts" class="actuItems">
           <ion-slide class="actuItems" *ngFor="let actus of (this.listeEvent)?.slice(min, max)">
-            <ion-card detail="false"
-              [routerLink]="'../event/' + actus.id.toString()">
-              <ion-card-content>
-                <ion-img class="actusEventsImg" [src]="actus.media1"></ion-img>
-                <div class="eventCatBar" [style.background-color]="actus.category|catColors"></div>
+            <ion-card detail="false" [routerLink]="'../event/' + actus.id.toString()" >
+              <ion-card-content class=" ion-no-margin ion-no-padding">
+                <div class="imgBox">
+                  <ion-img class="actusEventsImg" [src]="actus.media1"></ion-img>
+                  <p class="cat" [style.background-color]="actus.category|catColors">{{actus.category|catTitle}}</p>
+                </div>
                 <ion-text color="primary">
+                  <h2><strong>{{actus.eventTitle|slice:0:30 }}</strong></h2>
                   <p class="date">{{actus.eventStartDate|date:'d.MM.yy'}} - {{actus.eventEndDate|date:'d.MM.yy'}}</p>
-                  <h2><strong>{{actus.eventTitle|slice:0:40 }}</strong></h2>
-                  <p class="cat">{{actus.category|catTitle}}</p>
                 </ion-text>
               </ion-card-content>
             </ion-card>
@@ -60,24 +60,28 @@
     </ion-row>
 
     <ion-row>
-      <ion-col size="4" push="4">
-        <ion-icon [src]="meteoData?.dailyID|weatherIcons"></ion-icon>
-        <ion-img [src]=""></ion-img>
-      </ion-col>
-      <ion-col size="10">
-        <ion-text color="primary">
+      <ion-col size="12">
+        <ion-icon class="meteoListIcon" [src]="meteoData?.dailyID|weatherIcons"></ion-icon>
+        <ion-text color="tertiary" class="ion-text-center">
           <h5>{{meteoData?.dailyID|weatherDescription}}</h5>
         </ion-text>
       </ion-col>
     </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <ion-list>
+          <app-event-card *ngFor="let evenement of (this.listeEvent)?.slice(min, max)" [event]="evenement">
+          </app-event-card>
+        </ion-list>
+      </ion-col>
+
+    </ion-row>
+
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="chargement...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
   </ion-grid>
-
-  <ion-list *ngFor="let evenement of (this.listeEvent)?.slice(min, max)">
-    <app-event-card [event]="evenement"></app-event-card>
-  </ion-list>
-
-  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
-    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="chargement...">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
 </ion-content>
