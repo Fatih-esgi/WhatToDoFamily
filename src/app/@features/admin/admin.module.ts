@@ -23,4 +23,5 @@ import { AngularFireStorageModule} from '@angular/fire/storage';
     AngularFireStorageModule
   ]
 })
+
 export class AdminModule { }
