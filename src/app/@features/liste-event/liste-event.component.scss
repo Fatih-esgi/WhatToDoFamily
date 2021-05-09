@@ -1,0 +1,20 @@
+:host{
+
+    ion-toolbar {
+        --background: #222428;
+        --border-color: transparent;
+
+        ion-searchbar {
+            margin: 4px 0;
+        }
+        .filterButton{
+            margin-top: 13px;
+            margin-left: 8px;
+        }
+    }    
+
+    .catIcons{
+        font-size: 50px;
+    }
+
+}

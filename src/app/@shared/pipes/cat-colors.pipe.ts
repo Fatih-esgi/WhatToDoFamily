@@ -9,19 +9,19 @@ export class CatColorsPipe implements PipeTransform {
     let result;
     switch (true) {
       case value === 1:
-        result ="red"
+        result ="#6fce6f"
         break;
       case value === 2:
-        result ="yellow"
+        result ="#27d5dd"
         break;
       case value === 3:
-        result ="blue"
+        result ="#c44ecc"
         break;
       case value === 4:
-        result ="green"
+        result ="#d04343"
         break;
       case value === 5:
-        result ="purple"
+        result ="#ece633"
         break;
     
       default:

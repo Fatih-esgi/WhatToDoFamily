@@ -9,11 +9,16 @@
     </ion-col>
     <ion-col size="7">
       <ion-row  class="ion-no-margin ion-no-padding">
-        <ion-col size="12" class="ion-no-margin ion-no-padding">
+        <ion-col size="8" class="ion-no-margin ion-no-padding">
           <ion-text color="primary" class="ion-no-margin">
             <p class="ion-no-margin ion-no-padding">{{event?.eventStartDate|date:'d.MM.yy'}} - {{event?.eventEndDate|date:'d.MM.yy'}}</p>
           </ion-text>
         </ion-col>
+          <ion-col size="4">
+            <ion-icon [src]="event?.reqWeather[0]|meteoReq" class="icoMeteo ion-float-left"></ion-icon>
+            <ion-icon *ngIf="event?.reqWeather[1]" [src]="event?.reqWeather[1]|meteoReq" class="icoMeteo ion-float-left"></ion-icon>
+            <ion-icon *ngIf="event?.reqWeather[2]" [src]="event?.reqWeather[2]|meteoReq" class="icoMeteo ion-float-left"></ion-icon>
+          </ion-col>
         <ion-col size="12" class="ion-no-margin ion-no-padding">
           <ion-text color="primary">
             <h6>{{event?.eventTitle| slice:0:43}}</h6>
@@ -29,18 +34,6 @@
             <ion-icon class="ion-float-left" name="navigate-circle-outline"></ion-icon>
             <ion-label class="ion-float-left" slot="">{{this.distBetween|async| number: '1.0-1'}}km </ion-label>          
           </ion-text>
-        </ion-col>
-      </ion-row>
-
-      <ion-row>
-        <ion-col size="2">
-          <ion-icon [src]="event?.reqWeather[0]|meteoReq"></ion-icon>
-        </ion-col>
-        <ion-col size="2">
-          <ion-icon *ngIf="event?.reqWeather[1]" [src]="event?.reqWeather[1]|meteoReq"></ion-icon>
-        </ion-col>
-        <ion-col size="2">
-          <ion-icon *ngIf="event?.reqWeather[2]" [src]="event?.reqWeather[2]|meteoReq"></ion-icon>
         </ion-col>
       </ion-row>
     </ion-col>

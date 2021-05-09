@@ -1,77 +1,85 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-searchbar [(ngModel)]="term" placeholder="Rechercher par nom" class="ion-no-padding ion-no-margin">
-      </ion-searchbar>
-    <ion-buttons slot="end">
-      <ion-button (click)="onClickFilter()">
-        <ion-icon name="filter-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+  <ion-toolbar >
+    <ion-grid fixed class="ion-no-margin ion-no-padding">
+      <ion-row>
+        <ion-col size="10">
+          <ion-searchbar [(ngModel)]="term" placeholder="Rechercher par nom" class="ion-no-padding ion-no-margin"
+            mode="md"></ion-searchbar>
+        </ion-col>
+        <ion-col size="2">
+          <ion-buttons>
+            <ion-button (click)="onClickFilter()" class="filterButton">
+              <ion-icon name="filter-outline" ></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-toolbar>
+  <ion-segment scrollable value=0 mode="md" (ionChange)="catChanged($event)" #toolbar class="ion-no-margin ion-no-padding">
+
+    <ion-segment-button value=0 class="ion-no-margin ion-no-padding">
+      <ion-icon src="/assets/icons/nocat.svg" class="catIcons "></ion-icon>
+    </ion-segment-button>
+
+    <ion-segment-button value=1 class="ion-no-margin ion-no-padding">
+      <ion-icon src="/assets/icons/sortir.svg" class="catIcons"></ion-icon>
+    </ion-segment-button>
+
+    <ion-segment-button value=2 class="ion-no-margin ion-no-padding">
+      <ion-icon src="/assets/icons/decouvrir.svg" class="catIcons"></ion-icon>
+    </ion-segment-button>
+
+    <ion-segment-button value=3 class="ion-no-margin ion-no-padding">
+      <ion-icon src="/assets/icons/samuser.svg" class="catIcons"></ion-icon>
+    </ion-segment-button>
+
+    <ion-segment-button value=5 class="ion-no-margin ion-no-padding">
+      <ion-icon src="/assets/icons/sedetendre.svg" class="catIcons"></ion-icon>
+    </ion-segment-button>
+
+    <ion-segment-button value=4 class="ion-no-margin ion-no-padding">
+      <ion-icon src="/assets/icons/manger.svg" class="catIcons"></ion-icon>
+    </ion-segment-button>
+
+  </ion-segment>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true" scrollEvents="true" [appToolbarEffect]="toolbar">
   <ion-grid fixed>
-    <ion-row>
-      <ion-col size="12">
-        <ion-text color="primary" class="ion-text-center">
-          <h2 class="ion-no-padding ion-no-margin">Evénements</h2>
+    <ion-row> 
+      <ion-col size="12" class="ion-text-center ion-no-padding ion-no-margin">
+        <ion-text color="primary" class="ion-text-center ion-no-padding ion-no-margin">
+          <p class="ion-no-padding ion-no-margin">{{this.activeCategory|catTitle}}</p>
         </ion-text>
       </ion-col>
       <ion-col size="12">
-        <ion-segment scrollable value=0 mode="md" (ionChange)="catChanged($event)">
-          <ion-segment-button value=0>
-            <ion-icon name="home"></ion-icon>
-          </ion-segment-button>
-          <ion-segment-button value=1>
-            <ion-icon name="heart"></ion-icon>
-          </ion-segment-button>
-          <ion-segment-button value=2>
-            <ion-icon name="pin"></ion-icon>
-          </ion-segment-button>
-          <ion-segment-button value=3>
-            <ion-icon name="star"></ion-icon>
-          </ion-segment-button>
-          <ion-segment-button value=4>
-            <ion-icon name="call"></ion-icon>
-          </ion-segment-button>
-          <ion-segment-button value=5>
-            <ion-icon name="call"></ion-icon>
-          </ion-segment-button>
-        </ion-segment>
-      </ion-col>   
-      <ion-col size="12">  
-      <ion-text color="primary" class="ion-text-center ion-no-padding ion-no-margin">
-          <p class="ion-no-padding ion-no-margin">{{this.activeCategory|catTitle}}</p>
-        </ion-text>
-      </ion-col>   
-      <ion-col size="12">
-        
-        <ion-chip *ngIf="!!(this.chips)?.ville" disabled="true">   
-          <ion-icon name="pin" color="success"></ion-icon>
-          <ion-label>{{(this.chips)?.ville}}</ion-label>
+
+        <ion-chip *ngIf="!!(this.chips)?.ville">
+          <ion-icon name="pin" color="tertiary"></ion-icon>
+          <ion-label color="primary">{{(this.chips)?.ville}}</ion-label>
         </ion-chip>
-        <ion-chip *ngIf="!!(this.chips)?.date" disabled="true">
-          <ion-icon name="calendar-outline"></ion-icon>
-          <ion-label>{{(this.chips)?.date|date:'d.MM.yy'}}</ion-label>
+        <ion-chip *ngIf="!!(this.chips)?.date">
+          <ion-icon name="calendar-outline" color="tertiary"></ion-icon>
+          <ion-label color="primary">{{(this.chips)?.date|date:'d.MM.yy'}}</ion-label>
         </ion-chip>
-        <ion-chip *ngIf="!!(this.chips)?.reqWeather" disabled="true">
-          <ion-icon name="partly-sunny-outline"></ion-icon>
-          <ion-label>{{(this.chips)?.reqWeather}}</ion-label>
+        <ion-chip *ngIf="!!(this.chips)?.reqWeather">
+            <ion-icon [src]="(this.chips)?.reqWeather|meteoReq" color="tertiary" class="ion-float-left"></ion-icon>
+            <ion-label color="primary">{{(this.chips)?.reqWeather}}</ion-label>
         </ion-chip>
-        <ion-chip *ngIf="!!(this.chips)?.range" disabled="true">
-          <ion-icon name="partly-sunny-outline"></ion-icon>
-          <ion-label>{{(this.chips)?.range}}km</ion-label>
+        <ion-chip *ngIf="!!(this.chips)?.range">
+          <ion-icon name="navigate-circle-outline" color="tertiary"></ion-icon>
+          <ion-label color="primary">{{(this.chips)?.range}}km</ion-label>
         </ion-chip>
-        <ion-chip *ngIf="!!(this.chips)?.cost" disabled="true">
-          <ion-icon name="partly-sunny-outline"></ion-icon>
-          <ion-label> - de {{(this.chips)?.cost}}chf</ion-label>
+        <ion-chip *ngIf="!!(this.chips)?.cost">
+          <ion-icon src="/assets/icons/cost.svg"></ion-icon>
+          <ion-label color="primary"> - de {{(this.chips)?.cost}}chf</ion-label>
         </ion-chip>
-        <ion-chip *ngIf="!!(this.chips)?.infoHandicap" disabled="true">
-          <ion-icon name="partly-sunny-outline"></ion-icon>
+        <ion-chip *ngIf="!!(this.chips)?.infoHandicap">
+          <ion-icon src="/assets/icons/handicap.svg"></ion-icon>
         </ion-chip>
-        <ion-chip *ngIf="!!(this.chips)?.infoDog" disabled="true">
-          <ion-icon name="partly-sunny-outline"></ion-icon>
+        <ion-chip *ngIf="!!(this.chips)?.infoDog">
+          <ion-icon src="/assets/icons/dog.svg"></ion-icon>
         </ion-chip>
       </ion-col>
       <ion-col size="12">
@@ -79,7 +87,9 @@
         <ion-list *ngFor="let evenement of (this.listeEvent|async|filter:term)?.slice(min, max)">
           <app-event-card [event]="evenement"></app-event-card>
         </ion-list>
-
+        <ion-text color="primary" *ngIf="(this.listeEvent|async)?.length == 0" class="ion-text-center">
+          <p>Aucun événement, essayer de supprimer des filtres</p>
+        </ion-text>
         <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
           <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="chargement...">
           </ion-infinite-scroll-content>

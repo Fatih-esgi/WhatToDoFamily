@@ -6,6 +6,10 @@
         margin: 10px 2px;
         background-color: #ffffff18;
 
+        ion-icon.icoMeteo{
+            font-size: 12px;
+        }
+
         div.imgBox {
             position: relative;
             height: 100px;
@@ -19,7 +23,7 @@
             }
             .cat {
                 position: absolute;
-                top: -14px;
+                top: -15px;
                 padding: 4px;
                 width: 100%;
                 text-align: center;
@@ -46,7 +50,7 @@
             border-top: 1px solid #0202021c;
             margin-top: 3px;
         }
-        ion-icon.ios.hydrated {
+        ion-icon {
             font-size: 19px;
             margin: 0px 1px;
         }
