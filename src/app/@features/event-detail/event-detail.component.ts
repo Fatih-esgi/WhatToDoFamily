@@ -10,10 +10,8 @@ import { RegisterEventComponent } from './register-event/register-event.componen
 import { InfoToastService } from 'src/app/@services/toast/info-toast.service';
 import { RateModalComponent } from './rate-modal/rate-modal.component';
 import { RatingService } from 'src/app/@services/rating/rating.service';
-import { map } from 'rxjs/operators';
 import { GetByIdService } from 'src/app/@services/storage/get-by-id.service';
 const { Share } = Plugins;
-
 
 @Component({
   selector: 'app-event-detail',

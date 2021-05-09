@@ -23,13 +23,14 @@
                         <ion-icon name="image-outline"></ion-icon>
                         Ajouter une image
                     </ion-button>
-                    <ion-img  [src]="this.imgTempUrl1" (click)="takePicture()" ></ion-img>
+                    <ion-img [src]="this.imgTempUrl1" (click)="takePicture()"></ion-img>
                 </ion-col>
                 <ion-col size="12">
                     <ion-item>
                         <ion-label position="stacked">Catégorie *</ion-label>
                         <div *ngIf="submitted && f.category.errors">
-                            <ion-label position="stacked" color="danger" *ngIf="f.category.errors.required">requis</ion-label>
+                            <ion-label position="stacked" color="danger" *ngIf="f.category.errors.required">requis
+                            </ion-label>
                         </div>
                         <ion-select placeholder="Choisissez une catégorie" formControlName="category" required>
                             <ion-select-option [value]="1">Sortir</ion-select-option>
@@ -38,14 +39,15 @@
                             <ion-select-option [value]="4">manger</ion-select-option>
                             <ion-select-option [value]="5">se détendre</ion-select-option>
                         </ion-select>
-                        
+
                     </ion-item>
                 </ion-col>
                 <ion-col size="6">
                     <ion-item>
                         <ion-label position="stacked">Date de début *</ion-label>
                         <div *ngIf="submitted && f.eventStartDate.errors">
-                            <ion-label position="stacked" color="danger" *ngIf="f.eventStartDate.errors.required">requis</ion-label>
+                            <ion-label position="stacked" color="danger" *ngIf="f.eventStartDate.errors.required">requis
+                            </ion-label>
                         </div>
                         <ion-datetime display-format="DD.MMMM.YYYY" [min]="this.minCalendarDate" max="2030-01-01"
                             formControlName="eventStartDate" required></ion-datetime>
@@ -55,7 +57,8 @@
                     <ion-item>
                         <ion-label position="stacked">Date de fin *</ion-label>
                         <div *ngIf="submitted && f.eventEndDate.errors">
-                            <ion-label position="stacked" color="danger" *ngIf="f.eventEndDate.errors.required">requis</ion-label>
+                            <ion-label position="stacked" color="danger" *ngIf="f.eventEndDate.errors.required">requis
+                            </ion-label>
                         </div>
                         <ion-datetime display-format="DD.MMMM.YYYY" [min]="this.minCalendarDate" max="2030-01-01"
                             formControlName="eventEndDate" required></ion-datetime>
@@ -65,7 +68,8 @@
                     <ion-item>
                         <ion-label position="stacked">Titre de l'événement *</ion-label>
                         <div *ngIf="submitted && f.eventTitle.errors">
-                            <ion-label position="stacked" color="danger" *ngIf="f.eventTitle.errors.required">requis</ion-label>
+                            <ion-label position="stacked" color="danger" *ngIf="f.eventTitle.errors.required">requis
+                            </ion-label>
                         </div>
                         <ion-input formControlName="eventTitle" type="text" placeholder="Titre de l'événement" required>
                         </ion-input>
@@ -75,7 +79,8 @@
                     <ion-item>
                         <ion-label position="stacked">Description *</ion-label>
                         <div *ngIf="submitted && f.eventDescr.errors">
-                            <ion-label position="stacked" color="danger" *ngIf="f.eventDescr.errors.required">requis</ion-label>
+                            <ion-label position="stacked" color="danger" *ngIf="f.eventDescr.errors.required">requis
+                            </ion-label>
                         </div>
                         <ion-textarea autoGrow=true formControlName="eventDescr" type="text"
                             placeholder="ajouter une description" required></ion-textarea>
@@ -86,7 +91,8 @@
                     <ion-item>
                         <ion-label position="stacked">Informations *</ion-label>
                         <div *ngIf="submitted && f.infoGen.errors">
-                            <ion-label position="stacked" color="danger" *ngIf="f.infoGen.errors.required">requis</ion-label>
+                            <ion-label position="stacked" color="danger" *ngIf="f.infoGen.errors.required">requis
+                            </ion-label>
                         </div>
                         <ion-textarea autoGrow=true formControlName="infoGen" type="text"
                             placeholder="informations générales, horaires, etc" required></ion-textarea>
@@ -96,7 +102,8 @@
                     <ion-item>
                         <ion-label position="stacked">Info Transport *</ion-label>
                         <div *ngIf="submitted && f.infoTransp.errors">
-                            <ion-label position="stacked" color="danger" *ngIf="f.infoTransp.errors.required">requis</ion-label>
+                            <ion-label position="stacked" color="danger" *ngIf="f.infoTransp.errors.required">requis
+                            </ion-label>
                         </div>
                         <ion-textarea autoGrow=true formControlName="infoTransp" type="text"
                             placeholder="ajouter une description"></ion-textarea>
@@ -107,22 +114,26 @@
                         <ion-label position="stacked">Lieu de l'événement *</ion-label>
                         <div *ngIf="submitted && f.eventAddress.errors">
 
-                            <ion-label position="stacked" color="danger" *ngIf="f.eventAddress.errors.required">requis</ion-label>
+                            <ion-label position="stacked" color="danger" *ngIf="f.eventAddress.errors.required">requis
+                            </ion-label>
                         </div>
                         <ion-input placeholder="Addresse" formControlName="eventAddress" required></ion-input>
 
                         <div *ngIf="submitted && f.eventNPA.errors">
-                            <ion-label position="stacked" color="danger" *ngIf="f.eventNPA.errors.required">requis</ion-label>
+                            <ion-label position="stacked" color="danger" *ngIf="f.eventNPA.errors.required">requis
+                            </ion-label>
                         </div>
                         <ion-input placeholder="NPA" type="number" formControlName="eventNPA" required></ion-input>
 
                         <div *ngIf="submitted && f.eventCity.errors">
-                            <ion-label position="stacked" color="danger" *ngIf="f.eventCity.errors.required">requis</ion-label>
+                            <ion-label position="stacked" color="danger" *ngIf="f.eventCity.errors.required">requis
+                            </ion-label>
                         </div>
                         <ion-input placeholder="Ville" formControlName="eventCity" required></ion-input>
 
                         <div *ngIf="submitted && f.eventStates.errors">
-                            <ion-label position="stacked" color="danger" *ngIf="f.eventStates.errors.required">requis</ion-label>
+                            <ion-label position="stacked" color="danger" *ngIf="f.eventStates.errors.required">requis
+                            </ion-label>
                         </div>
                         <ion-select value="Fribourg" placeholder="Canton" formControlName="eventStates" required>
                             <ion-select-option value="Fribourg">Fribourg</ion-select-option>
@@ -133,7 +144,8 @@
                     <ion-item>
                         <ion-label position="stacked">Latitude *</ion-label>
                         <div *ngIf="submitted && f.eventLat.errors">
-                            <ion-label position="stacked" color="danger" *ngIf="f.eventLat.errors.required">requis</ion-label>
+                            <ion-label position="stacked" color="danger" *ngIf="f.eventLat.errors.required">requis
+                            </ion-label>
                         </div>
                         <ion-input formControlName="eventLat" type="number" placeholder="latitude" required>
                         </ion-input>
@@ -143,7 +155,8 @@
                     <ion-item>
                         <ion-label position="stacked">Longitude *</ion-label>
                         <div *ngIf="submitted && f.eventLong.errors">
-                            <ion-label position="stacked" color="danger" *ngIf="f.eventLong.errors.required">requis</ion-label>
+                            <ion-label position="stacked" color="danger" *ngIf="f.eventLong.errors.required">requis
+                            </ion-label>
                         </div>
                         <ion-input formControlName="eventLong" type="number" placeholder="longitude" required>
                         </ion-input>
@@ -154,34 +167,40 @@
                         <ion-label position="stacked">Organisateur *</ion-label>
 
                         <div *ngIf="submitted && f.orgName.errors">
-                            <ion-label position="stacked" color="danger" *ngIf="f.orgName.errors.required">requis</ion-label>
+                            <ion-label position="stacked" color="danger" *ngIf="f.orgName.errors.required">requis
+                            </ion-label>
                         </div>
                         <ion-input placeholder="Nom " formControlName="orgName" required></ion-input>
 
                         <div *ngIf="submitted && f.orgAdress.errors">
-                            <ion-label position="stacked" color="danger" *ngIf="f.orgAdress.errors.required">requis</ion-label>
+                            <ion-label position="stacked" color="danger" *ngIf="f.orgAdress.errors.required">requis
+                            </ion-label>
                         </div>
                         <ion-input placeholder="Addresse" formControlName="orgAdress" required></ion-input>
 
                         <div *ngIf="submitted && f.orgNPA.errors">
-                            <ion-label position="stacked" color="danger" *ngIf="f.orgNPA.errors.required">requis</ion-label>
+                            <ion-label position="stacked" color="danger" *ngIf="f.orgNPA.errors.required">requis
+                            </ion-label>
                         </div>
                         <ion-input placeholder="NPA" type="number" formControlName="orgNPA" required></ion-input>
 
                         <div *ngIf="submitted && f.orgCity.errors">
-                            <ion-label position="stacked" color="danger" *ngIf="f.orgCity.errors.required">requis</ion-label>
+                            <ion-label position="stacked" color="danger" *ngIf="f.orgCity.errors.required">requis
+                            </ion-label>
                         </div>
                         <ion-input placeholder="Ville" formControlName="orgCity" required></ion-input>
 
                         <div *ngIf="submitted && f.orgState.errors">
-                            <ion-label position="stacked" color="danger" *ngIf="f.orgState.errors.required">requis</ion-label>
+                            <ion-label position="stacked" color="danger" *ngIf="f.orgState.errors.required">requis
+                            </ion-label>
                         </div>
                         <ion-select value="Fribourg" placeholder="Canton" formControlName="orgState" required>
                             <ion-select-option value="Fribourg">Fribourg</ion-select-option>
                         </ion-select>
 
                         <div *ngIf="submitted && f.orgPhone.errors">
-                            <ion-label position="stacked" color="danger" *ngIf="f.orgPhone.errors.required">requis</ion-label>
+                            <ion-label position="stacked" color="danger" *ngIf="f.orgPhone.errors.required">requis
+                            </ion-label>
                         </div>
                         <ion-input placeholder="téléphone" formControlName="orgPhone" required></ion-input>
 
@@ -194,7 +213,8 @@
                         <ion-label position="stacked">Météo recommandée (choix multiples) *</ion-label>
 
                         <div *ngIf="submitted && f.reqWeather.errors">
-                            <ion-label position="stacked" color="danger" *ngIf="f.reqWeather.errors.required">requis</ion-label>
+                            <ion-label position="stacked" color="danger" *ngIf="f.reqWeather.errors.required">requis
+                            </ion-label>
                         </div>
                         <ion-select multiple="true" formControlName="reqWeather" required>
                             <ion-select-option value="beau">Beau temps</ion-select-option>
@@ -208,7 +228,8 @@
                         <ion-label position="stacked">Type de public *</ion-label>
 
                         <div *ngIf="submitted && f.public.errors">
-                            <ion-label position="stacked" color="danger" *ngIf="f.public.errors.required">requis</ion-label>
+                            <ion-label position="stacked" color="danger" *ngIf="f.public.errors.required">requis
+                            </ion-label>
                         </div>
                         <ion-select multiple="true" formControlName="public" required>
                             <ion-select-option value="enfant">enfants</ion-select-option>
@@ -222,9 +243,11 @@
                         <ion-label position="stacked">Coût moyen par personne *</ion-label>
 
                         <div *ngIf="submitted && f.infoCost.errors">
-                            <ion-label position="stacked" color="danger" *ngIf="f.infoCost.errors.required">requis</ion-label>
+                            <ion-label position="stacked" color="danger" *ngIf="f.infoCost.errors.required">requis
+                            </ion-label>
                         </div>
-                        <ion-range min="0" max="100" pin snaps color="secondary" step="5" formControlName="infoCost" required>
+                        <ion-range min="0" max="100" pin snaps color="secondary" step="5" formControlName="infoCost"
+                            required>
                             <ion-label slot="start">0 chf</ion-label>
                             <ion-label slot="end">+ 100</ion-label>
                         </ion-range>
@@ -235,7 +258,8 @@
                         <ion-label position="stacked">accès Handicapés *</ion-label>
 
                         <div *ngIf="submitted && f.infoHandicap.errors">
-                            <ion-label position="stacked" color="danger" *ngIf="f.infoHandicap.errors.required">requis</ion-label>
+                            <ion-label position="stacked" color="danger" *ngIf="f.infoHandicap.errors.required">requis
+                            </ion-label>
                         </div>
                         <ion-select placeholder="accès Handicapés" formControlName="infoHandicap" required>
                             <ion-select-option [value]="true">oui</ion-select-option>
@@ -248,7 +272,8 @@
                         <ion-label position="stacked">Chiens autorisés *</ion-label>
 
                         <div *ngIf="submitted && f.infoDog.errors">
-                            <ion-label position="stacked" color="danger" *ngIf="f.infoDog.errors.required">requis</ion-label>
+                            <ion-label position="stacked" color="danger" *ngIf="f.infoDog.errors.required">requis
+                            </ion-label>
                         </div>
                         <ion-select placeholder="Chiens autorisés" formControlName="infoDog" required>
                             <ion-select-option [value]="true">oui</ion-select-option>

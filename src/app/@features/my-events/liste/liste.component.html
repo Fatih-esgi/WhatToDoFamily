@@ -5,41 +5,51 @@
                 <h2>Vos prochains évenements</h2>
             </ion-text>
         </ion-col>
+    </ion-row>
+    <ion-row>
         <ion-col size="12" *ngIf="(this.listEvents)?.length >= 1">
-            <ion-list *ngFor="let event of this.listEvents">
-                <ion-item-sliding>
-                    <ion-item>
-                        <ion-text color="secondary" class="ion-text-center">
-                            <h6>{{event.dateTime|date:'d MMM HH:mm' }}</h6>
-                        </ion-text>
-                        <ion-card routerLink="../event/{{event.eventID}}">
-                            <ion-grid fixed>
-                                <ion-row>
-                                    <ion-col size="2">
-                                        <ion-thumbnail>
-                                            <img [src]="event.image1" />
-                                        </ion-thumbnail>
-                                    </ion-col>
-                                    <ion-col size="9">
-                                        <ion-text>
-                                            <h6>{{event.eventTitle}}</h6>
-                                        </ion-text>
-                                    </ion-col>
-                                </ion-row>
-                            </ion-grid>
+            <ion-list mode="md">
+
+                <ion-item-sliding *ngFor="let event of this.listEvents">
+                    <ion-item class="ion-no-margin ion-no-padding">
+
+                        <ion-card routerLink="../event/{{event.eventID}}" class="ion-no-margin ion-no-padding">
+                            <ion-row>
+
+                                <ion-col size="2">
+                                    <ion-text color="tertiary" class="ion-text-center">
+                                        <h6>{{event.dateTime|date:'d MMM HH:mm' }}</h6>
+                                    </ion-text>
+                                </ion-col>
+
+                                <ion-col size="2">
+                                    <ion-thumbnail>
+                                        <img [src]="event.image1" />
+                                    </ion-thumbnail>
+                                </ion-col>
+
+                                <ion-col size="8">
+                                    <ion-text color="primary">
+                                        <h6>{{event.eventTitle}}</h6>
+                                    </ion-text>
+                                </ion-col>
+
+                            </ion-row>
                         </ion-card>
+
                     </ion-item>
                     <ion-item-options side="end">
-                      <ion-item-option color="alerte" (click)="removeItem(event.id)">
-                        <ion-icon name="trash-outline"></ion-icon>
-                      </ion-item-option>
+                        <ion-item-option color="alerte" (click)="removeItem(event.id)">
+                            <ion-icon name="trash-outline"></ion-icon>
+                        </ion-item-option>
                     </ion-item-options>
-                  </ion-item-sliding>
+                </ion-item-sliding>
+
             </ion-list>
         </ion-col>
         <ion-col size="12" *ngIf="(this.listEvents)?.length < 1">
-            <ion-text color="primary">
-                <h1>Aucun event</h1>
+            <ion-text color="primary" class="ion-text-center">
+                <p>Aucun événement dans votre liste</p>
             </ion-text>
         </ion-col>
     </ion-row>

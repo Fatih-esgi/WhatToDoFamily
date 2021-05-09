@@ -1,16 +1,17 @@
 <ion-header>
-  <app-header pageTitle="Mes Favoris"></app-header>
+  <ion-toolbar>
+    <ion-title>Favoris</ion-title>
+  </ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content class="bgImg">
 <ng-container *ngIf="(this.FavoriteListe)?.length >= 1">
-  <ion-list *ngFor="let fav of this.FavoriteListe">
-    <ion-item-sliding>
-      <ion-item>
-        <app-event-card [event]="fav.value">
-        </app-event-card>
+  <ion-list mode="md">
+    <ion-item-sliding *ngFor="let fav of this.FavoriteListe" mode="md" >
+      <ion-item mode="md">
+        <app-event-card [event]="fav.value"></app-event-card>
       </ion-item>
-      <ion-item-options side="end">
-        <ion-item-option color="alerte" (click)="removeFav(fav.item)">
+      <ion-item-options side="end" mode="md">
+        <ion-item-option color="danger" (click)="removeFav(fav.item)">
           <ion-icon name="trash-outline"></ion-icon>
         </ion-item-option>
       </ion-item-options>
@@ -19,10 +20,10 @@
 </ng-container>
  <ng-container *ngIf="this.FavoriteListe?.length < 1">
   <ion-text color="primary" class="ion-text-center">
-    <ion-icon  name="sad-outline"></ion-icon>
-    <p>aucun favoris dans votre liste</p><br>
+    <ion-icon class="smiley"  name="sad-outline"></ion-icon>
+    <h3>aucun favoris dans votre liste</h3><br>
     <p>les favoris vous permettent de garder de côté des évenément qui vous intéresse</p><br>
-    <p>Ajouter en depuis le boutton + dans le descriptif de l'évenements</p>
+    <p>Ajoutez-en depuis le boutton <strong>+</strong> dans le descriptif de l'évenements</p>
   </ion-text>
   </ng-container>
 </ion-content>

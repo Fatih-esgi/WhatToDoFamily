@@ -46,7 +46,8 @@ import { PublicCiblePipe } from './pipes/public-cible.pipe';
     WeatherImagePipe,
     WeatherDescriptionPipe,
     CatTitlePipe,
-    WeatherIconsPipe
+    WeatherIconsPipe,
+    PublicCiblePipe
   ]
 })
 export class SharedModule { }

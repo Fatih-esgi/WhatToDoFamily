@@ -12,7 +12,7 @@ export class ListEventComponent implements OnInit {
   events?: EventsToDb[];
   currentIndex = -1;
   title = 'Administration';
-  
+
   constructor(private eventCRUD: EventCRUDService) { }
 
   ngOnInit(): void {
@@ -35,8 +35,8 @@ export class ListEventComponent implements OnInit {
     });
   }
 
-  eraseEvent(id,title){
-    if(confirm("Voulez vous vraiment Effacer"+ title)) {
+  eraseEvent(id, title) {
+    if (confirm("Voulez vous vraiment Effacer" + title)) {
       this.eventCRUD.delete(id)
     }
   }

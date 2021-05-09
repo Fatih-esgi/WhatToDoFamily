@@ -1,9 +1,10 @@
 <ion-header>
-  <app-header pageTitle="Evenements plannifiés "></app-header>
+  <ion-toolbar>
+    <ion-title>Mes événements</ion-title>
+  </ion-toolbar>
 </ion-header>
-
-<ion-content>
-  <ion-segment value="calendrier" (ionChange)="segmentChanged($event)">
+<ion-content  class="bgImg">
+  <ion-segment value="calendrier" (ionChange)="segmentChanged($event)" mode="md">
     <ion-segment-button value="calendrier">
       <ion-label>Calendrier</ion-label>
     </ion-segment-button>

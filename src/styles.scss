@@ -6,10 +6,22 @@
 }
 
 .list-md {
-    background: transparent !important;
+    background: transparent !important;   
 }
 
-.popover-content.sc-ion-popover-md {
-    background-color: var(--ion-color-step-50);
+
+// .popover-content.sc-ion-popover-md {
+//     background-color: var(--ion-color-step-50);
+// }
+
+.table-bordered {
+    border: 3px solid rgba(54, 54, 54, 0.397) !important;
 }
 
+ion-content.bgImg{
+    width: 100%;
+    height: 100%;
+    --background: url('https://firebasestorage.googleapis.com/v0/b/whattododev.appspot.com/o/background-cloud.jpg?alt=media&token=7176e72c-5166-481d-963e-21cea615c8bd');   
+    background-size: cover;
+    background-repeat: no-repeat;
+}

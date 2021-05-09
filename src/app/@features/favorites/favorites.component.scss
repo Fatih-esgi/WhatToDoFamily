@@ -1,0 +1,17 @@
+:host{
+
+    ion-toolbar {
+        --background: #222428;
+        --border-color: transparent;
+    }
+
+    ion-icon.smiley {
+        font-size: 44px;
+        width: 100%;
+        margin-top: 40px;
+    }
+    ion-item{
+
+        --background: transparent!important
+    }
+}

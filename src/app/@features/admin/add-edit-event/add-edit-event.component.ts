@@ -1,4 +1,4 @@
-import {  Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -15,7 +15,7 @@ import { Camera, CameraResultType } from '@capacitor/core';
 })
 
 export class AddEditEventComponent implements OnInit {
- 
+
 
   form: FormGroup;
   id: string;
@@ -32,7 +32,7 @@ export class AddEditEventComponent implements OnInit {
     private formBuilder: FormBuilder, private route: ActivatedRoute,
     private router: Router, private _eventsDb: EventCRUDService,
     private _toast: InfoToastService, private _storage: AngularFireStorage
-) { }
+  ) { }
 
   async ngOnInit() {
     this.id = this.route.snapshot.params['id'];
@@ -80,7 +80,7 @@ export class AddEditEventComponent implements OnInit {
 
     }
   }
-  
+
   get f() { return this.form.controls; }// raccourci controle formulaire 
 
   onSubmit() {
@@ -112,7 +112,7 @@ export class AddEditEventComponent implements OnInit {
   }
 
   private updateEvent() {
-    this._eventsDb.update(this.id,this.form.value)
+    this._eventsDb.update(this.id, this.form.value)
   }
 
   /////-----------------pictures functions-------------------------//////
@@ -126,8 +126,8 @@ export class AddEditEventComponent implements OnInit {
 
     const imageUrl = image.webPath;
     this.imgTempUrl1 = imageUrl;
-   await this.savePict();
-    
+    await this.savePict();
+
   }
 
   async savePict() {

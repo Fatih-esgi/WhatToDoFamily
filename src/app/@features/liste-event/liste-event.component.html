@@ -45,7 +45,7 @@
   </ion-segment>
 </ion-header>
 
-<ion-content [fullscreen]="true" scrollEvents="true" [appToolbarEffect]="toolbar">
+<ion-content [fullscreen]="true" scrollEvents="true" [appToolbarEffect]="toolbar" class="bgImg">
   <ion-grid fixed>
     <ion-row> 
       <ion-col size="12" class="ion-text-center ion-no-padding ion-no-margin">
@@ -83,9 +83,8 @@
         </ion-chip>
       </ion-col>
       <ion-col size="12">
-
-        <ion-list *ngFor="let evenement of (this.listeEvent|async|filter:term)?.slice(min, max)">
-          <app-event-card [event]="evenement"></app-event-card>
+        <ion-list mode="md">
+          <app-event-card [event]="evenement" *ngFor="let evenement of (this.listeEvent|async|filter:term)?.slice(min, max)"></app-event-card>
         </ion-list>
         <ion-text color="primary" *ngIf="(this.listeEvent|async)?.length == 0" class="ion-text-center">
           <p>Aucun événement, essayer de supprimer des filtres</p>

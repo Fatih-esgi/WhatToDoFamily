@@ -1,3 +1,47 @@
-.txtArea{
+
+
+    ion-toolbar {
+        --background: 0000000;
+        --border-color: transparent!important;
+    }    
+
+    ion-content {
+        position: absolute;
+        --offset-top: 0px;
+
+        div.imgBox{
+            position: relative;
+
+            ion-img.eventImg{
+                position:relative;
+                top:0;
+                height: 60vh;
+                object-fit: cover;
+                object-position: center;
+            }
+            .cat {
+                position: absolute;
+                bottom: -16px;
+                padding-left: 10px;
+                background-color: rgba(255, 255, 255, 0.692);
+                padding: 5px 10px 5px 10px;
+                width: 100px;
+                text-align: center;
+                font-weight: 700;
+                color: rgb(44, 44, 44);
+                border-radius: 0 12px 0 0;
+            }
+        }
+    }
+    ion-card {
+        border-radius: 15px;
+        margin: 10px 2px;
+        background-color: #ffffff18;
+    }
+
+    .txtArea{
     white-space: pre-wrap;
+}
+ion-fab-button:first-of-type{
+    margin-top: 42px;
 }
